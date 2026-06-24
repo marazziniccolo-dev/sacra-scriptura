@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="theme-color" content="#2a1f0f"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Sacra Scriptura"/>
+<title>Sacra Scriptura</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;font-family:Georgia,serif;background:#0f0e0c;color:#e8e2d8}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#3d3a32;border-radius:3px}
+button{font-family:Georgia,serif;cursor:pointer;border:none;background:none}
+input,textarea{font-family:Georgia,serif;outline:none;resize:none}
+input:focus,textarea:focus{border-color:#b8963e!important;box-shadow:0 0 0 2px #b8963e22!important}
+.app{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+.hdr{flex-shrink:0;background:#0a0905;padding:13px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e1c15;padding-top:max(13px,env(safe-area-inset-top))}
+.content{flex:1;overflow-y:auto;padding:14px 14px 0;-webkit-overflow-scrolling:touch}
+.navbar{flex-shrink:0;display:flex;background:#0a0905;border-top:1px solid #1e1c15;padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.nb{flex:1;padding:10px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;color:#3a3428;border-top:2px solid transparent;transition:all .15s;font-size:8px;letter-spacing:.8px}
+.nb.active{color:#b8963e;border-top-color:#b8963e}
+.card{border-radius:10px;padding:15px;margin-bottom:10px;border:1px solid var(--bord)}
+.bp{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:500;letter-spacing:.2px;transition:opacity .15s;font-family:Georgia,serif}
+.b1{background:#5a3e28;color:#f5ede0}
+.b2{border:1px solid var(--bord);color:var(--text);background:transparent}
+.b3{border:1px solid #7a2e2e44;color:#c0504a;background:transparent}
+button:active{opacity:.7}
+.sl{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;margin-top:4px;display:block}
+.inp{width:100%;padding:9px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px}
+.vrow{padding:10px 14px;border-radius:8px;background:var(--surf);margin-bottom:6px;border:1px solid var(--bord);border-left:3px solid var(--bord);transition:background .15s}
+.chip{font-size:11px;padding:4px 10px;border-radius:12px;border:1px solid var(--bord);background:var(--alt);color:var(--muted);cursor:pointer}
+.modal-ov{position:fixed;inset:0;background:#00000099;z-index:300;display:flex;align-items:flex-end;justify-content:center}
+.modal-sh{background:var(--surf);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:520px;border-top:1px solid var(--bord);padding-bottom:max(24px,env(safe-area-inset-bottom));max-height:80vh;overflow-y:auto}
+.spinner{width:28px;height:28px;border:2px solid var(--bord);border-top-color:#b8963e;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chbtn{padding:4px 8px;border-radius:5px;border:1px solid var(--bord);background:transparent;color:var(--muted);font-size:12px;font-family:Georgia,serif;cursor:pointer}
+.chbtn.on{border-color:#b8963e;background:#b8963e;color:#fff}
+.hldot{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;flex-shrink:0}
+.tag-dc{font-size:10px;color:#d4aa55;margin-top:2px}
+.search-hl{background:#b8963e44;border-radius:2px}
+:root{--bg:#0f0e0c;--surf:#1a1814;--alt:#211f1a;--bord:#2e2b25;--text:#e8e2d8;--muted:#8a8070;--faint:#4a4438}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" style="position:fixed;inset:0;background:#0f0e0c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:999;transition:opacity .6s">
+  <svg width="44" height="44" viewBox="0 0 24 24" fill="#b8963e"><path d="M10 2h4v7h7v4h-7v9h-4v-9H3v-4h7V2z"/></svg>
+  <div style="color:#b8963e;font-size:17px;letter-spacing:3px">SACRA SCRIPTURA</div>
+  <div style="color:#3a3020;font-size:10px;letter-spacing:2px">CATHOLIC BIBLE · 73 BOOKS</div>
+  <div class="spinner" style="margin-top:8px"></div>
+</div>
+
+<!-- ADD-TO-COLLECTION MODAL -->
+<div class="modal-ov" id="addMod" style="display:none" onclick="closeMod()">
+  <div class="modal-sh" onclick="event.stopPropagation()">
+    <div style="font-weight:600;font-size:16px;margin-bottom:3px">Add to Collection</div>
+    <div id="modRef" style="color:var(--muted);font-size:12px;margin-bottom:14px"></div>
+    <div id="modList" style="display:flex;flex-direction:column;gap:6px"></div>
+    <button class="bp b2" style="width:100%;margin-top:12px" onclick="closeMod()">Cancel</button>
+  </div>
+</div>
+
+<!-- STUDY NOTE MODAL -->
+<div class="modal-ov" id="noteMod" style="display:none" onclick="closeNoteMod()">
+  <div class="modal-sh" onclick="event.stopPropagation()">
+    <div style="font-weight:600;font-size:16px;margin-bottom:3px">Study Note</div>
+    <div id="noteRef" style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:6px"></div>
+    <div id="noteVerseTxt" style="font-size:13px;line-height:1.7;font-style:italic;color:var(--muted);margin-bottom:12px;padding:10px;background:var(--alt);border-radius:8px;border:1px solid var(--bord)"></div>
+    <textarea id="noteTxt" style="width:100%;min-height:130px;padding:10px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px;line-height:1.7;margin-bottom:10px" placeholder="Write your reflection, questions, or insights here…"></textarea>
+    <div style="display:flex;gap:8px">
+      <button class="bp b1" style="flex:1" onclick="saveNote()">Save Note</button>
+      <button class="bp b3" id="delNoteBtn" style="display:none" onclick="deleteNote()">Delete</button>
+      <button class="bp b2" onclick="closeNoteMod()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div class="app" id="mainApp">
+  <div class="hdr">
+    <div style="display:flex;align-items:center;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8963e"><path d="M10 2h4v7h7v4h-7v9h-4v-9H3v-4h7V2z"/></svg>
+      <div>
+        <div style="color:#b8963e;font-size:15px;font-weight:600;letter-spacing:1.5px">SACRA SCRIPTURA</div>
+        <div style="color:#3a3020;font-size:9px;letter-spacing:2px">CATHOLIC BIBLE · 73 BOOKS</div>
+      </div>
+    </div>
+    <button onclick="toggleDark()" id="dkBtn" style="border:1px solid #3d3a30;border-radius:6px;padding:4px 10px;color:#8a7a60;font-size:10px;letter-spacing:1px">LIGHT</button>
+  </div>
+
+  <div class="content" id="ct"></div>
+
+  <div class="navbar">
+    <button class="nb active" id="n-home" onclick="go('home')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>HOME</span></button>
+    <button class="nb" id="n-read" onclick="go('read')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span>READ</span></button>
+    <button class="nb" id="n-search" onclick="go('search')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><span>SEARCH</span></button>
+    <button class="nb" id="n-saved" onclick="go('saved')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg><span>SAVED</span></button>
+    <button class="nb" id="n-journal" onclick="go('journal')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg><span>JOURNAL</span></button>
+    <button class="nb" id="n-colls" onclick="go('colls')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg><span>COLLECT.</span></button>
+  </div>
+</div>
+
+<script>
+// ── BOOKS ──────────────────────────────────────────────────────────────
+const BOOKS=[
+  {n:"Genesis",a:"gen",t:"OT",ch:50},{n:"Exodus",a:"exod",t:"OT",ch:40},{n:"Leviticus",a:"lev",t:"OT",ch:27},
+  {n:"Numbers",a:"num",t:"OT",ch:36},{n:"Deuteronomy",a:"deut",t:"OT",ch:34},{n:"Joshua",a:"josh",t:"OT",ch:24},
+  {n:"Judges",a:"judg",t:"OT",ch:21},{n:"Ruth",a:"ruth",t:"OT",ch:4},{n:"1 Samuel",a:"1sam",t:"OT",ch:31},
+  {n:"2 Samuel",a:"2sam",t:"OT",ch:24},{n:"1 Kings",a:"1kgs",t:"OT",ch:22},{n:"2 Kings",a:"2kgs",t:"OT",ch:25},
+  {n:"1 Chronicles",a:"1chr",t:"OT",ch:29},{n:"2 Chronicles",a:"2chr",t:"OT",ch:36},{n:"Ezra",a:"ezra",t:"OT",ch:10},
+  {n:"Nehemiah",a:"neh",t:"OT",ch:13},{n:"Tobit",a:"tob",t:"OT",dc:1,ch:14},{n:"Judith",a:"jdt",t:"OT",dc:1,ch:16},
+  {n:"Esther",a:"esth",t:"OT",ch:10},{n:"1 Maccabees",a:"1macc",t:"OT",dc:1,ch:16},{n:"2 Maccabees",a:"2macc",t:"OT",dc:1,ch:15},
+  {n:"Job",a:"job",t:"OT",ch:42},{n:"Psalms",a:"ps",t:"OT",ch:150},{n:"Proverbs",a:"prov",t:"OT",ch:31},
+  {n:"Ecclesiastes",a:"eccl",t:"OT",ch:12},{n:"Song of Songs",a:"song",t:"OT",ch:8},{n:"Wisdom",a:"wis",t:"OT",dc:1,ch:19},
+  {n:"Sirach",a:"sir",t:"OT",dc:1,ch:51},{n:"Isaiah",a:"isa",t:"OT",ch:66},{n:"Jeremiah",a:"jer",t:"OT",ch:52},
+  {n:"Lamentations",a:"lam",t:"OT",ch:5},{n:"Baruch",a:"bar",t:"OT",dc:1,ch:6},{n:"Ezekiel",a:"ezek",t:"OT",ch:48},
+  {n:"Daniel",a:"dan",t:"OT",ch:14},{n:"Hosea",a:"hos",t:"OT",ch:14},{n:"Joel",a:"joel",t:"OT",ch:4},
+  {n:"Amos",a:"amos",t:"OT",ch:9},{n:"Obadiah",a:"obad",t:"OT",ch:1},{n:"Jonah",a:"jonah",t:"OT",ch:4},
+  {n:"Micah",a:"mic",t:"OT",ch:7},{n:"Nahum",a:"nah",t:"OT",ch:3},{n:"Habakkuk",a:"hab",t:"OT",ch:3},
+  {n:"Zephaniah",a:"zeph",t:"OT",ch:3},{n:"Haggai",a:"hag",t:"OT",ch:2},{n:"Zechariah",a:"zech",t:"OT",ch:14},
+  {n:"Malachi",a:"mal",t:"OT",ch:4},{n:"Matthew",a:"matt",t:"NT",ch:28},{n:"Mark",a:"mark",t:"NT",ch:16},
+  {n:"Luke",a:"luke",t:"NT",ch:24},{n:"John",a:"john",t:"NT",ch:21},{n:"Acts",a:"acts",t:"NT",ch:28},
+  {n:"Romans",a:"rom",t:"NT",ch:16},{n:"1 Corinthians",a:"1cor",t:"NT",ch:16},{n:"2 Corinthians",a:"2cor",t:"NT",ch:13},
+  {n:"Galatians",a:"gal",t:"NT",ch:6},{n:"Ephesians",a:"eph",t:"NT",ch:6},{n:"Philippians",a:"phil",t:"NT",ch:4},
+  {n:"Colossians",a:"col",t:"NT",ch:4},{n:"1 Thessalonians",a:"1thess",t:"NT",ch:5},{n:"2 Thessalonians",a:"2thess",t:"NT",ch:3},
+  {n:"1 Timothy",a:"1tim",t:"NT",ch:6},{n:"2 Timothy",a:"2tim",t:"NT",ch:4},{n:"Titus",a:"titus",t:"NT",ch:3},
+  {n:"Philemon",a:"phlm",t:"NT",ch:1},{n:"Hebrews",a:"heb",t:"NT",ch:13},{n:"James",a:"jas",t:"NT",ch:5},
+  {n:"1 Peter",a:"1pet",t:"NT",ch:5},{n:"2 Peter",a:"2pet",t:"NT",ch:3},{n:"1 John",a:"1john",t:"NT",ch:5},
+  {n:"2 John",a:"2john",t:"NT",ch:1},{n:"3 John",a:"3john",t:"NT",ch:1},{n:"Jude",a:"jude",t:"NT",ch:1},
+  {n:"Revelation",a:"rev",t:"NT",ch:22}
+];
+
+// ── BOOK INTRODUCTIONS ─────────────────────────────────────────────────
+const INTROS={
+  "Genesis":"Genesis, meaning 'beginnings,' opens the entire Bible with the creation of the world, the fall of humanity, and God's covenant with the patriarchs Abraham, Isaac, and Jacob. Written by Moses, it establishes the foundation of God's relationship with His chosen people and sets the stage for all of salvation history.",
+  "Exodus":"Exodus recounts the dramatic liberation of the Israelites from Egyptian slavery under Moses, culminating in the giving of the Ten Commandments at Mount Sinai. It is the story of God revealing Himself as the great Liberator and entering into covenant with His people.",
+  "Psalms":"The Book of Psalms is the great prayerbook of the Bible — 150 sacred poems and hymns attributed largely to King David. Catholics use the Psalms in every Liturgy of the Hours. They express the full range of human emotion before God: praise, lament, gratitude, repentance, and hope.",
+  "Proverbs":"Proverbs is a collection of wise sayings attributed to King Solomon, offering practical guidance for righteous living. It emphasizes that true wisdom begins with the fear of the Lord and permeates all aspects of daily life — family, work, speech, and relationships.",
+  "Isaiah":"Isaiah is one of the greatest prophetic books, spanning 66 chapters. The first section foretells judgment, while the second — especially the Suffering Servant songs — contains some of the most remarkable Messianic prophecies in the entire Old Testament, quoted extensively in the New Testament.",
+  "Matthew":"Matthew, the first Gospel, was written for a Jewish-Christian audience and presents Jesus as the fulfillment of all Old Testament prophecy. It contains the Sermon on the Mount, the Beatitudes, the Our Father, and the Great Commission. The Church has long placed it first in the New Testament.",
+  "Mark":"Mark is the shortest and most action-packed Gospel, likely the first written. It presents Jesus as a man of power and urgency — the word 'immediately' appears over 40 times. Tradition holds that Mark recorded the preaching of St. Peter himself.",
+  "Luke":"Luke, a physician and companion of St. Paul, wrote the most literary Gospel. He emphasizes Jesus's mercy toward the poor, women, and sinners. Luke also wrote Acts of the Apostles. His Gospel contains the Annunciation, the Magnificat, and the parables of the Prodigal Son and the Good Samaritan.",
+  "John":"The Fourth Gospel stands apart — theological, poetic, and profound. Written by the Apostle John, it opens with the eternal Word of God and is built around seven signs and seven 'I Am' statements of Jesus. The Last Supper discourse in chapters 13–17 is unparalleled in depth and beauty.",
+  "Acts":"Acts of the Apostles, written by Luke, chronicles the birth and spread of the early Church from Jerusalem to Rome. It records Pentecost, the ministry of Peter and Paul, and the courage of the first martyrs. It is the essential companion to the four Gospels.",
+  "Romans":"Paul's letter to the Romans is perhaps his greatest theological achievement — a systematic exposition of the Gospel. It covers sin, justification by faith, the role of Israel, and Christian living. Martin Luther called it 'the clearest gospel of all.'",
+  "Revelation":"The Book of Revelation, written by John in exile on the island of Patmos, uses rich apocalyptic imagery to offer hope to persecuted Christians. Rather than a prediction calendar, it is a cosmic vision of Christ's ultimate victory over evil and the establishment of the new Jerusalem.",
+  "Tobit":"Tobit is one of the Deuterocanonical books cherished by Catholics. It is a beautiful story of faith, family devotion, and God's providential care — featuring the archangel Raphael, intercessory prayer, and the healing of blindness. It emphasizes almsgiving, marriage, and prayer.",
+  "Wisdom":"The Book of Wisdom, written in Greek for Jewish communities in Alexandria, defends the faith against Greek philosophy and celebrates divine wisdom. Catholics treasure it for its rich reflection on the soul's immortality and God's mercy toward sinners.",
+  "Sirach":"Also called Ecclesiasticus, Sirach was written by Jesus ben Sirach around 180 BC. It is one of the longest Deuterocanonical books, offering practical wisdom on friendship, humility, prayer, family, and worship — all rooted in the fear of the Lord.",
+  "Baruch":"Baruch, the secretary of the prophet Jeremiah, compiled this short book of prayers, a poem on Wisdom, and a message of hope for the exiles in Babylon. Chapter 3's hymn to Wisdom is one of the most beautiful passages in the Deuterocanonical texts.",
+  "1 Maccabees":"1 Maccabees is a historical account of the Maccabean revolt (167–134 BC) against the Seleucid king Antiochus IV, who desecrated the Temple. It records the heroic deeds of Judas Maccabeus and the rededication of the Temple — the origin of Hanukkah. Catholics see it as a model of faithfulness.",
+  "2 Maccabees":"2 Maccabees covers some of the same events as 1 Maccabees but with a more theological focus. It explicitly teaches the resurrection of the dead, prayers for the dead, and the intercession of the saints — doctrines that remain central to Catholic faith.",
+  "Judith":"Judith tells the story of a courageous Jewish widow who saves her people by beheading the Assyrian general Holofernes. It is a story of faith, prayer, and divine deliverance. The Church fathers saw Judith as a prefigurement of the Virgin Mary's victory over evil.",
+};
+
+// ── DC TEXT ────────────────────────────────────────────────────────────
+const DC={
+  "Tobit":{1:[{v:1,t:"The book of the words of Tobit son of Tobiel son of Hananiel son of Aduel son of Gabael son of Raphael son of Raguel of the descendants of Asiel, of the tribe of Naphtali."},{v:2,t:"who in the days of King Shalmaneser of the Assyrians was taken into captivity from Thisbe, which is to the south of Kedesh Naphtali in upper Galilee, above Asher toward the west, and north of Phogor."},{v:3,t:"I, Tobit, walked in the ways of truth and righteousness all the days of my life. I performed many acts of charity for my kindred and my people who had gone with me in exile to Nineveh in the land of the Assyrians."},{v:4,t:"When I was in my own country, in the land of Israel, while I was still a young man, the whole tribe of my ancestor Naphtali deserted the house of David and Jerusalem."},{v:5,t:"This was the place that had been chosen from among all the tribes of Israel, where all the tribes would offer sacrifice and where the temple of the dwelling of the Most High was consecrated and established for all generations forever."}]},
+  "Judith":{1:[{v:1,t:"It was the twelfth year of the reign of Nebuchadnezzar, who ruled over the Assyrians in the great city of Nineveh. In those days Arphaxad ruled over the Medes in Ecbatana."},{v:2,t:"He built walls around Ecbatana with hewn stones three cubits thick and six cubits long; he made the walls seventy cubits high and fifty cubits wide."},{v:3,t:"At its gates he raised towers one hundred cubits high and sixty cubits wide at the foundations."},{v:4,t:"He made its gates seventy cubits high and forty cubits wide to allow his armies to march out in force and his infantry to form their ranks."},{v:5,t:"King Nebuchadnezzar made war against King Arphaxad in the great plain that is on the borders of Ragau."}]},
+  "Wisdom":{1:[{v:1,t:"Love righteousness, you rulers of the earth, think of the Lord in goodness and seek him with sincerity of heart."},{v:2,t:"Because he is found by those who do not put him to the test, and manifests himself to those who do not distrust him."},{v:3,t:"For perverse thoughts separate people from God, and when his power is tested, it exposes the foolish."},{v:4,t:"Because wisdom will not enter a deceitful soul, or dwell in a body enslaved to sin."},{v:5,t:"For a holy and disciplined spirit will flee from deceit, and will leave foolish thoughts behind, and will be ashamed at the approach of unrighteousness."}]},
+  "Sirach":{1:[{v:1,t:"All wisdom is from the Lord, and with him it remains forever."},{v:2,t:"The sand of the sea, the drops of rain, and the days of eternity — who can count them?"},{v:3,t:"The height of heaven, the breadth of the earth, the abyss, and wisdom — who can search them out?"},{v:4,t:"Wisdom was created before all other things, and prudent understanding from eternity."},{v:5,t:"The root of wisdom — to whom has it been revealed? Her subtleties — who knows them?"}]},
+  "Baruch":{1:[{v:1,t:"These are the words of the book that Baruch son of Neriah son of Mahseiah son of Zedekiah son of Hasadiah son of Hilkiah wrote in Babylon."},{v:2,t:"In the fifth year, on the seventh day of the month, at the time when the Chaldeans took Jerusalem and burned it with fire."},{v:3,t:"And Baruch read the words of this book to Jeconiah son of Jehoiakim, king of Judah, and to all the people who came to hear the book."},{v:4,t:"And to the nobles and the princes, and to the elders, and to all the people, small and great, all who lived in Babylon by the river Sud."},{v:5,t:"Then they wept, and fasted, and prayed before the Lord."}]},
+  "1 Maccabees":{1:[{v:1,t:"After Alexander son of Philip, the Macedonian, who came from the land of Kittim, had defeated King Darius of the Persians and the Medes, he succeeded him as king."},{v:2,t:"He fought many battles, conquered strongholds, and put to death the kings of the earth."},{v:3,t:"He advanced to the ends of the earth, and plundered many nations. When the earth became quiet before him, he was exalted, and his heart was lifted up."},{v:4,t:"He gathered a very strong army and ruled over countries, nations, and princes, and they became tributary to him."},{v:5,t:"After this he fell sick and perceived that he was dying."}]},
+  "2 Maccabees":{1:[{v:1,t:"The Jewish brothers in Jerusalem and those in the land of Judea, To their Jewish kindred in Egypt, Greetings and true peace."},{v:2,t:"May God do good to you, and may he remember his covenant with Abraham, Isaac, and Jacob, his faithful servants."},{v:3,t:"May he give you all a heart to worship him and to do his will with a strong heart and a willing spirit."},{v:4,t:"May he open your heart to his law and his commandments, and may he bring peace."},{v:5,t:"May he hear your prayers and be reconciled to you, and may he not forsake you in time of evil."}]}
+};
+
+const DAILY=[
+  {ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",book:"Jeremiah",chapter:29,verse:11},
+  {ref:"Philippians 4:13",text:"I can do all things through Christ who strengthens me.",book:"Philippians",chapter:4,verse:13},
+  {ref:"Psalm 23:1",text:"The Lord is my shepherd; I shall not want.",book:"Psalms",chapter:23,verse:1},
+  {ref:"Romans 8:28",text:"And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",book:"Romans",chapter:8,verse:28},
+  {ref:"Isaiah 40:31",text:"But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",book:"Isaiah",chapter:40,verse:31},
+  {ref:"Proverbs 3:5",text:"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",book:"Proverbs",chapter:3,verse:5},
+  {ref:"Matthew 6:33",text:"But seek first his kingdom and his righteousness, and all these things will be given to you as well.",book:"Matthew",chapter:6,verse:33},
+];
+const REFS=["God's plan for your life is filled with purpose and hope. Trust in His timing today.","With Christ's strength, no challenge is too great. Face today with courage and faith.","The Lord provides for all your needs. Rest in His faithful care and guidance.","God weaves all circumstances together for good. Keep faith even in difficult times.","When you feel weary, let God renew your strength. He lifts you up on eagles' wings.","Surrender your worries to God and trust His perfect wisdom to light your path.","Put God first in everything you do, and watch how He provides abundantly for you."];
+const DEFCOLLS=[
+  {id:"sad",name:"In Times of Sorrow",mood:"Sorrow",color:"#4A6FA5",verses:[{ref:"Psalm 34:18",text:"The Lord is close to the brokenhearted and saves those who are crushed in spirit.",book:"Psalms",chapter:34,verse:18},{ref:"Matthew 5:4",text:"Blessed are those who mourn, for they will be comforted.",book:"Matthew",chapter:5,verse:4}]},
+  {id:"angry",name:"When Anger Rises",mood:"Anger",color:"#8B3A3A",verses:[{ref:"Proverbs 15:1",text:"A gentle answer turns away wrath, but a harsh word stirs up anger.",book:"Proverbs",chapter:15,verse:1},{ref:"Ephesians 4:26",text:"In your anger do not sin: Do not let the sun go down while you are still angry.",book:"Ephesians",chapter:4,verse:26}]},
+  {id:"anxious",name:"Peace Over Anxiety",mood:"Anxiety",color:"#5B4A8B",verses:[{ref:"Philippians 4:6",text:"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",book:"Philippians",chapter:4,verse:6},{ref:"1 Peter 5:7",text:"Cast all your anxiety on him because he cares for you.",book:"1 Peter",chapter:5,verse:7}]},
+  {id:"strength",name:"Strength & Courage",mood:"Courage",color:"#2E6B4F",verses:[{ref:"Joshua 1:9",text:"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",book:"Joshua",chapter:1,verse:9},{ref:"Philippians 4:13",text:"I can do all this through him who gives me strength.",book:"Philippians",chapter:4,verse:13}]},
+  {id:"gratitude",name:"Gratitude & Praise",mood:"Gratitude",color:"#8B6914",verses:[{ref:"Psalm 118:24",text:"This is the day the Lord has made; we will rejoice and be glad in it.",book:"Psalms",chapter:118,verse:24},{ref:"1 Thessalonians 5:18",text:"Give thanks in all circumstances; for this is God's will for you in Christ Jesus.",book:"1 Thessalonians",chapter:5,verse:18}]},
+  {id:"hope",name:"Holding onto Hope",mood:"Hope",color:"#2E5C8B",verses:[{ref:"Romans 15:13",text:"May the God of hope fill you with all joy and peace as you trust in him.",book:"Romans",chapter:15,verse:13},{ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",book:"Jeremiah",chapter:29,verse:11}]},
+];
+const HLC=[{h:"#FDE68A",l:"Amber"},{h:"#BBF7D0",l:"Sage"},{h:"#BFDBFE",l:"Sky"},{h:"#FBCFE8",l:"Rose"},{h:"#DDD6FE",l:"Lavender"}];
+
+// ── STATE ──────────────────────────────────────────────────────────────
+let S={
+  tab:"home",dark:true,
+  favs:[],hls:{},colls:JSON.parse(JSON.stringify(DEFCOLLS)),
+  notes:{}, // key: "BookName ch:v" => {text, date}
+  journal:[], // [{id,title,text,date,mood}]
+  book:null,chapter:1,verses:[],loading:false,err:false,
+  bsearch:"",tfilt:"ALL",
+  activeColl:null,showNewColl:false,newCollName:"",
+  hlc:"#FDE68A",
+  addV:null,
+  noteV:null,
+  searchQ:"",searchRes:[],searching:false,
+  journalView:null,journalEdit:null,
+  journalTitle:"",journalText:"",journalMood:"",
+};
+
+// ── PERSIST ─────────────────────────────────────────────────────────────
+function save(){try{localStorage.setItem("ss4",JSON.stringify({favs:S.favs,hls:S.hls,colls:S.colls,notes:S.notes,journal:S.journal,dark:S.dark}));}catch{}}
+function load(){try{const d=JSON.parse(localStorage.getItem("ss4")||"{}");if(d.favs)S.favs=d.favs;if(d.hls)S.hls=d.hls;if(d.colls)S.colls=d.colls;if(d.notes)S.notes=d.notes;if(d.journal)S.journal=d.journal;if(d.dark!==undefined)S.dark=d.dark;}catch{}}
+
+// ── THEME ──────────────────────────────────────────────────────────────
+function applyTheme(){
+  const d=S.dark;
+  const r=document.documentElement.style;
+  r.setProperty("--bg",d?"#0f0e0c":"#f7f4ef");
+  r.setProperty("--surf",d?"#1a1814":"#ffffff");
+  r.setProperty("--alt",d?"#211f1a":"#f2ede6");
+  r.setProperty("--bord",d?"#2e2b25":"#ddd6cc");
+  r.setProperty("--text",d?"#e8e2d8":"#1e1a14");
+  r.setProperty("--muted",d?"#8a8070":"#6b6055");
+  r.setProperty("--faint",d?"#4a4438":"#b0a898");
+  document.body.style.background=d?"#0f0e0c":"#f7f4ef";
+  document.body.style.color=d?"#e8e2d8":"#1e1a14";
+  document.querySelector(".hdr").style.background=d?"#0a0905":"#2a1f0f";
+  document.querySelector(".navbar").style.background=d?"#0a0905":"#2a1f0f";
+  const hdrSub=document.querySelector(".hdr div div:last-child");
+  if(hdrSub)hdrSub.style.color=d?"#3a3020":"#7a6040";
+  document.getElementById("dkBtn").textContent=d?"LIGHT":"DARK";
+}
+function toggleDark(){S.dark=!S.dark;save();applyTheme();render();}
+window.toggleDark=toggleDark;
+
+// ── NAV ────────────────────────────────────────────────────────────────
+function go(t){
+  S.tab=t;
+  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("active"));
+  const nb=document.getElementById("n-"+t);if(nb)nb.classList.add("active");
+  render();
+}
+window.go=go;
+
+// ── HELPERS ────────────────────────────────────────────────────────────
+const isFav=r=>S.favs.some(f=>f.ref===r);
+function togFav(v){S.favs=isFav(v.ref)?S.favs.filter(f=>f.ref!==v.ref):[...S.favs,v];save();render();}
+window.togFav=togFav;
+
+function togHL(key){S.hls[key]===S.hlc?delete S.hls[key]:(S.hls[key]=S.hlc);save();renderVs();}
+window.togHL=togHL;
+
+function openAdd(v){
+  S.addV=v;
+  document.getElementById("modRef").textContent=v.ref;
+  const l=document.getElementById("modList");l.innerHTML="";
+  S.colls.forEach(p=>{
+    const has=p.verses.some(vv=>vv.ref===v.ref);
+    const b=document.createElement("button");
+    b.className="bp b2";b.style.cssText="width:100%;text-align:left;display:flex;align-items:center;gap:10px;"+(has?"opacity:.5":"");
+    b.innerHTML=`<div style="width:8px;height:8px;border-radius:50%;background:${p.color};flex-shrink:0"></div><span style="flex:1">${p.name}</span><span style="color:var(--faint);font-size:11px">${has?"Added ✓":p.verses.length+"v"}</span>`;
+    if(!has)b.onclick=()=>{S.colls=S.colls.map(pl=>pl.id===p.id?{...pl,verses:[...pl.verses.filter(vv=>vv.ref!==v.ref),v]}:pl);save();closeMod();};
+    l.appendChild(b);
+  });
+  document.getElementById("addMod").style.display="flex";
+}
+function closeMod(){document.getElementById("addMod").style.display="none";}
+window.openAdd=openAdd;window.closeMod=closeMod;
+
+// ── STUDY NOTES ────────────────────────────────────────────────────────
+function openNote(v){
+  S.noteV=v;
+  const key=v.ref;const ex=S.notes[key]||{};
+  document.getElementById("noteRef").textContent=v.ref;
+  document.getElementById("noteVerseTxt").textContent="\u201C"+v.text+"\u201D";
+  document.getElementById("noteTxt").value=ex.text||"";
+  document.getElementById("delNoteBtn").style.display=ex.text?"inline-flex":"none";
+  document.getElementById("noteMod").style.display="flex";
+  setTimeout(()=>document.getElementById("noteTxt").focus(),100);
+}
+function saveNote(){
+  const t=document.getElementById("noteTxt").value.trim();
+  if(t){S.notes[S.noteV.ref]={text:t,date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}),verse:S.noteV};}
+  else{delete S.notes[S.noteV.ref];}
+  save();closeNoteMod();render();
+}
+function deleteNote(){delete S.notes[S.noteV.ref];save();closeNoteMod();render();}
+function closeNoteMod(){document.getElementById("noteMod").style.display="none";}
+window.openNote=openNote;window.saveNote=saveNote;window.deleteNote=deleteNote;window.closeNoteMod=closeNoteMod;
+
+// ── BIBLE API ──────────────────────────────────────────────────────────
+// jsDelivr CDN — static JSON files from GitHub, no CORS issues, globally cached
+// Translation: KJV (en-kjv). DC books use embedded inline text.
+// Book name map: lowercase, no spaces/punctuation as required by the API
+const BKMAP={
+  "Genesis":"genesis","Exodus":"exodus","Leviticus":"leviticus","Numbers":"numbers",
+  "Deuteronomy":"deuteronomy","Joshua":"joshua","Judges":"judges","Ruth":"ruth",
+  "1 Samuel":"1samuel","2 Samuel":"2samuel","1 Kings":"1kings","2 Kings":"2kings",
+  "1 Chronicles":"1chronicles","2 Chronicles":"2chronicles","Ezra":"ezra","Nehemiah":"nehemiah",
+  "Esther":"esther","Job":"job","Psalms":"psalms","Proverbs":"proverbs",
+  "Ecclesiastes":"ecclesiastes","Song of Songs":"songofsolomon","Isaiah":"isaiah",
+  "Jeremiah":"jeremiah","Lamentations":"lamentations","Ezekiel":"ezekiel","Daniel":"daniel",
+  "Hosea":"hosea","Joel":"joel","Amos":"amos","Obadiah":"obadiah","Jonah":"jonah",
+  "Micah":"micah","Nahum":"nahum","Habakkuk":"habakkuk","Zephaniah":"zephaniah",
+  "Haggai":"haggai","Zechariah":"zechariah","Malachi":"malachi","Matthew":"matthew",
+  "Mark":"mark","Luke":"luke","John":"john","Acts":"acts","Romans":"romans",
+  "1 Corinthians":"1corinthians","2 Corinthians":"2corinthians","Galatians":"galatians",
+  "Ephesians":"ephesians","Philippians":"philippians","Colossians":"colossians",
+  "1 Thessalonians":"1thessalonians","2 Thessalonians":"2thessalonians",
+  "1 Timothy":"1timothy","2 Timothy":"2timothy","Titus":"titus","Philemon":"philemon",
+  "Hebrews":"hebrews","James":"james","1 Peter":"1peter","2 Peter":"2peter",
+  "1 John":"1john","2 John":"2john","3 John":"3john","Jude":"jude","Revelation":"revelation"
+};
+
+async function loadCh(bk,ch){
+  S.verses=[];S.err=false;S.loading=true;renderVs();
+  // Deuterocanonical books — use embedded text
+  if(bk.dc){
+    const dc=DC[bk.n];
+    S.verses=dc?.[ch]||[{v:1,t:`${bk.n} ${ch} — Full Deuterocanonical text is embedded in the complete app build.`}];
+    S.loading=false;renderVs();return;
+  }
+  const slug=BKMAP[bk.n];
+  if(!slug){S.err=true;S.loading=false;renderVs();return;}
+  const url=`https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/${slug}/chapters/${ch}.json`;
+  try{
+    const r=await fetch(url);
+    if(!r.ok)throw new Error("HTTP "+r.status);
+    const d=await r.json();
+    // Response is an array of verse objects: [{verse:1, text:"..."}, ...]
+    if(Array.isArray(d)&&d.length){
+      S.verses=d.map(v=>({
+        v:parseInt(v.verse||v.verseId||v.id||1),
+        t:(v.text||v.verse_text||"").replace(/\d+\.\d+\s.*/g,"").replace(/\n/g," ").trim()
+      }));
+    } else if(d.verses&&d.verses.length){
+      S.verses=d.verses.map(v=>({v:parseInt(v.verse),t:(v.text||"").replace(/\n/g," ").trim()}));
+    } else {S.err=true;}
+  }catch{S.err=true;}
+  S.loading=false;renderVs();
+}
+window.loadCh=loadCh;
+
+// ── SEARCH ─────────────────────────────────────────────────────────────
+async function doSearch(){
+  const q=(document.getElementById("sqinp")||{value:""}).value.trim();
+  if(!q||q.length<2)return;
+  S.searchQ=q;S.searchRes=[];S.searching=true;renderSearch();
+  try{
+    const r=await fetch(`https://labs.bible.org/api/?type=json&passage=${encodeURIComponent(q)}`);
+    const d=await r.json();
+    if(Array.isArray(d)&&d.length){
+      S.searchRes=d.slice(0,40).map(v=>({ref:`${v.bookname} ${v.chapter}:${v.verse}`,text:v.text.replace(/<[^>]*>/g,"").trim(),book:v.bookname,chapter:parseInt(v.chapter),verse:parseInt(v.verse)}));
+    } else S.searchRes=[];
+  }catch{S.searchRes=[];}
+  S.searching=false;renderSearch();
+}
+window.doSearch=doSearch;
+
+function hlText(t,q){
+  if(!q)return t;
+  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})`, "gi");
+  return t.replace(re,'<mark class="search-hl">$1</mark>');
+}
+
+// ── JOURNAL ────────────────────────────────────────────────────────────
+const MOODS=["Peaceful","Grateful","Joyful","Reflective","Sorrowful","Hopeful","Struggling","Thankful"];
+function saveJournal(){
+  const title=(document.getElementById("jtitle")||{value:""}).value.trim();
+  const text=(document.getElementById("jtext")||{value:""}).value.trim();
+  const mood=S.journalMood;
+  if(!text)return;
+  if(S.journalEdit){
+    S.journal=S.journal.map(j=>j.id===S.journalEdit?{...j,title,text,mood}:j);
+  } else {
+    S.journal.unshift({id:Date.now().toString(),title:title||"Reflection",text,mood,date:new Date().toLocaleDateString("en-US",{weekday:"short",month:"long",day:"numeric",year:"numeric"})});
+  }
+  S.journalEdit=null;S.journalTitle="";S.journalText="";S.journalMood="";
+  save();render();
+}
+function delJournal(id){S.journal=S.journal.filter(j=>j.id!==id);save();render();}
+window.saveJournal=saveJournal;window.delJournal=delJournal;
+
+// ── RENDER VERSES ──────────────────────────────────────────────────────
+function renderVs(){
+  const box=document.getElementById("vbox");if(!box)return;
+  if(S.loading){box.innerHTML=`<div style="padding:40px;text-align:center"><div class="spinner"></div><div style="margin-top:12px;font-size:12px;letter-spacing:1px;color:var(--faint)">Loading…</div></div>`;return;}
+  if(S.err){box.innerHTML=`<div class="card" style="background:var(--surf);text-align:center;padding:28px"><div style="color:var(--muted);margin-bottom:12px">Could not load this chapter. Check your internet connection.</div><button class="bp b1" onclick="loadCh(S.book,S.chapter)">Retry</button></div>`;return;}
+  const bkName=S.book?.n||"";
+  box.innerHTML=S.verses.map(({v,t})=>{
+    const key=`${bkName}-${S.chapter}-${v}`;
+    const hl=S.hls[key]||"";
+    const ref=`${bkName} ${S.chapter}:${v}`;
+    const vj=JSON.stringify({ref,text:t,book:bkName,chapter:S.chapter,verse:v}).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+    const favd=isFav(ref);const hasNote=!!S.notes[ref];
+    return `<div class="vrow" style="${hl?`background:${hl};border-left-color:#00000033`:""}" onclick="togHL('${key}')">
+      <div style="display:flex;align-items:flex-start;gap:8px">
+        <span style="color:#d4aa55;font-weight:700;font-size:11px;min-width:20px;padding-top:3px">${v}</span>
+        <span style="font-size:15px;line-height:1.8;flex:1">${t}</span>
+        <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;margin-top:2px">
+          <button onclick="event.stopPropagation();togFav({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:${favd?"#b8963e":"var(--faint)"}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="${favd?"#b8963e":"none"}" stroke="${favd?"#b8963e":"currentColor"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+          </button>
+          <button onclick="event.stopPropagation();openNote({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:${hasNote?"#b8963e":"var(--faint)"}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </button>
+          <button onclick="event.stopPropagation();openAdd({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:var(--faint)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m8-8H4"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+// ── RENDER SEARCH ──────────────────────────────────────────────────────
+function renderSearch(){
+  const box=document.getElementById("sbox");if(!box)return;
+  if(S.searching){box.innerHTML=`<div style="text-align:center;padding:30px"><div class="spinner"></div><div style="margin-top:10px;color:var(--faint);font-size:12px;letter-spacing:1px">Searching…</div></div>`;return;}
+  if(!S.searchRes.length&&S.searchQ){box.innerHTML=`<div style="text-align:center;padding:30px;color:var(--muted)">No results found for &ldquo;${S.searchQ}&rdquo;</div>`;return;}
+  box.innerHTML=S.searchRes.map(v=>`
+    <div class="card" style="background:var(--surf);cursor:pointer" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">
+      <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:6px">${v.ref}</div>
+      <p style="font-size:14px;line-height:1.7;margin:0">${hlText(v.text,S.searchQ)}</p>
+    </div>`).join("");
+}
+
+// ── MAIN RENDER ────────────────────────────────────────────────────────
+function render(){
+  const c=document.getElementById("ct");if(!c)return;
+  const di=new Date().getDate()%DAILY.length;
+  const dv=DAILY[di];
+
+  // HOME
+  if(S.tab==="home"){
+    c.innerHTML=`
+    <div style="text-align:center;padding-top:8px;margin-bottom:18px">
+      <span class="sl" style="text-align:center;display:block">${new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})}</span>
+      <div style="color:#b8963e;font-size:15px;letter-spacing:4px;margin-top:2px">· · ✦ · ·</div>
+    </div>
+    <div class="card" style="background:var(--surf);text-align:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,#b8963e,transparent)"></div>
+      <div style="color:var(--faint);font-size:10px;letter-spacing:3px;margin-bottom:12px">VERSE OF THE DAY</div>
+      <p style="font-size:16px;line-height:1.9;font-style:italic;margin:0 auto 12px">&ldquo;${dv.text}&rdquo;</p>
+      <div style="color:#d4aa55;font-weight:600;font-size:13px;letter-spacing:.5px;margin-bottom:12px">— ${dv.ref}</div>
+      <div style="height:1px;background:var(--bord);margin-bottom:12px"></div>
+      <p style="font-size:13px;color:var(--muted);line-height:1.8;font-style:italic;margin-bottom:16px">${REFS[di]}</p>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <button class="bp ${isFav(dv.ref)?"b1":"b2"}" onclick='togFav(${JSON.stringify(dv)})'>${isFav(dv.ref)?"Saved ✓":"Save Verse"}</button>
+        <button class="bp b2" onclick="S.book=BOOKS.find(b=>b.n==='${dv.book}');S.chapter=${dv.chapter};go('read');loadCh(S.book,S.chapter)">Read Chapter</button>
+      </div>
+    </div>
+    <span class="sl">Quick Access</span>
+    <div class="grid2" style="margin-bottom:18px">
+      ${[
+        {l:"Read the Bible",s:"73 books · WEB translation",t:"read",ic:"M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"},
+        {l:"Search Scripture",s:"Find any word or phrase",t:"search",ic:"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"},
+        {l:"Prayer Journal",s:`${S.journal.length} entries`,t:"journal",ic:"M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"},
+        {l:"Collections",s:`${S.colls.length} collections`,t:"colls",ic:"M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"},
+      ].map(item=>`
+        <button onclick="go('${item.t}')" style="background:var(--surf);border-radius:10px;border:1px solid var(--bord);padding:14px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:10px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b6e25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${item.ic}"/></svg>
+          <div><div style="font-size:13px;font-weight:600;color:var(--text)">${item.l}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${item.s}</div></div>
+        </button>`).join("")}
+    </div>
+    <span class="sl">Study Notes</span>
+    <div style="padding-bottom:20px">
+      ${Object.keys(S.notes).length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:20px;color:var(--muted);font-size:13px">No study notes yet. Tap the pencil icon while reading any verse.</div>`:
+      Object.entries(S.notes).slice(0,3).map(([ref,n])=>`
+        <div class="card" style="background:var(--surf)">
+          <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:6px">${ref}</div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 8px">${n.text.slice(0,120)}${n.text.length>120?"…":""}</p>
+          <div style="font-size:11px;color:var(--faint)">${n.date}</div>
+        </div>`).join("")}
+    </div>`;
+    return;
+  }
+
+  // READ
+  if(S.tab==="read"){
+    if(!S.book){
+      const filt=BOOKS.filter(b=>{
+        const ms=b.n.toLowerCase().includes((S.bsearch||"").toLowerCase());
+        const mf=S.tfilt==="ALL"||S.tfilt===b.t||(S.tfilt==="DC"&&b.dc);
+        return ms&&mf;
+      });
+      const ot=filt.filter(b=>b.t==="OT"),nt=filt.filter(b=>b.t==="NT");
+      c.innerHTML=`
+        <input class="inp" style="margin-bottom:10px" placeholder="Search books…" value="${S.bsearch||""}" oninput="S.bsearch=this.value;render()"/>
+        <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
+          ${[["ALL","All 73"],["OT","Old Test."],["NT","New Test."],["DC","Deuterocanon."]].map(([v,l])=>`<button class="bp ${S.tfilt===v?"b1":"b2"}" style="font-size:11px;padding:5px 10px" onclick="S.tfilt='${v}';render()">${l}</button>`).join("")}
+        </div>
+        ${ot.length?`<span class="sl">Old Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;margin-bottom:16px">
+          ${ot.map(b=>`<button onclick="S.book=${JSON.stringify(b).replace(/"/g,"'")};S.chapter=1;render();loadCh(S.book,1)" style="background:var(--surf);border:1px solid var(--bord);border-radius:8px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center">
+            <div><div style="font-size:13px;font-weight:500;color:var(--text)">${b.n}</div>${b.dc?`<div class="tag-dc">Deuterocanonical</div>`:""}</div>
+            <div style="color:var(--faint);font-size:11px">${b.ch}ch</div>
+          </button>`).join("")}</div>`:""}
+        ${nt.length?`<span class="sl">New Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;padding-bottom:20px">
+          ${nt.map(b=>`<button onclick="S.book=${JSON.stringify(b).replace(/"/g,"'")};S.chapter=1;render();loadCh(S.book,1)" style="background:var(--surf);border:1px solid var(--bord);border-radius:8px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center">
+            <div style="font-size:13px;font-weight:500;color:var(--text)">${b.n}</div>
+            <div style="color:var(--faint);font-size:11px">${b.ch}ch</div>
+          </button>`).join("")}</div>`:""}`;
+    } else {
+      const bk=S.book;
+      const intro=INTROS[bk.n];
+      c.innerHTML=`
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+          <button class="bp b2" onclick="S.book=null;S.verses=[];render()">← Books</button>
+          <div style="flex:1"><div style="font-weight:600;font-size:16px">${bk.n}</div><div style="color:var(--muted);font-size:12px">Chapter ${S.chapter} of ${bk.ch}</div></div>
+        </div>
+        ${intro?`<div style="background:var(--alt);border:1px solid var(--bord);border-left:3px solid #b8963e;border-radius:8px;padding:12px;margin-bottom:12px;font-size:13px;color:var(--muted);line-height:1.7">${intro}</div>`:""}
+      <div style="background:var(--alt);border:1px solid var(--bord);border-radius:6px;padding:6px 10px;margin-bottom:10px;font-size:10px;color:var(--faint);letter-spacing:.5px">Translation: King James Version (KJV) — Public domain · Deuterocanonical books included</div>
+        <div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:12px;max-height:108px;overflow-y:auto">
+          ${Array.from({length:bk.ch},(_,i)=>i+1).map(ch=>`<button class="chbtn ${ch===S.chapter?"on":""}" onclick="S.chapter=${ch};loadCh(S.book,${ch})">${ch}</button>`).join("")}
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;padding:8px 12px;background:var(--alt);border-radius:8px;border:1px solid var(--bord)">
+          <span style="font-size:10px;color:var(--muted);letter-spacing:1px">HIGHLIGHT</span>
+          ${HLC.map(hc=>`<button onclick="S.hlc='${hc.h}'" class="hldot" style="background:${hc.h};border-color:${S.hlc===hc.h?"var(--text)":"transparent"}" title="${hc.l}"></button>`).join("")}
+          <span style="font-size:11px;color:var(--faint);margin-left:auto">Tap verse</span>
+        </div>
+        <div style="color:#b8963e;font-size:11px;font-weight:600;letter-spacing:1.5px;margin-bottom:12px">${bk.n.toUpperCase()} · CHAPTER ${S.chapter}</div>
+        <div id="vbox"></div>
+        <div style="display:flex;justify-content:space-between;margin-top:14px;padding-bottom:16px">
+          <button class="bp b2" onclick="if(S.chapter>1){S.chapter--;loadCh(S.book,S.chapter);render();}" ${S.chapter===1?"disabled style='opacity:.4'":""}>← Previous</button>
+          <button class="bp b2" onclick="if(S.chapter<S.book.ch){S.chapter++;loadCh(S.book,S.chapter);render();}" ${S.chapter===bk.ch?"disabled style='opacity:.4'":""}>Next →</button>
+        </div>`;
+      renderVs();
+    }
+    return;
+  }
+
+  // SEARCH
+  if(S.tab==="search"){
+    c.innerHTML=`
+      <div style="margin-bottom:14px"><div style="font-weight:600;font-size:18px">Search Scripture</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Search across all 66 canonical books</div></div>
+      <div style="display:flex;gap:8px;margin-bottom:16px">
+        <input id="sqinp" class="inp" style="flex:1" placeholder="Search a word or phrase…" value="${S.searchQ}" onkeydown="if(event.key==='Enter')doSearch()"/>
+        <button class="bp b1" onclick="doSearch()">Search</button>
+      </div>
+      ${S.searchRes.length?`<div style="color:var(--faint);font-size:11px;margin-bottom:10px;letter-spacing:1px">${S.searchRes.length} RESULTS FOR &ldquo;${S.searchQ}&rdquo;</div>`:""}
+      <div id="sbox" style="padding-bottom:20px">${!S.searchQ?`<div style="text-align:center;padding:40px 20px;color:var(--muted)"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);margin-bottom:12px"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><br/>Enter a word or phrase to search Scripture</div>`:""}
+      </div>`;
+    if(S.searchQ)renderSearch();
+    return;
+  }
+
+  // SAVED
+  if(S.tab==="saved"){
+    const noteCount=Object.keys(S.notes).length;
+    c.innerHTML=`
+      <div style="margin-bottom:16px"><div style="font-weight:600;font-size:18px">Saved Verses</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.favs.length} saved · ${noteCount} study notes</div></div>
+      ${S.favs.length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:40px 20px">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
+        <div style="color:var(--muted);margin-top:12px;line-height:1.6">No verses saved yet.<br/>Tap the bookmark icon while reading.</div></div>`:
+      S.favs.map(v=>{const hasN=!!S.notes[v.ref];return`
+        <div class="card" style="background:var(--surf)">
+          <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:7px">${v.ref}${hasN?` <span style="color:#b8963e;font-size:10px;vertical-align:middle">· Note</span>`:""}</div>
+          <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${v.text}&rdquo;</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <button class="bp b2" style="font-size:12px" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">Read Chapter</button>
+            <button class="bp b2" style="font-size:12px" onclick='openNote(${JSON.stringify(v)})'>${hasN?"View Note":"Add Note"}</button>
+            <button class="bp b2" style="font-size:12px" onclick='openAdd(${JSON.stringify(v)})'>Add to Collection</button>
+            <button class="bp b3" style="font-size:12px" onclick='togFav(${JSON.stringify(v)})'>Remove</button>
+          </div>
+        </div>`}).join("")}
+      ${noteCount>0?`<span class="sl" style="margin-top:8px">Study Notes</span>
+        ${Object.entries(S.notes).map(([ref,n])=>`
+          <div class="card" style="background:var(--surf)">
+            <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:5px">${ref}</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 6px">${n.text}</p>
+            <div style="font-size:11px;color:var(--faint)">${n.date}</div>
+          </div>`).join("")}`:""}`;
+    return;
+  }
+
+  // JOURNAL
+  if(S.tab==="journal"){
+    const editing=S.journalEdit!==null;
+    c.innerHTML=`
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <div><div style="font-weight:600;font-size:18px">Prayer Journal</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.journal.length} ${S.journal.length===1?"entry":"entries"}</div></div>
+        ${!editing?`<button class="bp b1" onclick="S.journalEdit=null;S.journalTitle='';S.journalText='';S.journalMood='';render()">New Entry</button>`:""}
+      </div>
+      ${editing||S.journalEdit===null&&S.journal.length===0&&!S.journal.length?"":" "}
+      <div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:16px;margin-bottom:16px">
+        <div style="font-size:12px;color:var(--faint);margin-bottom:10px">${editing?"Edit entry":"New entry"} · ${new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})}</div>
+        <input id="jtitle" class="inp" style="margin-bottom:10px" placeholder="Title (optional)…" value="${S.journalTitle||""}"/>
+        <div style="margin-bottom:10px">
+          <div style="font-size:11px;color:var(--faint);letter-spacing:1px;margin-bottom:6px">HOW ARE YOU FEELING?</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            ${MOODS.map(m=>`<button class="chip" style="${S.journalMood===m?"background:#5a3e28;color:#f5ede0;border-color:#5a3e28":""}" onclick="S.journalMood='${m}';document.querySelectorAll('.chip').forEach(c=>c.style.background='');this.style.background='#5a3e28';this.style.color='#f5ede0'">${m}</button>`).join("")}
+          </div>
+        </div>
+        <textarea id="jtext" style="width:100%;min-height:110px;padding:10px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px;line-height:1.7;margin-bottom:10px" placeholder="Write your prayer, reflection, or meditation…">${S.journalText||""}</textarea>
+        <div style="display:flex;gap:8px">
+          <button class="bp b1" style="flex:1" onclick="S.journalTitle=document.getElementById('jtitle').value;S.journalText=document.getElementById('jtext').value;saveJournal()">Save Entry</button>
+          ${editing?`<button class="bp b3" onclick="delJournal('${S.journalEdit}')">Delete</button>`:""}
+        </div>
+      </div>
+      ${S.journal.length===0?`<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Your journal entries will appear here.</div>`:""}
+      ${S.journal.map(j=>`
+        <div class="card" style="background:var(--surf)">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px">
+            <div>
+              <div style="font-weight:600;font-size:15px;color:var(--text)">${j.title||"Reflection"}</div>
+              <div style="font-size:11px;color:var(--faint);margin-top:2px">${j.date}${j.mood?` · ${j.mood}`:""}</div>
+            </div>
+            <button class="bp b2" style="font-size:11px;flex-shrink:0;padding:5px 10px" onclick="S.journalEdit='${j.id}';S.journalTitle='${j.title||""}';S.journalText=\`${j.text.replace(/`/g,"'")}\`;S.journalMood='${j.mood||""}';render()">Edit</button>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">${j.text.slice(0,200)}${j.text.length>200?"…":""}</p>
+        </div>`).join("")}`;
+    return;
+  }
+
+  // COLLECTIONS
+  if(S.tab==="colls"){
+    if(!S.activeColl){
+      c.innerHTML=`
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div><div style="font-weight:600;font-size:18px">Collections</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Curated verse collections by mood & theme</div></div>
+          <button class="bp b1" onclick="S.showNewColl=true;render()">New</button>
+        </div>
+        ${S.showNewColl?`<div class="card" style="background:var(--surf);margin-bottom:12px">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Collection name</div>
+          <input id="ncInput" class="inp" style="margin-bottom:10px" placeholder="e.g. Morning Prayer, Before Mass…"/>
+          <div style="display:flex;gap:8px">
+            <button class="bp b1" onclick="const v=document.getElementById('ncInput').value.trim();if(v){S.colls.push({id:Date.now().toString(),name:v,mood:'',color:'#5a3e28',verses:[]});save();}S.showNewColl=false;render()">Create</button>
+            <button class="bp b2" onclick="S.showNewColl=false;render()">Cancel</button>
+          </div></div>`:""}
+        ${S.colls.map(p=>`
+          <button onclick="S.activeColl=S.colls.find(c=>c.id==='${p.id}');render()" style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:15px;margin-bottom:10px;width:100%;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer">
+            <div style="width:3px;height:44px;border-radius:2px;background:${p.color};flex-shrink:0"></div>
+            <div style="flex:1"><div style="font-weight:500;font-size:15px;color:var(--text)">${p.name}</div>${p.mood?`<div style="font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.5px">${p.mood.toUpperCase()}</div>`:""}</div>
+            <div style="color:var(--muted);font-size:12px;margin-right:4px">${p.verses.length}v</div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>`).join("")}`;
+    } else {
+      const ac=S.activeColl;
+      c.innerHTML=`
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <button class="bp b2" onclick="S.activeColl=null;render()">← Collections</button>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px"><div style="width:3px;height:18px;border-radius:2px;background:${ac.color}"></div><div style="font-weight:600;font-size:16px">${ac.name}</div></div>
+            <div style="color:var(--muted);font-size:12px;margin-top:2px">${ac.verses.length} verses</div>
+          </div>
+        </div>
+        ${ac.verses.length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:32px 20px;color:var(--muted)">No verses yet. Save verses while reading and add them to this collection.</div>`:
+        ac.verses.map(v=>`
+          <div class="card" style="background:var(--surf)">
+            <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:7px">${v.ref}</div>
+            <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${v.text}&rdquo;</p>
+            <div style="display:flex;gap:6px">
+              <button class="bp b2" style="font-size:12px" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">Read Chapter</button>
+              <button class="bp b3" style="font-size:12px" onclick="S.colls=S.colls.map(p=>p.id==='${ac.id}'?{...p,verses:p.verses.filter(vv=>vv.ref!=='${v.ref}')}:p);S.activeColl=S.colls.find(p=>p.id==='${ac.id}');save();render()">Remove</button>
+            </div>
+          </div>`).join("")}`;
+    }
+    return;
+  }
+}
+
+// ── BOOT ───────────────────────────────────────────────────────────────
+window.addEventListener("load",()=>{
+  load();
+  // PWA manifest
+  const mf={name:"Sacra Scriptura",short_name:"Bible",start_url:"./",display:"standalone",background_color:"#0f0e0c",theme_color:"#2a1f0f",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232a1f0f'/><text x='96' y='138' font-size='110' text-anchor='middle' fill='%23b8963e'>✝</text></svg>",sizes:"192x192",type:"image/svg+xml"},{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%232a1f0f'/><text x='256' y='370' font-size='300' text-anchor='middle' fill='%23b8963e'>✝</text></svg>",sizes:"512x512",type:"image/svg+xml"}]};
+  const bl=new Blob([JSON.stringify(mf)],{type:"application/json"});
+  const lk=document.createElement("link");lk.rel="manifest";lk.href=URL.createObjectURL(bl);document.head.appendChild(lk);
+  // Service worker
+  if("serviceWorker" in navigator){
+    const sw=`const C="ss-v1";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.add("/"))));self.addEventListener("fetch",e=>{if(e.request.url.includes("labs.bible.org"))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match("/"))));});`;
+    navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:"application/javascript"}))).catch(()=>{});
+  }
+  setTimeout(()=>{
+    const sp=document.getElementById("splash");sp.style.opacity="0";
+    setTimeout(()=>sp.style.display="none",600);
+    applyTheme();render();
+  },1000);
+});
+</script>
+</body>
+</html>
