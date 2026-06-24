@@ -17,36 +17,28 @@ input,textarea{font-family:Georgia,serif;outline:none;resize:none}
 input:focus,textarea:focus{border-color:#b8963e!important;box-shadow:0 0 0 2px #b8963e22!important}
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
 .hdr{flex-shrink:0;background:#0a0905;padding:13px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e1c15;padding-top:max(13px,env(safe-area-inset-top))}
-.content{flex:1;overflow-y:auto;padding:14px 14px 0;-webkit-overflow-scrolling:touch}
-.navbar{flex-shrink:0;display:flex;background:#0a0905;border-top:1px solid #1e1c15;padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.ct{flex:1;overflow-y:auto;padding:14px 14px 0;-webkit-overflow-scrolling:touch}
+.nb-bar{flex-shrink:0;display:flex;background:#0a0905;border-top:1px solid #1e1c15;padding-bottom:max(8px,env(safe-area-inset-bottom))}
 .nb{flex:1;padding:10px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;color:#3a3428;border-top:2px solid transparent;transition:all .15s;font-size:8px;letter-spacing:.8px}
 .nb.active{color:#b8963e;border-top-color:#b8963e}
-.card{border-radius:10px;padding:15px;margin-bottom:10px;border:1px solid var(--bord)}
-.bp{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:500;letter-spacing:.2px;transition:opacity .15s;font-family:Georgia,serif}
-.b1{background:#5a3e28;color:#f5ede0}
-.b2{border:1px solid var(--bord);color:var(--text);background:transparent}
+.bp{padding:7px 14px;border-radius:7px;font-size:13px;font-weight:500;letter-spacing:.2px;font-family:Georgia,serif}
+.b1{background:#5a3e28;color:#f5ede0;border:none}
+.b2{border:1px solid var(--bord,#2e2b25);color:var(--text,#e8e2d8);background:transparent}
 .b3{border:1px solid #7a2e2e44;color:#c0504a;background:transparent}
 button:active{opacity:.7}
-.sl{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin-bottom:8px;margin-top:4px;display:block}
-.inp{width:100%;padding:9px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px}
-.vrow{padding:10px 14px;border-radius:8px;background:var(--surf);margin-bottom:6px;border:1px solid var(--bord);border-left:3px solid var(--bord);transition:background .15s}
-.chip{font-size:11px;padding:4px 10px;border-radius:12px;border:1px solid var(--bord);background:var(--alt);color:var(--muted);cursor:pointer}
+.sl{font-size:10px;font-weight:600;letter-spacing:2px;color:var(--faint,#4a4438);text-transform:uppercase;margin-bottom:8px;margin-top:4px;display:block}
+.inp{width:100%;padding:9px 12px;border-radius:7px;border:1px solid var(--bord,#2e2b25);background:var(--alt,#211f1a);color:var(--text,#e8e2d8);font-size:14px}
+.chip{font-size:11px;padding:4px 10px;border-radius:12px;border:1px solid var(--bord,#2e2b25);background:var(--alt,#211f1a);color:var(--muted,#8a8070);cursor:pointer}
 .modal-ov{position:fixed;inset:0;background:#00000099;z-index:300;display:flex;align-items:flex-end;justify-content:center}
-.modal-sh{background:var(--surf);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:520px;border-top:1px solid var(--bord);padding-bottom:max(24px,env(safe-area-inset-bottom));max-height:80vh;overflow-y:auto}
-.spinner{width:28px;height:28px;border:2px solid var(--bord);border-top-color:#b8963e;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
+.modal-sh{background:var(--surf,#1a1814);border-radius:14px 14px 0 0;padding:20px;width:100%;max-width:520px;border-top:1px solid var(--bord,#2e2b25);padding-bottom:max(24px,env(safe-area-inset-bottom));max-height:80vh;overflow-y:auto}
+.spinner{width:28px;height:28px;border:2px solid var(--bord,#2e2b25);border-top-color:#b8963e;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto}
 @keyframes spin{to{transform:rotate(360deg)}}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.chbtn{padding:4px 8px;border-radius:5px;border:1px solid var(--bord);background:transparent;color:var(--muted);font-size:12px;font-family:Georgia,serif;cursor:pointer}
-.chbtn.on{border-color:#b8963e;background:#b8963e;color:#fff}
-.hldot{width:18px;height:18px;border-radius:50%;border:2px solid transparent;cursor:pointer;flex-shrink:0}
 .tag-dc{font-size:10px;color:#d4aa55;margin-top:2px}
-.search-hl{background:#b8963e44;border-radius:2px}
 :root{--bg:#0f0e0c;--surf:#1a1814;--alt:#211f1a;--bord:#2e2b25;--text:#e8e2d8;--muted:#8a8070;--faint:#4a4438}
 </style>
 </head>
 <body>
 
-<!-- SPLASH -->
 <div id="splash" style="position:fixed;inset:0;background:#0f0e0c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:999;transition:opacity .6s">
   <svg width="44" height="44" viewBox="0 0 24 24" fill="#b8963e"><path d="M10 2h4v7h7v4h-7v9h-4v-9H3v-4h7V2z"/></svg>
   <div style="color:#b8963e;font-size:17px;letter-spacing:3px">SACRA SCRIPTURA</div>
@@ -54,7 +46,7 @@ button:active{opacity:.7}
   <div class="spinner" style="margin-top:8px"></div>
 </div>
 
-<!-- ADD-TO-COLLECTION MODAL -->
+<!-- ADD TO COLLECTION MODAL -->
 <div class="modal-ov" id="addMod" style="display:none" onclick="closeMod()">
   <div class="modal-sh" onclick="event.stopPropagation()">
     <div style="font-weight:600;font-size:16px;margin-bottom:3px">Add to Collection</div>
@@ -70,7 +62,7 @@ button:active{opacity:.7}
     <div style="font-weight:600;font-size:16px;margin-bottom:3px">Study Note</div>
     <div id="noteRef" style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:6px"></div>
     <div id="noteVerseTxt" style="font-size:13px;line-height:1.7;font-style:italic;color:var(--muted);margin-bottom:12px;padding:10px;background:var(--alt);border-radius:8px;border:1px solid var(--bord)"></div>
-    <textarea id="noteTxt" style="width:100%;min-height:130px;padding:10px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px;line-height:1.7;margin-bottom:10px" placeholder="Write your reflection, questions, or insights here…"></textarea>
+    <textarea id="noteTxt" style="width:100%;min-height:130px;padding:10px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px;line-height:1.7;margin-bottom:10px" placeholder="Write your reflection or insight here…"></textarea>
     <div style="display:flex;gap:8px">
       <button class="bp b1" style="flex:1" onclick="saveNote()">Save Note</button>
       <button class="bp b3" id="delNoteBtn" style="display:none" onclick="deleteNote()">Delete</button>
@@ -79,7 +71,7 @@ button:active{opacity:.7}
   </div>
 </div>
 
-<div class="app" id="mainApp">
+<div class="app">
   <div class="hdr">
     <div style="display:flex;align-items:center;gap:10px">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="#b8963e"><path d="M10 2h4v7h7v4h-7v9h-4v-9H3v-4h7V2z"/></svg>
@@ -91,9 +83,9 @@ button:active{opacity:.7}
     <button onclick="toggleDark()" id="dkBtn" style="border:1px solid #3d3a30;border-radius:6px;padding:4px 10px;color:#8a7a60;font-size:10px;letter-spacing:1px">LIGHT</button>
   </div>
 
-  <div class="content" id="ct"></div>
+  <div class="ct" id="ct"></div>
 
-  <div class="navbar">
+  <div class="nb-bar">
     <button class="nb active" id="n-home" onclick="go('home')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><span>HOME</span></button>
     <button class="nb" id="n-read" onclick="go('read')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg><span>READ</span></button>
     <button class="nb" id="n-search" onclick="go('search')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><span>SEARCH</span></button>
@@ -106,157 +98,994 @@ button:active{opacity:.7}
 <script>
 // ── BOOKS ──────────────────────────────────────────────────────────────
 const BOOKS=[
-  {n:"Genesis",a:"gen",t:"OT",ch:50},{n:"Exodus",a:"exod",t:"OT",ch:40},{n:"Leviticus",a:"lev",t:"OT",ch:27},
-  {n:"Numbers",a:"num",t:"OT",ch:36},{n:"Deuteronomy",a:"deut",t:"OT",ch:34},{n:"Joshua",a:"josh",t:"OT",ch:24},
-  {n:"Judges",a:"judg",t:"OT",ch:21},{n:"Ruth",a:"ruth",t:"OT",ch:4},{n:"1 Samuel",a:"1sam",t:"OT",ch:31},
-  {n:"2 Samuel",a:"2sam",t:"OT",ch:24},{n:"1 Kings",a:"1kgs",t:"OT",ch:22},{n:"2 Kings",a:"2kgs",t:"OT",ch:25},
-  {n:"1 Chronicles",a:"1chr",t:"OT",ch:29},{n:"2 Chronicles",a:"2chr",t:"OT",ch:36},{n:"Ezra",a:"ezra",t:"OT",ch:10},
-  {n:"Nehemiah",a:"neh",t:"OT",ch:13},{n:"Tobit",a:"tob",t:"OT",dc:1,ch:14},{n:"Judith",a:"jdt",t:"OT",dc:1,ch:16},
-  {n:"Esther",a:"esth",t:"OT",ch:10},{n:"1 Maccabees",a:"1macc",t:"OT",dc:1,ch:16},{n:"2 Maccabees",a:"2macc",t:"OT",dc:1,ch:15},
-  {n:"Job",a:"job",t:"OT",ch:42},{n:"Psalms",a:"ps",t:"OT",ch:150},{n:"Proverbs",a:"prov",t:"OT",ch:31},
-  {n:"Ecclesiastes",a:"eccl",t:"OT",ch:12},{n:"Song of Songs",a:"song",t:"OT",ch:8},{n:"Wisdom",a:"wis",t:"OT",dc:1,ch:19},
-  {n:"Sirach",a:"sir",t:"OT",dc:1,ch:51},{n:"Isaiah",a:"isa",t:"OT",ch:66},{n:"Jeremiah",a:"jer",t:"OT",ch:52},
-  {n:"Lamentations",a:"lam",t:"OT",ch:5},{n:"Baruch",a:"bar",t:"OT",dc:1,ch:6},{n:"Ezekiel",a:"ezek",t:"OT",ch:48},
-  {n:"Daniel",a:"dan",t:"OT",ch:14},{n:"Hosea",a:"hos",t:"OT",ch:14},{n:"Joel",a:"joel",t:"OT",ch:4},
-  {n:"Amos",a:"amos",t:"OT",ch:9},{n:"Obadiah",a:"obad",t:"OT",ch:1},{n:"Jonah",a:"jonah",t:"OT",ch:4},
-  {n:"Micah",a:"mic",t:"OT",ch:7},{n:"Nahum",a:"nah",t:"OT",ch:3},{n:"Habakkuk",a:"hab",t:"OT",ch:3},
-  {n:"Zephaniah",a:"zeph",t:"OT",ch:3},{n:"Haggai",a:"hag",t:"OT",ch:2},{n:"Zechariah",a:"zech",t:"OT",ch:14},
-  {n:"Malachi",a:"mal",t:"OT",ch:4},{n:"Matthew",a:"matt",t:"NT",ch:28},{n:"Mark",a:"mark",t:"NT",ch:16},
-  {n:"Luke",a:"luke",t:"NT",ch:24},{n:"John",a:"john",t:"NT",ch:21},{n:"Acts",a:"acts",t:"NT",ch:28},
-  {n:"Romans",a:"rom",t:"NT",ch:16},{n:"1 Corinthians",a:"1cor",t:"NT",ch:16},{n:"2 Corinthians",a:"2cor",t:"NT",ch:13},
-  {n:"Galatians",a:"gal",t:"NT",ch:6},{n:"Ephesians",a:"eph",t:"NT",ch:6},{n:"Philippians",a:"phil",t:"NT",ch:4},
-  {n:"Colossians",a:"col",t:"NT",ch:4},{n:"1 Thessalonians",a:"1thess",t:"NT",ch:5},{n:"2 Thessalonians",a:"2thess",t:"NT",ch:3},
-  {n:"1 Timothy",a:"1tim",t:"NT",ch:6},{n:"2 Timothy",a:"2tim",t:"NT",ch:4},{n:"Titus",a:"titus",t:"NT",ch:3},
-  {n:"Philemon",a:"phlm",t:"NT",ch:1},{n:"Hebrews",a:"heb",t:"NT",ch:13},{n:"James",a:"jas",t:"NT",ch:5},
-  {n:"1 Peter",a:"1pet",t:"NT",ch:5},{n:"2 Peter",a:"2pet",t:"NT",ch:3},{n:"1 John",a:"1john",t:"NT",ch:5},
-  {n:"2 John",a:"2john",t:"NT",ch:1},{n:"3 John",a:"3john",t:"NT",ch:1},{n:"Jude",a:"jude",t:"NT",ch:1},
-  {n:"Revelation",a:"rev",t:"NT",ch:22}
+  {n:"Genesis",t:"OT",ch:50},{n:"Exodus",t:"OT",ch:40},{n:"Leviticus",t:"OT",ch:27},
+  {n:"Numbers",t:"OT",ch:36},{n:"Deuteronomy",t:"OT",ch:34},{n:"Joshua",t:"OT",ch:24},
+  {n:"Judges",t:"OT",ch:21},{n:"Ruth",t:"OT",ch:4},{n:"1 Samuel",t:"OT",ch:31},
+  {n:"2 Samuel",t:"OT",ch:24},{n:"1 Kings",t:"OT",ch:22},{n:"2 Kings",t:"OT",ch:25},
+  {n:"1 Chronicles",t:"OT",ch:29},{n:"2 Chronicles",t:"OT",ch:36},{n:"Ezra",t:"OT",ch:10},
+  {n:"Nehemiah",t:"OT",ch:13},{n:"Tobit",t:"OT",dc:1,ch:14},{n:"Judith",t:"OT",dc:1,ch:16},
+  {n:"Esther",t:"OT",ch:10},{n:"1 Maccabees",t:"OT",dc:1,ch:16},{n:"2 Maccabees",t:"OT",dc:1,ch:15},
+  {n:"Job",t:"OT",ch:42},{n:"Psalms",t:"OT",ch:150},{n:"Proverbs",t:"OT",ch:31},
+  {n:"Ecclesiastes",t:"OT",ch:12},{n:"Song of Songs",t:"OT",ch:8},{n:"Wisdom",t:"OT",dc:1,ch:19},
+  {n:"Sirach",t:"OT",dc:1,ch:51},{n:"Isaiah",t:"OT",ch:66},{n:"Jeremiah",t:"OT",ch:52},
+  {n:"Lamentations",t:"OT",ch:5},{n:"Baruch",t:"OT",dc:1,ch:6},{n:"Ezekiel",t:"OT",ch:48},
+  {n:"Daniel",t:"OT",ch:14},{n:"Hosea",t:"OT",ch:14},{n:"Joel",t:"OT",ch:4},
+  {n:"Amos",t:"OT",ch:9},{n:"Obadiah",t:"OT",ch:1},{n:"Jonah",t:"OT",ch:4},
+  {n:"Micah",t:"OT",ch:7},{n:"Nahum",t:"OT",ch:3},{n:"Habakkuk",t:"OT",ch:3},
+  {n:"Zephaniah",t:"OT",ch:3},{n:"Haggai",t:"OT",ch:2},{n:"Zechariah",t:"OT",ch:14},
+  {n:"Malachi",t:"OT",ch:4},{n:"Matthew",t:"NT",ch:28},{n:"Mark",t:"NT",ch:16},
+  {n:"Luke",t:"NT",ch:24},{n:"John",t:"NT",ch:21},{n:"Acts",t:"NT",ch:28},
+  {n:"Romans",t:"NT",ch:16},{n:"1 Corinthians",t:"NT",ch:16},{n:"2 Corinthians",t:"NT",ch:13},
+  {n:"Galatians",t:"NT",ch:6},{n:"Ephesians",t:"NT",ch:6},{n:"Philippians",t:"NT",ch:4},
+  {n:"Colossians",t:"NT",ch:4},{n:"1 Thessalonians",t:"NT",ch:5},{n:"2 Thessalonians",t:"NT",ch:3},
+  {n:"1 Timothy",t:"NT",ch:6},{n:"2 Timothy",t:"NT",ch:4},{n:"Titus",t:"NT",ch:3},
+  {n:"Philemon",t:"NT",ch:1},{n:"Hebrews",t:"NT",ch:13},{n:"James",t:"NT",ch:5},
+  {n:"1 Peter",t:"NT",ch:5},{n:"2 Peter",t:"NT",ch:3},{n:"1 John",t:"NT",ch:5},
+  {n:"2 John",t:"NT",ch:1},{n:"3 John",t:"NT",ch:1},{n:"Jude",t:"NT",ch:1},
+  {n:"Revelation",t:"NT",ch:22}
 ];
 
-// ── BOOK INTRODUCTIONS ─────────────────────────────────────────────────
-const INTROS={
-  "Genesis":"Genesis, meaning 'beginnings,' opens the entire Bible with the creation of the world, the fall of humanity, and God's covenant with the patriarchs Abraham, Isaac, and Jacob. Written by Moses, it establishes the foundation of God's relationship with His chosen people and sets the stage for all of salvation history.",
-  "Exodus":"Exodus recounts the dramatic liberation of the Israelites from Egyptian slavery under Moses, culminating in the giving of the Ten Commandments at Mount Sinai. It is the story of God revealing Himself as the great Liberator and entering into covenant with His people.",
-  "Psalms":"The Book of Psalms is the great prayerbook of the Bible — 150 sacred poems and hymns attributed largely to King David. Catholics use the Psalms in every Liturgy of the Hours. They express the full range of human emotion before God: praise, lament, gratitude, repentance, and hope.",
-  "Proverbs":"Proverbs is a collection of wise sayings attributed to King Solomon, offering practical guidance for righteous living. It emphasizes that true wisdom begins with the fear of the Lord and permeates all aspects of daily life — family, work, speech, and relationships.",
-  "Isaiah":"Isaiah is one of the greatest prophetic books, spanning 66 chapters. The first section foretells judgment, while the second — especially the Suffering Servant songs — contains some of the most remarkable Messianic prophecies in the entire Old Testament, quoted extensively in the New Testament.",
-  "Matthew":"Matthew, the first Gospel, was written for a Jewish-Christian audience and presents Jesus as the fulfillment of all Old Testament prophecy. It contains the Sermon on the Mount, the Beatitudes, the Our Father, and the Great Commission. The Church has long placed it first in the New Testament.",
-  "Mark":"Mark is the shortest and most action-packed Gospel, likely the first written. It presents Jesus as a man of power and urgency — the word 'immediately' appears over 40 times. Tradition holds that Mark recorded the preaching of St. Peter himself.",
-  "Luke":"Luke, a physician and companion of St. Paul, wrote the most literary Gospel. He emphasizes Jesus's mercy toward the poor, women, and sinners. Luke also wrote Acts of the Apostles. His Gospel contains the Annunciation, the Magnificat, and the parables of the Prodigal Son and the Good Samaritan.",
-  "John":"The Fourth Gospel stands apart — theological, poetic, and profound. Written by the Apostle John, it opens with the eternal Word of God and is built around seven signs and seven 'I Am' statements of Jesus. The Last Supper discourse in chapters 13–17 is unparalleled in depth and beauty.",
-  "Acts":"Acts of the Apostles, written by Luke, chronicles the birth and spread of the early Church from Jerusalem to Rome. It records Pentecost, the ministry of Peter and Paul, and the courage of the first martyrs. It is the essential companion to the four Gospels.",
-  "Romans":"Paul's letter to the Romans is perhaps his greatest theological achievement — a systematic exposition of the Gospel. It covers sin, justification by faith, the role of Israel, and Christian living. Martin Luther called it 'the clearest gospel of all.'",
-  "Revelation":"The Book of Revelation, written by John in exile on the island of Patmos, uses rich apocalyptic imagery to offer hope to persecuted Christians. Rather than a prediction calendar, it is a cosmic vision of Christ's ultimate victory over evil and the establishment of the new Jerusalem.",
-  "Tobit":"Tobit is one of the Deuterocanonical books cherished by Catholics. It is a beautiful story of faith, family devotion, and God's providential care — featuring the archangel Raphael, intercessory prayer, and the healing of blindness. It emphasizes almsgiving, marriage, and prayer.",
-  "Wisdom":"The Book of Wisdom, written in Greek for Jewish communities in Alexandria, defends the faith against Greek philosophy and celebrates divine wisdom. Catholics treasure it for its rich reflection on the soul's immortality and God's mercy toward sinners.",
-  "Sirach":"Also called Ecclesiasticus, Sirach was written by Jesus ben Sirach around 180 BC. It is one of the longest Deuterocanonical books, offering practical wisdom on friendship, humility, prayer, family, and worship — all rooted in the fear of the Lord.",
-  "Baruch":"Baruch, the secretary of the prophet Jeremiah, compiled this short book of prayers, a poem on Wisdom, and a message of hope for the exiles in Babylon. Chapter 3's hymn to Wisdom is one of the most beautiful passages in the Deuterocanonical texts.",
-  "1 Maccabees":"1 Maccabees is a historical account of the Maccabean revolt (167–134 BC) against the Seleucid king Antiochus IV, who desecrated the Temple. It records the heroic deeds of Judas Maccabeus and the rededication of the Temple — the origin of Hanukkah. Catholics see it as a model of faithfulness.",
-  "2 Maccabees":"2 Maccabees covers some of the same events as 1 Maccabees but with a more theological focus. It explicitly teaches the resurrection of the dead, prayers for the dead, and the intercession of the saints — doctrines that remain central to Catholic faith.",
-  "Judith":"Judith tells the story of a courageous Jewish widow who saves her people by beheading the Assyrian general Holofernes. It is a story of faith, prayer, and divine deliverance. The Church fathers saw Judith as a prefigurement of the Virgin Mary's victory over evil.",
+// ── TOP 10 VERSES PER BOOK ─────────────────────────────────────────────
+const H={
+"Genesis":[
+  {r:"Genesis 1:1",t:"In the beginning God created the heavens and the earth."},
+  {r:"Genesis 1:27",t:"God created man in his own image, in the image of God he created him; male and female he created them."},
+  {r:"Genesis 2:24",t:"Therefore a man shall leave his father and his mother and hold fast to his wife, and they shall become one flesh."},
+  {r:"Genesis 3:15",t:"I will put enmity between you and the woman, and between your offspring and her offspring; he shall bruise your head, and you shall bruise his heel."},
+  {r:"Genesis 12:2",t:"And I will make of you a great nation, and I will bless you and make your name great, so that you will be a blessing."},
+  {r:"Genesis 15:6",t:"And he believed the Lord, and he counted it to him as righteousness."},
+  {r:"Genesis 22:8",t:"God will provide for himself the lamb for a burnt offering, my son."},
+  {r:"Genesis 28:15",t:"Behold, I am with you and will keep you wherever you go, and will bring you back to this land."},
+  {r:"Genesis 50:20",t:"As for you, you meant evil against me, but God meant it for good, to bring it about that many people should be kept alive."},
+  {r:"Genesis 39:2",t:"The Lord was with Joseph, and he became a successful man."}
+],
+"Exodus":[
+  {r:"Exodus 3:14",t:"God said to Moses, I am who I am. And he said, Say this to the people of Israel: I am has sent me to you."},
+  {r:"Exodus 14:14",t:"The Lord will fight for you, and you have only to be silent."},
+  {r:"Exodus 20:3",t:"You shall have no other gods before me."},
+  {r:"Exodus 20:12",t:"Honor your father and your mother, that your days may be long in the land that the Lord your God is giving you."},
+  {r:"Exodus 33:14",t:"And he said, My presence will go with you, and I will give you rest."},
+  {r:"Exodus 15:2",t:"The Lord is my strength and my song, and he has become my salvation."},
+  {r:"Exodus 6:7",t:"I will take you to be my people, and I will be your God."},
+  {r:"Exodus 34:6",t:"The Lord, the Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness."},
+  {r:"Exodus 12:13",t:"The blood shall be a sign for you, on the houses where you are. And when I see the blood, I will pass over you."},
+  {r:"Exodus 20:8",t:"Remember the Sabbath day, to keep it holy."}
+],
+"Leviticus":[
+  {r:"Leviticus 19:18",t:"You shall love your neighbor as yourself: I am the Lord."},
+  {r:"Leviticus 19:2",t:"You shall be holy, for I the Lord your God am holy."},
+  {r:"Leviticus 17:11",t:"For the life of the flesh is in the blood, and I have given it for you on the altar to make atonement for your souls."},
+  {r:"Leviticus 26:12",t:"And I will walk among you and will be your God, and you shall be my people."},
+  {r:"Leviticus 20:26",t:"You shall be holy to me, for I the Lord am holy and have separated you from the peoples, that you should be mine."},
+  {r:"Leviticus 25:10",t:"And you shall consecrate the fiftieth year, and proclaim liberty throughout the land to all its inhabitants."},
+  {r:"Leviticus 16:30",t:"For on this day shall atonement be made for you to cleanse you. You shall be clean before the Lord from all your sins."},
+  {r:"Leviticus 23:3",t:"Six days shall work be done, but on the seventh day is a Sabbath of solemn rest, a holy convocation."},
+  {r:"Leviticus 6:13",t:"Fire shall be kept burning on the altar continually; it shall not go out."},
+  {r:"Leviticus 26:3",t:"If you walk in my statutes and observe my commandments and do them, I will give you your rains in their season."}
+],
+"Numbers":[
+  {r:"Numbers 6:24",t:"The Lord bless you and keep you."},
+  {r:"Numbers 6:25",t:"The Lord make his face to shine upon you and be gracious to you."},
+  {r:"Numbers 6:26",t:"The Lord lift up his countenance upon you and give you peace."},
+  {r:"Numbers 23:19",t:"God is not man, that he should lie, or a son of man, that he should change his mind."},
+  {r:"Numbers 14:18",t:"The Lord is slow to anger and abounding in steadfast love, forgiving iniquity and transgression."},
+  {r:"Numbers 14:8",t:"If the Lord delights in us, he will bring us into this land and give it to us, a land that flows with milk and honey."},
+  {r:"Numbers 32:23",t:"Be sure your sin will find you out."},
+  {r:"Numbers 15:40",t:"So you shall remember and do all my commandments, and be holy to your God."},
+  {r:"Numbers 11:23",t:"Is the Lord's hand shortened? Now you shall see whether my word will come true for you or not."},
+  {r:"Numbers 10:35",t:"Arise, O Lord, and let your enemies be scattered."}
+],
+"Deuteronomy":[
+  {r:"Deuteronomy 6:4",t:"Hear, O Israel: The Lord our God, the Lord is one."},
+  {r:"Deuteronomy 6:5",t:"You shall love the Lord your God with all your heart and with all your soul and with all your might."},
+  {r:"Deuteronomy 31:6",t:"Be strong and courageous. Do not fear or be in dread of them, for it is the Lord your God who goes with you."},
+  {r:"Deuteronomy 8:3",t:"Man does not live by bread alone, but man lives by every word that comes from the mouth of the Lord."},
+  {r:"Deuteronomy 30:19",t:"I have set before you life and death, blessing and curse. Therefore choose life, that you and your offspring may live."},
+  {r:"Deuteronomy 29:29",t:"The secret things belong to the Lord our God, but the things that are revealed belong to us and to our children forever."},
+  {r:"Deuteronomy 7:9",t:"Know therefore that the Lord your God is God, the faithful God who keeps covenant and steadfast love with those who love him."},
+  {r:"Deuteronomy 4:29",t:"But from there you will seek the Lord your God and you will find him, if you search after him with all your heart."},
+  {r:"Deuteronomy 18:15",t:"The Lord your God will raise up for you a prophet like me from among you — it is to him you shall listen."},
+  {r:"Deuteronomy 10:12",t:"What does the Lord your God require of you, but to fear the Lord your God, to walk in all his ways, to love him."}
+],
+"Joshua":[
+  {r:"Joshua 1:9",t:"Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go."},
+  {r:"Joshua 24:15",t:"But as for me and my house, we will serve the Lord."},
+  {r:"Joshua 1:8",t:"This Book of the Law shall not depart from your mouth, but you shall meditate on it day and night."},
+  {r:"Joshua 21:45",t:"Not one word of all the good promises that the Lord had made to the house of Israel had failed; all came to pass."},
+  {r:"Joshua 3:5",t:"Consecrate yourselves, for tomorrow the Lord will do wonders among you."},
+  {r:"Joshua 23:14",t:"Not one word has failed of all the good things that the Lord your God promised concerning you."},
+  {r:"Joshua 2:11",t:"The Lord your God, he is God in the heavens above and on the earth beneath."},
+  {r:"Joshua 22:5",t:"Love the Lord your God, and walk in all his ways and keep his commandments and cling to him and serve him."},
+  {r:"Joshua 10:14",t:"There has been no day like it before or since, when the Lord obeyed the voice of a man, for the Lord fought for Israel."},
+  {r:"Joshua 4:24",t:"So that all the peoples of the earth may know that the hand of the Lord is mighty, that you may fear the Lord your God forever."}
+],
+"Judges":[
+  {r:"Judges 21:25",t:"In those days there was no king in Israel. Everyone did what was right in his own eyes."},
+  {r:"Judges 6:12",t:"The Lord is with you, O mighty man of valor."},
+  {r:"Judges 2:10",t:"There arose another generation after them who did not know the Lord."},
+  {r:"Judges 10:16",t:"So they put away the foreign gods from among them and served the Lord."},
+  {r:"Judges 3:9",t:"But when the people of Israel cried out to the Lord, the Lord raised up a deliverer for the people of Israel."},
+  {r:"Judges 6:24",t:"Then Gideon built an altar there to the Lord and called it, The Lord Is Peace."},
+  {r:"Judges 7:2",t:"The people with you are too many for me to give the Midianites into their hand, lest Israel boast saying, My own hand has saved me."},
+  {r:"Judges 14:6",t:"And the Spirit of the Lord rushed upon him."},
+  {r:"Judges 16:28",t:"O Lord God, please remember me and please strengthen me only this once, O God."},
+  {r:"Judges 5:31",t:"But your friends be like the sun as he rises in his might."}
+],
+"Ruth":[
+  {r:"Ruth 1:16",t:"Where you go I will go, and where you lodge I will lodge. Your people shall be my people, and your God my God."},
+  {r:"Ruth 1:17",t:"Where you die I will die, and there will I be buried. May the Lord do so to me and more also if anything but death parts me from you."},
+  {r:"Ruth 2:12",t:"The Lord repay you for what you have done, and a full reward be given you by the Lord, the God of Israel."},
+  {r:"Ruth 4:14",t:"Blessed be the Lord, who has not left you this day without a redeemer!"},
+  {r:"Ruth 2:20",t:"May he be blessed by the Lord, whose kindness has not forsaken the living or the dead!"},
+  {r:"Ruth 3:11",t:"Do not fear. I will do for you all that you ask, for all my fellow townsmen know that you are a worthy woman."},
+  {r:"Ruth 4:17",t:"And they named him Obed. He was the father of Jesse, the father of David."},
+  {r:"Ruth 2:4",t:"The Lord be with you! And they answered, The Lord bless you."},
+  {r:"Ruth 1:22",t:"So Naomi returned, and Ruth the Moabite her daughter-in-law with her."},
+  {r:"Ruth 2:3",t:"She happened to come to the part of the field belonging to Boaz, who was of the clan of Elimelech."}
+],
+"1 Samuel":[
+  {r:"1 Samuel 16:7",t:"For the Lord sees not as man sees: man looks on the outward appearance, but the Lord looks on the heart."},
+  {r:"1 Samuel 2:2",t:"There is none holy like the Lord: for there is none besides you; there is no rock like our God."},
+  {r:"1 Samuel 17:47",t:"For the battle is the Lord's and he will give you into our hand."},
+  {r:"1 Samuel 3:10",t:"Speak, for your servant hears."},
+  {r:"1 Samuel 12:24",t:"Only fear the Lord and serve him faithfully with all your heart. For consider what great things he has done for you."},
+  {r:"1 Samuel 15:22",t:"To obey is better than sacrifice, and to listen than the fat of rams."},
+  {r:"1 Samuel 1:27",t:"For this child I prayed, and the Lord has granted me my petition that I made to him."},
+  {r:"1 Samuel 2:8",t:"He raises up the poor from the dust; he lifts the needy from the ash heap to make them sit with princes."},
+  {r:"1 Samuel 30:6",t:"But David strengthened himself in the Lord his God."},
+  {r:"1 Samuel 7:12",t:"Till now the Lord has helped us."}
+],
+"2 Samuel":[
+  {r:"2 Samuel 7:16",t:"Your house and your kingdom shall be made sure forever before me. Your throne shall be established forever."},
+  {r:"2 Samuel 22:2",t:"The Lord is my rock and my fortress and my deliverer."},
+  {r:"2 Samuel 7:22",t:"There is none like you, and there is no God besides you."},
+  {r:"2 Samuel 12:13",t:"David said, I have sinned against the Lord. And Nathan said, The Lord also has put away your sin; you shall not die."},
+  {r:"2 Samuel 22:31",t:"This God — his way is perfect; the word of the Lord proves true; he is a shield for all those who take refuge in him."},
+  {r:"2 Samuel 22:50",t:"For this I will praise you, O Lord, among the nations, and sing praises to your name."},
+  {r:"2 Samuel 9:3",t:"Is there not still someone of the house of Saul, that I may show the kindness of God to him?"},
+  {r:"2 Samuel 23:3",t:"When one rules justly over men, ruling in the fear of God, he dawns on them like the morning light."},
+  {r:"2 Samuel 6:14",t:"And David danced before the Lord with all his might."},
+  {r:"2 Samuel 22:7",t:"In my distress I called upon the Lord; to my God I called. From his temple he heard my voice."}
+],
+"1 Kings":[
+  {r:"1 Kings 8:27",t:"Behold, heaven and the highest heaven cannot contain you; how much less this house that I have built!"},
+  {r:"1 Kings 18:21",t:"How long will you go limping between two different opinions? If the Lord is God, follow him."},
+  {r:"1 Kings 19:12",t:"And after the earthquake a fire, but the Lord was not in the fire. And after the fire the sound of a low whisper."},
+  {r:"1 Kings 3:9",t:"Give your servant therefore an understanding mind to govern your people, that I may discern between good and evil."},
+  {r:"1 Kings 8:56",t:"Blessed be the Lord who has given rest to his people Israel. Not one word has failed of all his good promise."},
+  {r:"1 Kings 2:3",t:"Keep the charge of the Lord your God, walking in his ways and keeping his statutes and commandments."},
+  {r:"1 Kings 8:23",t:"O Lord, God of Israel, there is no God like you, in heaven above or on earth beneath."},
+  {r:"1 Kings 17:16",t:"The jar of flour was not spent, neither did the jug of oil become empty, according to the word of the Lord."},
+  {r:"1 Kings 19:7",t:"Arise and eat, for the journey is too great for you."},
+  {r:"1 Kings 4:29",t:"God gave Solomon wisdom and understanding beyond measure, and breadth of mind like the sand on the seashore."}
+],
+"2 Kings":[
+  {r:"2 Kings 6:16",t:"Do not be afraid, for those who are with us are more than those who are with them."},
+  {r:"2 Kings 17:39",t:"But you shall fear the Lord your God, and he will deliver you out of the hand of all your enemies."},
+  {r:"2 Kings 20:5",t:"I have heard your prayer; I have seen your tears. Behold, I will heal you."},
+  {r:"2 Kings 5:13",t:"If the prophet had commanded you to do some great thing, would you not have done it? Wash, and be clean."},
+  {r:"2 Kings 23:25",t:"Before him there was no king like him, who turned to the Lord with all his heart and with all his soul and with all his might."},
+  {r:"2 Kings 2:11",t:"Behold, chariots of fire and horses of fire separated the two of them. And Elijah went up by a whirlwind into heaven."},
+  {r:"2 Kings 19:19",t:"Save us from his hand, that all the kingdoms of the earth may know that you, O Lord, are God alone."},
+  {r:"2 Kings 13:23",t:"But the Lord was gracious to them and had compassion on them, because of his covenant with Abraham, Isaac, and Jacob."},
+  {r:"2 Kings 7:9",t:"This day is a day of good news. If we are silent and wait until the morning light, punishment will overtake us."},
+  {r:"2 Kings 4:26",t:"Is all well with you? Is all well with your husband? Is all well with the child? And she answered, All is well."}
+],
+"1 Chronicles":[
+  {r:"1 Chronicles 16:34",t:"Oh give thanks to the Lord, for he is good; for his steadfast love endures forever!"},
+  {r:"1 Chronicles 29:11",t:"Yours, O Lord, is the greatness and the power and the glory and the victory and the majesty."},
+  {r:"1 Chronicles 28:9",t:"Know the God of your father and serve him with a whole heart and with a willing mind, for the Lord searches all hearts."},
+  {r:"1 Chronicles 16:11",t:"Seek the Lord and his strength; seek his presence continually!"},
+  {r:"1 Chronicles 29:14",t:"All things come from you, and of your own have we given you."},
+  {r:"1 Chronicles 22:13",t:"Be strong and courageous. Fear not; do not be dismayed."},
+  {r:"1 Chronicles 4:10",t:"Oh that you would bless me and enlarge my border."},
+  {r:"1 Chronicles 16:24",t:"Declare his glory among the nations, his marvelous works among all the peoples!"},
+  {r:"1 Chronicles 29:17",t:"I know, my God, that you test the heart and have pleasure in uprightness."},
+  {r:"1 Chronicles 17:20",t:"O Lord, there is none like you, and there is no God besides you."}
+],
+"2 Chronicles":[
+  {r:"2 Chronicles 7:14",t:"If my people who are called by my name humble themselves, and pray and seek my face and turn from their wicked ways, then I will hear from heaven."},
+  {r:"2 Chronicles 20:15",t:"Do not be afraid and do not be dismayed at this great horde, for the battle is not yours but God's."},
+  {r:"2 Chronicles 16:9",t:"For the eyes of the Lord run to and fro throughout the whole earth, to give strong support to those whose heart is blameless toward him."},
+  {r:"2 Chronicles 15:7",t:"But you, take courage! Do not let your hands be weak, for your work shall be rewarded."},
+  {r:"2 Chronicles 20:12",t:"We do not know what to do, but our eyes are on you."},
+  {r:"2 Chronicles 32:7",t:"Be strong and courageous. Do not be afraid or dismayed, for there are more with us than with him."},
+  {r:"2 Chronicles 6:14",t:"O Lord, God of Israel, there is no God like you, in heaven or on earth."},
+  {r:"2 Chronicles 30:9",t:"For the Lord your God is gracious and merciful and will not turn away his face from you, if you return to him."},
+  {r:"2 Chronicles 14:11",t:"O Lord, there is none like you to help, between the mighty and the weak. Help us, O Lord our God, for we rely on you."},
+  {r:"2 Chronicles 1:10",t:"Give me now wisdom and knowledge to go out and come in before this people."}
+],
+"Ezra":[
+  {r:"Ezra 7:10",t:"For Ezra had set his heart to study the Law of the Lord, and to do it and to teach his statutes and rules in Israel."},
+  {r:"Ezra 8:22",t:"The hand of our God is for good on all who seek him, and the power of his wrath is against all who forsake him."},
+  {r:"Ezra 7:28",t:"And I took courage, for the hand of the Lord my God was on me."},
+  {r:"Ezra 3:11",t:"For he is good, for his steadfast love endures forever toward Israel."},
+  {r:"Ezra 10:4",t:"Arise, for it is your task, and we are with you; be strong and do it."},
+  {r:"Ezra 9:6",t:"O my God, I am ashamed and blush to lift my face to you, my God, for our iniquities have risen higher than our heads."},
+  {r:"Ezra 1:3",t:"Whoever is among all his people, may his God be with him, and let him go up to Jerusalem and rebuild the house of the Lord."},
+  {r:"Ezra 9:9",t:"For we are slaves. Yet our God has not forsaken us in our slavery, but has extended to us his steadfast love."},
+  {r:"Ezra 5:11",t:"We are the servants of the God of heaven and earth, and we are rebuilding the house that was built many years ago."},
+  {r:"Ezra 6:21",t:"The people of Israel ate the Passover, and also everyone who had joined them and separated himself from the uncleanness of the peoples."}
+],
+"Nehemiah":[
+  {r:"Nehemiah 8:10",t:"Do not be grieved, for the joy of the Lord is your strength."},
+  {r:"Nehemiah 1:5",t:"O Lord God of heaven, the great and awesome God who keeps covenant and steadfast love."},
+  {r:"Nehemiah 4:14",t:"Do not be afraid of them. Remember the Lord, who is great and awesome, and fight for your brothers, your sons, your daughters."},
+  {r:"Nehemiah 9:17",t:"But you are a God ready to forgive, gracious and merciful, slow to anger and abounding in steadfast love."},
+  {r:"Nehemiah 6:9",t:"But now, O God, strengthen my hands."},
+  {r:"Nehemiah 2:20",t:"The God of heaven will make us prosper, and we his servants will arise and build."},
+  {r:"Nehemiah 9:6",t:"You are the Lord, you alone. You have made heaven, the heaven of heavens, with all their host, the earth and all that is on it."},
+  {r:"Nehemiah 8:8",t:"They read from the book, from the Law of God, clearly, and they gave the sense, so that the people understood the reading."},
+  {r:"Nehemiah 13:22",t:"Remember this also in my favor, O my God, and spare me according to the greatness of your steadfast love."},
+  {r:"Nehemiah 5:19",t:"Remember for my good, O my God, all that I have done for this people."}
+],
+"Esther":[
+  {r:"Esther 4:14",t:"And who knows whether you have not come to the kingdom for such a time as this?"},
+  {r:"Esther 4:16",t:"I will go to the king, though it is against the law, and if I perish, I perish."},
+  {r:"Esther 8:16",t:"The Jews had light and gladness and joy and honor."},
+  {r:"Esther 2:17",t:"The king loved Esther more than all the women, and she won grace and favor in his sight."},
+  {r:"Esther 7:3",t:"If I have found favor in your sight, O king, let my life be granted me for my wish."},
+  {r:"Esther 9:22",t:"The month that had been turned for them from sorrow into gladness and from mourning into a holiday."},
+  {r:"Esther 5:2",t:"When the king saw Queen Esther standing in the court, she won favor in his sight."},
+  {r:"Esther 6:3",t:"What honor or distinction has been bestowed on Mordecai for this?"},
+  {r:"Esther 10:3",t:"For Mordecai the Jew was second in rank to King Ahasuerus, and he was great among the Jews."},
+  {r:"Esther 3:5",t:"And when Haman saw that Mordecai did not bow down or pay homage to him, Haman was filled with fury."}
+],
+"Job":[
+  {r:"Job 1:21",t:"The Lord gave, and the Lord has taken away; blessed be the name of the Lord."},
+  {r:"Job 19:25",t:"For I know that my Redeemer lives, and at the last he will stand upon the earth."},
+  {r:"Job 38:4",t:"Where were you when I laid the foundation of the earth? Tell me, if you have understanding."},
+  {r:"Job 42:5",t:"I had heard of you by the hearing of the ear, but now my eye sees you."},
+  {r:"Job 13:15",t:"Though he slay me, I will hope in him."},
+  {r:"Job 23:10",t:"But he knows the way that I take; when he has tried me, I shall come out as gold."},
+  {r:"Job 2:10",t:"Shall we receive good from God, and shall we not receive evil?"},
+  {r:"Job 42:10",t:"And the Lord restored the fortunes of Job when he had prayed for his friends."},
+  {r:"Job 33:4",t:"The Spirit of God has made me, and the breath of the Almighty gives me life."},
+  {r:"Job 8:7",t:"And though your beginning was small, your latter days will be very great."}
+],
+"Psalms":[
+  {r:"Psalm 23:1",t:"The Lord is my shepherd; I shall not want."},
+  {r:"Psalm 46:1",t:"God is our refuge and strength, a very present help in trouble."},
+  {r:"Psalm 119:105",t:"Your word is a lamp to my feet and a light to my path."},
+  {r:"Psalm 27:1",t:"The Lord is my light and my salvation; whom shall I fear?"},
+  {r:"Psalm 34:18",t:"The Lord is near to the brokenhearted and saves the crushed in spirit."},
+  {r:"Psalm 91:1",t:"He who dwells in the shelter of the Most High will abide in the shadow of the Almighty."},
+  {r:"Psalm 51:10",t:"Create in me a clean heart, O God, and renew a right spirit within me."},
+  {r:"Psalm 139:14",t:"I praise you, for I am fearfully and wonderfully made."},
+  {r:"Psalm 37:4",t:"Delight yourself in the Lord, and he will give you the desires of your heart."},
+  {r:"Psalm 121:1",t:"I lift up my eyes to the hills. From where does my help come? My help comes from the Lord, who made heaven and earth."}
+],
+"Proverbs":[
+  {r:"Proverbs 3:5",t:"Trust in the Lord with all your heart, and do not lean on your own understanding."},
+  {r:"Proverbs 3:6",t:"In all your ways acknowledge him, and he will make straight your paths."},
+  {r:"Proverbs 4:23",t:"Keep your heart with all vigilance, for from it flow the springs of life."},
+  {r:"Proverbs 1:7",t:"The fear of the Lord is the beginning of wisdom; fools despise wisdom and instruction."},
+  {r:"Proverbs 22:6",t:"Train up a child in the way he should go; even when he is old he will not depart from it."},
+  {r:"Proverbs 16:18",t:"Pride goes before destruction, and a haughty spirit before a fall."},
+  {r:"Proverbs 18:10",t:"The name of the Lord is a strong tower; the righteous man runs into it and is safe."},
+  {r:"Proverbs 31:25",t:"Strength and dignity are her clothing, and she laughs at the time to come."},
+  {r:"Proverbs 27:17",t:"Iron sharpens iron, and one man sharpens another."},
+  {r:"Proverbs 16:3",t:"Commit your work to the Lord, and your plans will be established."}
+],
+"Ecclesiastes":[
+  {r:"Ecclesiastes 3:1",t:"For everything there is a season, and a time for every matter under heaven."},
+  {r:"Ecclesiastes 12:13",t:"Fear God and keep his commandments, for this is the whole duty of man."},
+  {r:"Ecclesiastes 4:9",t:"Two are better than one, because they have a good reward for their toil."},
+  {r:"Ecclesiastes 4:12",t:"A threefold cord is not quickly broken."},
+  {r:"Ecclesiastes 3:11",t:"He has made everything beautiful in its time. He has also set eternity in the human heart."},
+  {r:"Ecclesiastes 9:11",t:"The race is not to the swift, nor the battle to the strong."},
+  {r:"Ecclesiastes 5:2",t:"Be not rash with your mouth before God, for God is in heaven and you are on earth."},
+  {r:"Ecclesiastes 11:4",t:"Whoever watches the wind will not plant; whoever looks at the clouds will not reap."},
+  {r:"Ecclesiastes 7:20",t:"Surely there is not a righteous man on earth who does good and never sins."},
+  {r:"Ecclesiastes 1:2",t:"Vanity of vanities, says the Preacher, vanity of vanities! All is vanity."}
+],
+"Song of Songs":[
+  {r:"Song of Songs 8:7",t:"Many waters cannot quench love, neither can floods drown it."},
+  {r:"Song of Songs 2:4",t:"He brought me to the banqueting house, and his banner over me was love."},
+  {r:"Song of Songs 8:6",t:"Set me as a seal upon your heart, for love is strong as death."},
+  {r:"Song of Songs 2:16",t:"My beloved is mine, and I am his."},
+  {r:"Song of Songs 4:7",t:"You are altogether beautiful, my love; there is no flaw in you."},
+  {r:"Song of Songs 3:4",t:"I found him whom my soul loves. I held him, and would not let him go."},
+  {r:"Song of Songs 2:10",t:"Arise, my love, my beautiful one, and come away."},
+  {r:"Song of Songs 6:3",t:"I am my beloved's and my beloved is mine."},
+  {r:"Song of Songs 1:4",t:"Draw me after you; let us run."},
+  {r:"Song of Songs 2:1",t:"I am a rose of Sharon, a lily of the valleys."}
+],
+"Isaiah":[
+  {r:"Isaiah 40:31",t:"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles."},
+  {r:"Isaiah 41:10",t:"Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you."},
+  {r:"Isaiah 9:6",t:"For to us a child is born, to us a son is given; and his name shall be called Wonderful Counselor, Mighty God, Everlasting Father, Prince of Peace."},
+  {r:"Isaiah 53:5",t:"But he was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace."},
+  {r:"Isaiah 26:3",t:"You keep him in perfect peace whose mind is stayed on you, because he trusts in you."},
+  {r:"Isaiah 43:2",t:"When you pass through the waters, I will be with you; and through the rivers, they shall not overwhelm you."},
+  {r:"Isaiah 40:29",t:"He gives power to the faint, and to him who has no might he increases strength."},
+  {r:"Isaiah 55:8",t:"For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord."},
+  {r:"Isaiah 6:8",t:"And I heard the voice of the Lord saying, Whom shall I send? Then I said, Here I am! Send me."},
+  {r:"Isaiah 53:6",t:"All we like sheep have gone astray; and the Lord has laid on him the iniquity of us all."}
+],
+"Jeremiah":[
+  {r:"Jeremiah 29:11",t:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope."},
+  {r:"Jeremiah 33:3",t:"Call to me and I will answer you, and will tell you great and hidden things that you have not known."},
+  {r:"Jeremiah 17:7",t:"Blessed is the man who trusts in the Lord, whose trust is the Lord."},
+  {r:"Jeremiah 31:33",t:"I will put my law within them, and I will write it on their hearts. And I will be their God, and they shall be my people."},
+  {r:"Jeremiah 1:5",t:"Before I formed you in the womb I knew you, and before you were born I consecrated you."},
+  {r:"Jeremiah 29:13",t:"You will seek me and find me, when you seek me with all your heart."},
+  {r:"Jeremiah 32:17",t:"Ah, Lord God! Nothing is too hard for you."},
+  {r:"Jeremiah 31:3",t:"I have loved you with an everlasting love; therefore I have continued my faithfulness to you."},
+  {r:"Jeremiah 15:16",t:"Your words were found, and I ate them, and your words became to me a joy and the delight of my heart."},
+  {r:"Jeremiah 6:16",t:"Ask for the ancient paths, where the good way is; and walk in it, and find rest for your souls."}
+],
+"Lamentations":[
+  {r:"Lamentations 3:22",t:"The steadfast love of the Lord never ceases; his mercies never come to an end."},
+  {r:"Lamentations 3:23",t:"They are new every morning; great is your faithfulness."},
+  {r:"Lamentations 3:24",t:"The Lord is my portion, says my soul, therefore I will hope in him."},
+  {r:"Lamentations 3:25",t:"The Lord is good to those who wait for him, to the soul who seeks him."},
+  {r:"Lamentations 3:26",t:"It is good that one should wait quietly for the salvation of the Lord."},
+  {r:"Lamentations 3:40",t:"Let us test and examine our ways, and return to the Lord!"},
+  {r:"Lamentations 3:57",t:"You came near when I called on you; you said, Do not fear!"},
+  {r:"Lamentations 3:32",t:"Though he cause grief, he will have compassion according to the abundance of his steadfast love."},
+  {r:"Lamentations 3:58",t:"You have taken up my cause, O Lord; you have redeemed my life."},
+  {r:"Lamentations 1:12",t:"Is it nothing to you, all you who pass by? Look and see if there is any sorrow like my sorrow."}
+],
+"Ezekiel":[
+  {r:"Ezekiel 36:26",t:"And I will give you a new heart, and a new spirit I will put within you."},
+  {r:"Ezekiel 37:5",t:"Thus says the Lord God to these bones: Behold, I will cause breath to enter you, and you shall live."},
+  {r:"Ezekiel 18:31",t:"Cast away from you all the transgressions that you have committed, and make yourselves a new heart and a new spirit!"},
+  {r:"Ezekiel 33:11",t:"I have no pleasure in the death of the wicked, but that the wicked turn from his way and live."},
+  {r:"Ezekiel 34:15",t:"I myself will be the shepherd of my sheep, and I myself will make them lie down, declares the Lord God."},
+  {r:"Ezekiel 36:27",t:"And I will put my Spirit within you, and cause you to walk in my statutes."},
+  {r:"Ezekiel 11:19",t:"And I will give them one heart, and a new spirit I will put within them. I will remove the heart of stone from their flesh."},
+  {r:"Ezekiel 3:17",t:"Son of man, I have made you a watchman for the house of Israel."},
+  {r:"Ezekiel 37:14",t:"And I will put my Spirit within you, and you shall live."},
+  {r:"Ezekiel 18:4",t:"Behold, all souls are mine; the soul who sins shall die."}
+],
+"Daniel":[
+  {r:"Daniel 3:17",t:"Our God whom we serve is able to deliver us from the burning fiery furnace."},
+  {r:"Daniel 3:18",t:"But if not, be it known to you, O king, that we will not serve your gods or worship the golden image that you have set up."},
+  {r:"Daniel 6:10",t:"He got down on his knees three times a day and prayed and gave thanks before his God."},
+  {r:"Daniel 12:3",t:"Those who are wise shall shine like the brightness of the sky above; and those who turn many to righteousness, like the stars forever and ever."},
+  {r:"Daniel 2:20",t:"Blessed be the name of God forever and ever, to whom belong wisdom and might."},
+  {r:"Daniel 1:8",t:"But Daniel resolved that he would not defile himself."},
+  {r:"Daniel 6:22",t:"My God sent his angel and shut the lions' mouths, and they have not harmed me."},
+  {r:"Daniel 9:9",t:"To the Lord our God belong mercy and forgiveness, for we have rebelled against him."},
+  {r:"Daniel 10:19",t:"O man greatly loved, fear not, peace be with you; be strong and of good courage."},
+  {r:"Daniel 4:35",t:"He does according to his will among the host of heaven and among the inhabitants of the earth."}
+],
+"Hosea":[
+  {r:"Hosea 6:6",t:"For I desire steadfast love and not sacrifice, the knowledge of God rather than burnt offerings."},
+  {r:"Hosea 14:4",t:"I will heal their apostasy; I will love them freely, for my anger has turned from them."},
+  {r:"Hosea 6:1",t:"Come, let us return to the Lord; for he has torn us, that he may heal us."},
+  {r:"Hosea 2:23",t:"I will say to Not My People, You are my people; and he shall say, You are my God."},
+  {r:"Hosea 11:1",t:"When Israel was a child, I loved him, and out of Egypt I called my son."},
+  {r:"Hosea 4:6",t:"My people are destroyed for lack of knowledge."},
+  {r:"Hosea 12:6",t:"Hold fast to love and justice, and wait continually for your God."},
+  {r:"Hosea 10:12",t:"Sow for yourselves righteousness; reap steadfast love; break up your fallow ground, for it is the time to seek the Lord."},
+  {r:"Hosea 13:14",t:"I shall ransom them from the power of Sheol; I shall redeem them from Death."},
+  {r:"Hosea 3:1",t:"Go again, love a woman who is loved by another man and is an adulteress, even as the Lord loves the children of Israel."}
+],
+"Joel":[
+  {r:"Joel 2:28",t:"And it shall come to pass afterward, that I will pour out my Spirit on all flesh."},
+  {r:"Joel 2:13",t:"Return to the Lord your God, for he is gracious and merciful, slow to anger, and abounding in steadfast love."},
+  {r:"Joel 2:32",t:"Everyone who calls on the name of the Lord shall be saved."},
+  {r:"Joel 2:25",t:"I will restore to you the years that the swarming locust has eaten."},
+  {r:"Joel 3:16",t:"The Lord is a refuge to his people, a stronghold to the people of Israel."},
+  {r:"Joel 2:12",t:"Return to me with all your heart, with fasting, with weeping, and with mourning."},
+  {r:"Joel 2:1",t:"Blow a trumpet in Zion; sound an alarm on my holy mountain!"},
+  {r:"Joel 2:11",t:"The Lord utters his voice before his army, for his camp is exceedingly great."},
+  {r:"Joel 1:14",t:"Consecrate a fast; call a solemn assembly. Gather the elders and all the inhabitants of the land to the house of the Lord your God."},
+  {r:"Joel 3:10",t:"Let the weak say, I am a warrior."}
+],
+"Amos":[
+  {r:"Amos 5:24",t:"But let justice roll down like waters, and righteousness like an ever-flowing stream."},
+  {r:"Amos 3:7",t:"For the Lord God does nothing without revealing his secret to his servants the prophets."},
+  {r:"Amos 4:12",t:"Prepare to meet your God, O Israel!"},
+  {r:"Amos 5:14",t:"Seek good, and not evil, that you may live; and so the Lord will be with you."},
+  {r:"Amos 8:11",t:"I will send a famine on the land — not a famine of bread, nor a thirst for water, but of hearing the words of the Lord."},
+  {r:"Amos 5:4",t:"For thus says the Lord to the house of Israel: Seek me and live."},
+  {r:"Amos 3:3",t:"Do two walk together, unless they have agreed to meet?"},
+  {r:"Amos 9:11",t:"In that day I will raise up the booth of David that is fallen and repair its breaches."},
+  {r:"Amos 9:15",t:"I will plant them on their land, and they shall never again be uprooted out of the land that I have given them."},
+  {r:"Amos 5:6",t:"Seek the Lord and live."}
+],
+"Obadiah":[
+  {r:"Obadiah 1:3",t:"The pride of your heart has deceived you."},
+  {r:"Obadiah 1:4",t:"Though you soar aloft like the eagle, from there I will bring you down, declares the Lord."},
+  {r:"Obadiah 1:15",t:"As you have done, it shall be done to you; your deeds shall return on your own head."},
+  {r:"Obadiah 1:17",t:"But in Mount Zion there shall be those who escape, and it shall be holy."},
+  {r:"Obadiah 1:21",t:"The kingdom shall be the Lord's."},
+  {r:"Obadiah 1:10",t:"Because of the violence done to your brother Jacob, shame shall cover you."},
+  {r:"Obadiah 1:12",t:"Do not gloat over the day of your brother in the day of his misfortune."},
+  {r:"Obadiah 1:18",t:"The house of Jacob shall be a fire, and the house of Joseph a flame."},
+  {r:"Obadiah 1:1",t:"Thus says the Lord God concerning Edom: We have heard a report from the Lord."},
+  {r:"Obadiah 1:7",t:"All your allies have driven you to your border; those at peace with you have deceived you."}
+],
+"Jonah":[
+  {r:"Jonah 2:9",t:"Salvation belongs to the Lord!"},
+  {r:"Jonah 4:2",t:"You are a gracious God and merciful, slow to anger and abounding in steadfast love, and relenting from disaster."},
+  {r:"Jonah 3:10",t:"When God saw what they did, how they turned from their evil way, God relented of the disaster."},
+  {r:"Jonah 2:2",t:"I called out to the Lord, out of my distress, and he answered me."},
+  {r:"Jonah 1:9",t:"I am a Hebrew, and I fear the Lord, the God of heaven, who made the sea and the dry land."},
+  {r:"Jonah 2:6",t:"Yet you brought up my life from the pit, O Lord my God."},
+  {r:"Jonah 3:4",t:"Yet forty days, and Nineveh shall be overthrown!"},
+  {r:"Jonah 4:11",t:"Should not I pity Nineveh, that great city, in which there are more than 120,000 persons?"},
+  {r:"Jonah 1:17",t:"And the Lord appointed a great fish to swallow up Jonah. And Jonah was in the belly of the fish three days and three nights."},
+  {r:"Jonah 1:3",t:"But Jonah rose to flee to Tarshish from the presence of the Lord."}
+],
+"Micah":[
+  {r:"Micah 6:8",t:"He has told you, O man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?"},
+  {r:"Micah 7:7",t:"But as for me, I will look to the Lord; I will wait for the God of my salvation; my God will hear me."},
+  {r:"Micah 5:2",t:"But you, O Bethlehem Ephrathah, who are too little to be among the clans of Judah, from you shall come forth for me one who is to be ruler in Israel."},
+  {r:"Micah 7:18",t:"Who is a God like you, pardoning iniquity and passing over transgression?"},
+  {r:"Micah 7:8",t:"Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the Lord will be a light to me."},
+  {r:"Micah 4:3",t:"They shall beat their swords into plowshares, and their spears into pruning hooks."},
+  {r:"Micah 7:19",t:"He will again have compassion on us; you will cast all our sins into the depths of the sea."},
+  {r:"Micah 4:2",t:"For out of Zion shall go forth the law, and the word of the Lord from Jerusalem."},
+  {r:"Micah 3:8",t:"But as for me, I am filled with power, with the Spirit of the Lord, and with justice and might."},
+  {r:"Micah 7:20",t:"You will show faithfulness to Jacob and steadfast love to Abraham, as you have sworn to our fathers from the days of old."}
+],
+"Nahum":[
+  {r:"Nahum 1:7",t:"The Lord is good, a stronghold in the day of trouble; he knows those who take refuge in him."},
+  {r:"Nahum 1:3",t:"The Lord is slow to anger and great in power, and the Lord will by no means clear the guilty."},
+  {r:"Nahum 1:9",t:"Whatever you devise against the Lord, he will bring to a complete end."},
+  {r:"Nahum 1:15",t:"Behold, upon the mountains, the feet of him who brings good news, who publishes peace!"},
+  {r:"Nahum 1:2",t:"The Lord is a jealous and avenging God; the Lord is avenging and wrathful."},
+  {r:"Nahum 1:6",t:"Who can stand before his indignation? Who can endure the heat of his anger?"},
+  {r:"Nahum 2:1",t:"Man the ramparts; watch the road; dress for battle; collect all your strength."},
+  {r:"Nahum 3:1",t:"Woe to the bloody city, all full of lies and plunder."},
+  {r:"Nahum 1:4",t:"He rebukes the sea and makes it dry; he dries up all the rivers."},
+  {r:"Nahum 1:8",t:"But with an overflowing flood he will make a complete end of the adversaries."}
+],
+"Habakkuk":[
+  {r:"Habakkuk 2:4",t:"But the righteous shall live by his faith."},
+  {r:"Habakkuk 3:17",t:"Though the fig tree should not blossom, nor fruit be on the vines — yet I will rejoice in the Lord."},
+  {r:"Habakkuk 3:19",t:"God, the Lord, is my strength; he makes my feet like the deer's; he makes me tread on my high places."},
+  {r:"Habakkuk 2:14",t:"For the earth will be filled with the knowledge of the glory of the Lord as the waters cover the sea."},
+  {r:"Habakkuk 2:20",t:"But the Lord is in his holy temple; let all the earth keep silence before him."},
+  {r:"Habakkuk 3:18",t:"Yet I will rejoice in the Lord; I will take joy in the God of my salvation."},
+  {r:"Habakkuk 2:3",t:"If it seems slow, wait for it; it will surely come; it will not delay."},
+  {r:"Habakkuk 1:2",t:"O Lord, how long shall I cry for help, and you will not hear?"},
+  {r:"Habakkuk 1:5",t:"Look among the nations, and see; wonder and be astounded. For I am doing a work in your days that you would not believe if told."},
+  {r:"Habakkuk 3:2",t:"O Lord, in the midst of the years revive it; in wrath remember mercy."}
+],
+"Zephaniah":[
+  {r:"Zephaniah 3:17",t:"The Lord your God is in your midst, a mighty one who will save; he will rejoice over you with gladness; he will quiet you by his love."},
+  {r:"Zephaniah 2:3",t:"Seek the Lord, all you humble of the land; seek righteousness; seek humility."},
+  {r:"Zephaniah 3:14",t:"Sing aloud, O daughter of Zion; shout, O Israel! Rejoice and exult with all your heart, O daughter of Jerusalem!"},
+  {r:"Zephaniah 3:9",t:"At that time I will change the speech of the peoples to a pure speech, that all of them may call upon the name of the Lord."},
+  {r:"Zephaniah 3:15",t:"The Lord has taken away the judgments against you; he has cleared away your enemies."},
+  {r:"Zephaniah 3:20",t:"At that time I will bring you in, at the time when I gather you together; I will make you renowned and praised among all the peoples of the earth."},
+  {r:"Zephaniah 1:14",t:"The great day of the Lord is near, near and hastening fast."},
+  {r:"Zephaniah 3:5",t:"The Lord within her is righteous; he does no injustice; every morning he shows forth his justice."},
+  {r:"Zephaniah 1:7",t:"Be silent before the Lord God! For the day of the Lord is near."},
+  {r:"Zephaniah 1:12",t:"At that time I will search Jerusalem with lamps, and I will punish the men who are complacent."}
+],
+"Haggai":[
+  {r:"Haggai 2:9",t:"The latter glory of this house shall be greater than the former, says the Lord of hosts. And in this place I will give peace."},
+  {r:"Haggai 2:4",t:"Yet now be strong, O Zerubbabel. Be strong, O Joshua. Be strong, all you people of the land. Work, for I am with you."},
+  {r:"Haggai 2:19",t:"From this day on I will bless you."},
+  {r:"Haggai 1:7",t:"Thus says the Lord of hosts: Consider your ways."},
+  {r:"Haggai 2:5",t:"My Spirit remains in your midst. Fear not."},
+  {r:"Haggai 1:14",t:"And the Lord stirred up the spirit of Zerubbabel, and the spirit of all the remnant of the people. And they came and worked on the house of the Lord."},
+  {r:"Haggai 2:23",t:"I will take you, O Zerubbabel my servant, and make you like a signet ring, for I have chosen you, declares the Lord of hosts."},
+  {r:"Haggai 1:9",t:"You looked for much, and behold, it came to little. Why? Because of my house that lies in ruins."},
+  {r:"Haggai 2:7",t:"And I will shake all nations, so that the treasures of all nations shall come in, and I will fill this house with glory."},
+  {r:"Haggai 1:5",t:"Thus says the Lord of hosts: Consider your ways."}
+],
+"Zechariah":[
+  {r:"Zechariah 4:6",t:"Not by might, nor by power, but by my Spirit, says the Lord of hosts."},
+  {r:"Zechariah 9:9",t:"Rejoice greatly, O daughter of Zion! Behold, your king is coming to you; righteous and having salvation is he."},
+  {r:"Zechariah 13:9",t:"They will call upon my name, and I will answer them. I will say, They are my people; and they will say, The Lord is my God."},
+  {r:"Zechariah 8:16",t:"Speak the truth to one another; render in your gates judgments that are true and make for peace."},
+  {r:"Zechariah 12:10",t:"And I will pour out on the house of David a spirit of grace and pleas for mercy."},
+  {r:"Zechariah 2:10",t:"Sing and rejoice, O daughter of Zion, for behold, I come and I will dwell in your midst, declares the Lord."},
+  {r:"Zechariah 14:9",t:"And the Lord will be king over all the earth. On that day the Lord will be one and his name one."},
+  {r:"Zechariah 7:9",t:"Render true judgments, show kindness and mercy to one another."},
+  {r:"Zechariah 8:13",t:"So will I save you, and you shall be a blessing."},
+  {r:"Zechariah 1:3",t:"Return to me, says the Lord of hosts, and I will return to you."}
+],
+"Malachi":[
+  {r:"Malachi 3:10",t:"Bring the full tithe into the storehouse, that there may be food in my house. And thereby put me to the test, says the Lord of hosts."},
+  {r:"Malachi 3:6",t:"For I the Lord do not change; therefore you, O children of Jacob, are not consumed."},
+  {r:"Malachi 4:2",t:"But for you who fear my name, the sun of righteousness shall rise with healing in its wings."},
+  {r:"Malachi 3:1",t:"Behold, I send my messenger, and he will prepare the way before me."},
+  {r:"Malachi 1:11",t:"For from the rising of the sun to its setting my name will be great among the nations."},
+  {r:"Malachi 4:5",t:"Behold, I will send you Elijah the prophet before the great and awesome day of the Lord comes."},
+  {r:"Malachi 2:10",t:"Have we not all one Father? Has not one God created us?"},
+  {r:"Malachi 3:16",t:"Then those who feared the Lord spoke with one another. The Lord paid attention and heard them."},
+  {r:"Malachi 3:7",t:"Return to me, and I will return to you, says the Lord of hosts."},
+  {r:"Malachi 2:16",t:"The Lord, the God of Israel, says that he hates divorce, so guard yourselves in your spirit."}
+],
+"Matthew":[
+  {r:"Matthew 5:3",t:"Blessed are the poor in spirit, for theirs is the kingdom of heaven."},
+  {r:"Matthew 6:33",t:"But seek first the kingdom of God and his righteousness, and all these things will be added to you."},
+  {r:"Matthew 22:37",t:"You shall love the Lord your God with all your heart and with all your soul and with all your mind."},
+  {r:"Matthew 28:19",t:"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."},
+  {r:"Matthew 11:28",t:"Come to me, all who labor and are heavy laden, and I will give you rest."},
+  {r:"Matthew 5:16",t:"Let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."},
+  {r:"Matthew 7:7",t:"Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you."},
+  {r:"Matthew 18:20",t:"For where two or three are gathered in my name, there am I among them."},
+  {r:"Matthew 6:9",t:"Pray then like this: Our Father in heaven, hallowed be your name."},
+  {r:"Matthew 1:23",t:"Behold, the virgin shall conceive and bear a son, and they shall call his name Immanuel, which means, God with us."}
+],
+"Mark":[
+  {r:"Mark 1:15",t:"The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel."},
+  {r:"Mark 10:45",t:"For even the Son of Man came not to be served but to serve, and to give his life as a ransom for many."},
+  {r:"Mark 12:30",t:"And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength."},
+  {r:"Mark 16:15",t:"Go into all the world and proclaim the gospel to the whole creation."},
+  {r:"Mark 9:23",t:"All things are possible for one who believes."},
+  {r:"Mark 10:27",t:"With man it is impossible, but not with God. For all things are possible with God."},
+  {r:"Mark 8:36",t:"For what does it profit a man to gain the whole world and forfeit his soul?"},
+  {r:"Mark 5:36",t:"Do not fear, only believe."},
+  {r:"Mark 1:17",t:"Follow me, and I will make you become fishers of men."},
+  {r:"Mark 11:24",t:"Whatever you ask in prayer, believe that you have received it, and it will be yours."}
+],
+"Luke":[
+  {r:"Luke 1:37",t:"For nothing will be impossible with God."},
+  {r:"Luke 6:31",t:"And as you wish that others would do to you, do so to them."},
+  {r:"Luke 15:7",t:"There will be more joy in heaven over one sinner who repents than over ninety-nine righteous persons."},
+  {r:"Luke 2:11",t:"For unto you is born this day in the city of David a Savior, who is Christ the Lord."},
+  {r:"Luke 1:46",t:"And Mary said, My soul magnifies the Lord."},
+  {r:"Luke 4:18",t:"The Spirit of the Lord is upon me, because he has anointed me to proclaim good news to the poor."},
+  {r:"Luke 23:34",t:"And Jesus said, Father, forgive them, for they know not what they do."},
+  {r:"Luke 19:10",t:"For the Son of Man came to seek and to save the lost."},
+  {r:"Luke 12:34",t:"For where your treasure is, there will your heart be also."},
+  {r:"Luke 11:9",t:"Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you."}
+],
+"John":[
+  {r:"John 3:16",t:"For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."},
+  {r:"John 14:6",t:"Jesus said to him, I am the way, and the truth, and the life. No one comes to the Father except through me."},
+  {r:"John 11:25",t:"Jesus said, I am the resurrection and the life. Whoever believes in me, though he die, yet shall he live."},
+  {r:"John 8:12",t:"I am the light of the world. Whoever follows me will not walk in darkness, but will have the light of life."},
+  {r:"John 13:34",t:"A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another."},
+  {r:"John 1:1",t:"In the beginning was the Word, and the Word was with God, and the Word was God."},
+  {r:"John 10:10",t:"I came that they may have life and have it abundantly."},
+  {r:"John 15:5",t:"I am the vine; you are the branches. Whoever abides in me and I in him, he it is that bears much fruit."},
+  {r:"John 14:27",t:"Peace I leave with you; my peace I give to you. Let not your hearts be troubled, neither let them be afraid."},
+  {r:"John 10:27",t:"My sheep hear my voice, and I know them, and they follow me."}
+],
+"Acts":[
+  {r:"Acts 1:8",t:"But you will receive power when the Holy Spirit has come upon you, and you will be my witnesses to the end of the earth."},
+  {r:"Acts 2:38",t:"Repent and be baptized every one of you in the name of Jesus Christ for the forgiveness of your sins, and you will receive the gift of the Holy Spirit."},
+  {r:"Acts 4:12",t:"And there is salvation in no one else, for there is no other name under heaven given among men by which we must be saved."},
+  {r:"Acts 16:31",t:"Believe in the Lord Jesus, and you will be saved, you and your household."},
+  {r:"Acts 2:42",t:"And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers."},
+  {r:"Acts 4:31",t:"And when they had prayed, the place in which they were gathered together was shaken, and they were all filled with the Holy Spirit."},
+  {r:"Acts 17:28",t:"For in him we live and move and have our being."},
+  {r:"Acts 20:35",t:"It is more blessed to give than to receive."},
+  {r:"Acts 3:19",t:"Repent therefore, and turn back, that your sins may be blotted out."},
+  {r:"Acts 2:4",t:"And they were all filled with the Holy Spirit and began to speak in other tongues as the Spirit gave them utterance."}
+],
+"Romans":[
+  {r:"Romans 8:28",t:"And we know that for those who love God all things work together for good."},
+  {r:"Romans 8:38",t:"For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, will be able to separate us from the love of God in Christ Jesus our Lord."},
+  {r:"Romans 3:23",t:"For all have sinned and fall short of the glory of God."},
+  {r:"Romans 6:23",t:"For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord."},
+  {r:"Romans 12:2",t:"Do not be conformed to this world, but be transformed by the renewal of your mind."},
+  {r:"Romans 5:8",t:"But God shows his love for us in that while we were still sinners, Christ died for us."},
+  {r:"Romans 10:9",t:"If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."},
+  {r:"Romans 12:12",t:"Rejoice in hope, be patient in tribulation, be constant in prayer."},
+  {r:"Romans 1:16",t:"For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes."},
+  {r:"Romans 8:1",t:"There is therefore now no condemnation for those who are in Christ Jesus."}
+],
+"1 Corinthians":[
+  {r:"1 Corinthians 13:4",t:"Love is patient and kind; love does not envy or boast; it is not arrogant."},
+  {r:"1 Corinthians 13:13",t:"So now faith, hope, and love abide, these three; but the greatest of these is love."},
+  {r:"1 Corinthians 15:55",t:"O death, where is your victory? O death, where is your sting?"},
+  {r:"1 Corinthians 10:13",t:"God is faithful, and he will not let you be tempted beyond your ability."},
+  {r:"1 Corinthians 15:3",t:"Christ died for our sins in accordance with the Scriptures."},
+  {r:"1 Corinthians 6:19",t:"Do you not know that your body is a temple of the Holy Spirit within you, whom you have from God?"},
+  {r:"1 Corinthians 1:18",t:"For the word of the cross is folly to those who are perishing, but to us who are being saved it is the power of God."},
+  {r:"1 Corinthians 2:9",t:"No eye has seen, nor ear heard, nor the heart of man imagined, what God has prepared for those who love him."},
+  {r:"1 Corinthians 15:58",t:"Always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain."},
+  {r:"1 Corinthians 3:16",t:"Do you not know that you are God's temple and that God's Spirit dwells in you?"}
+],
+"2 Corinthians":[
+  {r:"2 Corinthians 5:17",t:"Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come."},
+  {r:"2 Corinthians 12:9",t:"But he said to me, My grace is sufficient for you, for my power is made perfect in weakness."},
+  {r:"2 Corinthians 4:17",t:"For this light momentary affliction is preparing for us an eternal weight of glory beyond all comparison."},
+  {r:"2 Corinthians 5:7",t:"For we walk by faith, not by sight."},
+  {r:"2 Corinthians 9:7",t:"God loves a cheerful giver."},
+  {r:"2 Corinthians 4:8",t:"We are afflicted in every way, but not crushed; perplexed, but not driven to despair."},
+  {r:"2 Corinthians 1:3",t:"Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort."},
+  {r:"2 Corinthians 3:17",t:"Now the Lord is the Spirit, and where the Spirit of the Lord is, there is freedom."},
+  {r:"2 Corinthians 7:10",t:"For godly grief produces a repentance that leads to salvation without regret."},
+  {r:"2 Corinthians 13:11",t:"Aim for restoration, comfort one another, agree with one another, live in peace; and the God of love and peace will be with you."}
+],
+"Galatians":[
+  {r:"Galatians 5:22",t:"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control."},
+  {r:"Galatians 2:20",t:"I have been crucified with Christ. It is no longer I who live, but Christ who lives in me."},
+  {r:"Galatians 6:9",t:"And let us not grow weary of doing good, for in due season we will reap, if we do not give up."},
+  {r:"Galatians 3:28",t:"There is neither Jew nor Greek, there is neither slave nor free, there is no male and female, for you are all one in Christ Jesus."},
+  {r:"Galatians 6:7",t:"Do not be deceived: God is not mocked, for whatever one sows, that will he also reap."},
+  {r:"Galatians 5:1",t:"For freedom Christ has set us free; stand firm therefore, and do not submit again to a yoke of slavery."},
+  {r:"Galatians 6:2",t:"Bear one another's burdens, and so fulfill the law of Christ."},
+  {r:"Galatians 3:26",t:"For in Christ Jesus you are all sons of God, through faith."},
+  {r:"Galatians 4:4",t:"But when the fullness of time had come, God sent forth his Son, born of woman."},
+  {r:"Galatians 1:10",t:"If I were still trying to please man, I would not be a servant of Christ."}
+],
+"Ephesians":[
+  {r:"Ephesians 2:8",t:"For by grace you have been saved through faith. And this is not your own doing; it is the gift of God."},
+  {r:"Ephesians 6:11",t:"Put on the whole armor of God, that you may be able to stand against the schemes of the devil."},
+  {r:"Ephesians 4:32",t:"Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you."},
+  {r:"Ephesians 3:20",t:"Now to him who is able to do far more abundantly than all that we ask or think."},
+  {r:"Ephesians 2:10",t:"For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand."},
+  {r:"Ephesians 5:25",t:"Husbands, love your wives, as Christ loved the church and gave himself up for her."},
+  {r:"Ephesians 4:2",t:"With all humility and gentleness, with patience, bearing with one another in love."},
+  {r:"Ephesians 1:7",t:"In him we have redemption through his blood, the forgiveness of our trespasses."},
+  {r:"Ephesians 2:4",t:"But God, being rich in mercy, because of the great love with which he loved us."},
+  {r:"Ephesians 6:18",t:"Praying at all times in the Spirit, with all prayer and supplication."}
+],
+"Philippians":[
+  {r:"Philippians 4:13",t:"I can do all things through him who strengthens me."},
+  {r:"Philippians 4:6",t:"Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."},
+  {r:"Philippians 4:7",t:"And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus."},
+  {r:"Philippians 2:3",t:"Do nothing from selfish ambition or conceit, but in humility count others more significant than yourselves."},
+  {r:"Philippians 1:6",t:"And I am sure of this, that he who began a good work in you will bring it to completion."},
+  {r:"Philippians 4:11",t:"I have learned, in whatever situation I am, to be content."},
+  {r:"Philippians 3:14",t:"I press on toward the goal for the prize of the upward call of God in Christ Jesus."},
+  {r:"Philippians 4:19",t:"And my God will supply every need of yours according to his riches in glory in Christ Jesus."},
+  {r:"Philippians 4:4",t:"Rejoice in the Lord always; again I will say, rejoice."},
+  {r:"Philippians 2:10",t:"So that at the name of Jesus every knee should bow, in heaven and on earth and under the earth."}
+],
+"Colossians":[
+  {r:"Colossians 3:23",t:"Whatever you do, work heartily, as for the Lord and not for men."},
+  {r:"Colossians 3:2",t:"Set your minds on things that are above, not on things that are on earth."},
+  {r:"Colossians 1:16",t:"For by him all things were created, in heaven and on earth, visible and invisible."},
+  {r:"Colossians 3:17",t:"Whatever you do, in word or deed, do everything in the name of the Lord Jesus."},
+  {r:"Colossians 3:15",t:"And let the peace of Christ rule in your hearts, to which indeed you were called in one body. And be thankful."},
+  {r:"Colossians 1:27",t:"Christ in you, the hope of glory."},
+  {r:"Colossians 4:6",t:"Let your speech always be gracious, seasoned with salt."},
+  {r:"Colossians 1:17",t:"And he is before all things, and in him all things hold together."},
+  {r:"Colossians 3:13",t:"Forgiving each other; as the Lord has forgiven you, so you also must forgive."},
+  {r:"Colossians 2:6",t:"Therefore, as you received Christ Jesus the Lord, so walk in him."}
+],
+"1 Thessalonians":[
+  {r:"1 Thessalonians 5:16",t:"Rejoice always."},
+  {r:"1 Thessalonians 5:17",t:"Pray without ceasing."},
+  {r:"1 Thessalonians 5:18",t:"Give thanks in all circumstances; for this is the will of God in Christ Jesus for you."},
+  {r:"1 Thessalonians 4:16",t:"For the Lord himself will descend from heaven with a cry of command, with the voice of an archangel, and with the sound of the trumpet of God."},
+  {r:"1 Thessalonians 5:11",t:"Therefore encourage one another and build one another up."},
+  {r:"1 Thessalonians 5:21",t:"Test everything; hold fast what is good."},
+  {r:"1 Thessalonians 5:8",t:"Put on the breastplate of faith and love, and for a helmet the hope of salvation."},
+  {r:"1 Thessalonians 1:3",t:"Remembering your work of faith and labor of love and steadfastness of hope in our Lord Jesus Christ."},
+  {r:"1 Thessalonians 5:23",t:"Now may the God of peace himself sanctify you completely."},
+  {r:"1 Thessalonians 4:13",t:"We do not want you to grieve as others do who have no hope."}
+],
+"2 Thessalonians":[
+  {r:"2 Thessalonians 3:3",t:"But the Lord is faithful. He will establish you and guard you against the evil one."},
+  {r:"2 Thessalonians 3:13",t:"As for you, brothers, do not grow weary in doing good."},
+  {r:"2 Thessalonians 3:16",t:"Now may the Lord of peace himself give you peace at all times in every way."},
+  {r:"2 Thessalonians 3:5",t:"May the Lord direct your hearts to the love of God and to the steadfastness of Christ."},
+  {r:"2 Thessalonians 2:16",t:"Now may our Lord Jesus Christ himself, and God our Father, who loved us and gave us eternal comfort and good hope through grace."},
+  {r:"2 Thessalonians 1:3",t:"We ought always to give thanks to God for you, brothers, because your faith is growing abundantly."},
+  {r:"2 Thessalonians 2:15",t:"So then, brothers, stand firm and hold to the traditions that you were taught."},
+  {r:"2 Thessalonians 1:11",t:"To this end we always pray for you, that our God may make you worthy of his calling."},
+  {r:"2 Thessalonians 2:13",t:"But we ought always to give thanks to God for you, brothers beloved by the Lord."},
+  {r:"2 Thessalonians 1:7",t:"God will grant relief to you who are afflicted when the Lord Jesus is revealed from heaven."}
+],
+"1 Timothy":[
+  {r:"1 Timothy 6:6",t:"But godliness with contentment is great gain."},
+  {r:"1 Timothy 2:5",t:"For there is one God, and there is one mediator between God and men, the man Christ Jesus."},
+  {r:"1 Timothy 6:12",t:"Fight the good fight of the faith. Take hold of the eternal life to which you were called."},
+  {r:"1 Timothy 4:12",t:"Let no one despise you for your youth, but set the believers an example in speech, in conduct, in love, in faith, in purity."},
+  {r:"1 Timothy 1:15",t:"Christ Jesus came into the world to save sinners."},
+  {r:"1 Timothy 6:10",t:"For the love of money is a root of all kinds of evils."},
+  {r:"1 Timothy 4:8",t:"Godliness is of value in every way, as it holds promise for the present life and also for the life to come."},
+  {r:"1 Timothy 2:1",t:"I urge that supplications, prayers, intercessions, and thanksgivings be made for all people."},
+  {r:"1 Timothy 3:16",t:"Great indeed is the mystery of godliness: He was manifested in the flesh, vindicated by the Spirit."},
+  {r:"1 Timothy 6:17",t:"Set your hopes not on the uncertainty of riches, but on God, who richly provides us with everything to enjoy."}
+],
+"2 Timothy":[
+  {r:"2 Timothy 3:16",t:"All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness."},
+  {r:"2 Timothy 1:7",t:"For God gave us a spirit not of fear but of power and love and self-control."},
+  {r:"2 Timothy 4:7",t:"I have fought the good fight, I have finished the race, I have kept the faith."},
+  {r:"2 Timothy 2:15",t:"Do your best to present yourself to God as one approved, a worker who has no need to be ashamed."},
+  {r:"2 Timothy 2:22",t:"Pursue righteousness, faith, love, and peace, along with those who call on the Lord from a pure heart."},
+  {r:"2 Timothy 1:12",t:"I know whom I have believed, and I am convinced that he is able to guard until that day what has been entrusted to me."},
+  {r:"2 Timothy 2:13",t:"If we are faithless, he remains faithful — for he cannot deny himself."},
+  {r:"2 Timothy 4:2",t:"Preach the word; be ready in season and out of season."},
+  {r:"2 Timothy 2:3",t:"Share in suffering as a good soldier of Christ Jesus."},
+  {r:"2 Timothy 3:12",t:"Indeed, all who desire to live a godly life in Christ Jesus will be persecuted."}
+],
+"Titus":[
+  {r:"Titus 3:5",t:"He saved us, not because of works done by us in righteousness, but according to his own mercy."},
+  {r:"Titus 2:11",t:"For the grace of God has appeared, bringing salvation for all people."},
+  {r:"Titus 2:13",t:"Waiting for our blessed hope, the appearing of the glory of our great God and Savior Jesus Christ."},
+  {r:"Titus 3:4",t:"But when the goodness and loving kindness of God our Savior appeared, he saved us."},
+  {r:"Titus 1:2",t:"In hope of eternal life, which God, who never lies, promised before the ages began."},
+  {r:"Titus 2:7",t:"Show yourself in all respects to be a model of good works."},
+  {r:"Titus 3:8",t:"Those who have believed in God may be careful to devote themselves to good works."},
+  {r:"Titus 2:14",t:"Who gave himself for us to redeem us from all lawlessness and to purify for himself a people for his own possession."},
+  {r:"Titus 1:9",t:"He must hold firm to the trustworthy word as taught, so that he may be able to give instruction in sound doctrine."},
+  {r:"Titus 3:14",t:"Let our people learn to devote themselves to good works, so as to help cases of urgent need."}
+],
+"Philemon":[
+  {r:"Philemon 1:4",t:"I always thank my God as I remember you in my prayers."},
+  {r:"Philemon 1:6",t:"I pray that the sharing of your faith may become effective for the full knowledge of every good thing that is in us for the sake of Christ."},
+  {r:"Philemon 1:7",t:"I have derived much joy and comfort from your love, because the hearts of the saints have been refreshed through you."},
+  {r:"Philemon 1:16",t:"No longer as a slave, but better than a slave, as a dear brother."},
+  {r:"Philemon 1:9",t:"For love's sake I prefer to appeal to you."},
+  {r:"Philemon 1:20",t:"Yes, brother, I want some benefit from you in the Lord. Refresh my heart in Christ."},
+  {r:"Philemon 1:25",t:"The grace of the Lord Jesus Christ be with your spirit."},
+  {r:"Philemon 1:3",t:"Grace to you and peace from God our Father and the Lord Jesus Christ."},
+  {r:"Philemon 1:10",t:"I appeal to you for my child, Onesimus, whose father I became in my imprisonment."},
+  {r:"Philemon 1:22",t:"Prepare a guest room for me, for I am hoping that through your prayers I will be graciously given to you."}
+],
+"Hebrews":[
+  {r:"Hebrews 11:1",t:"Now faith is the assurance of things hoped for, the conviction of things not seen."},
+  {r:"Hebrews 11:6",t:"And without faith it is impossible to please him, for whoever would draw near to God must believe that he exists and that he rewards those who seek him."},
+  {r:"Hebrews 4:12",t:"For the word of God is living and active, sharper than any two-edged sword."},
+  {r:"Hebrews 12:1",t:"Let us run with endurance the race that is set before us."},
+  {r:"Hebrews 13:8",t:"Jesus Christ is the same yesterday and today and forever."},
+  {r:"Hebrews 4:16",t:"Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need."},
+  {r:"Hebrews 12:2",t:"Looking to Jesus, the founder and perfecter of our faith, who for the joy that was set before him endured the cross."},
+  {r:"Hebrews 13:5",t:"I will never leave you nor forsake you."},
+  {r:"Hebrews 10:23",t:"Let us hold fast the confession of our hope without wavering, for he who promised is faithful."},
+  {r:"Hebrews 9:22",t:"Without the shedding of blood there is no forgiveness of sins."}
+],
+"James":[
+  {r:"James 1:2",t:"Count it all joy, my brothers, when you meet trials of various kinds."},
+  {r:"James 1:22",t:"But be doers of the word, and not hearers only, deceiving yourselves."},
+  {r:"James 4:7",t:"Submit yourselves therefore to God. Resist the devil, and he will flee from you."},
+  {r:"James 5:16",t:"The prayer of a righteous person has great power as it is working."},
+  {r:"James 1:17",t:"Every good gift and every perfect gift is from above, coming down from the Father of lights."},
+  {r:"James 4:8",t:"Draw near to God, and he will draw near to you."},
+  {r:"James 2:17",t:"So also faith by itself, if it does not have works, is dead."},
+  {r:"James 3:17",t:"But the wisdom from above is first pure, then peaceable, gentle, open to reason, full of mercy and good fruits."},
+  {r:"James 1:5",t:"If any of you lacks wisdom, let him ask God, who gives generously to all without reproach."},
+  {r:"James 4:14",t:"What is your life? For you are a mist that appears for a little time and then vanishes."}
+],
+"1 Peter":[
+  {r:"1 Peter 5:7",t:"Casting all your anxieties on him, because he cares for you."},
+  {r:"1 Peter 5:8",t:"Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour."},
+  {r:"1 Peter 2:9",t:"But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession."},
+  {r:"1 Peter 4:8",t:"Above all, keep loving one another earnestly, since love covers a multitude of sins."},
+  {r:"1 Peter 1:3",t:"Blessed be the God and Father of our Lord Jesus Christ! He has caused us to be born again to a living hope."},
+  {r:"1 Peter 3:15",t:"Always be prepared to make a defense to anyone who asks you for a reason for the hope that is in you."},
+  {r:"1 Peter 2:24",t:"He himself bore our sins in his body on the tree. By his wounds you have been healed."},
+  {r:"1 Peter 1:7",t:"The tested genuineness of your faith — more precious than gold — may be found to result in praise and glory and honor."},
+  {r:"1 Peter 1:16",t:"You shall be holy, for I am holy."},
+  {r:"1 Peter 5:10",t:"After you have suffered a little while, the God of all grace will himself restore, confirm, strengthen, and establish you."}
+],
+"2 Peter":[
+  {r:"2 Peter 3:9",t:"The Lord is not slow to fulfill his promise, but is patient toward you, not wishing that any should perish, but that all should reach repentance."},
+  {r:"2 Peter 1:3",t:"His divine power has granted to us all things that pertain to life and godliness."},
+  {r:"2 Peter 1:21",t:"For no prophecy was ever produced by the will of man, but men spoke from God as they were carried along by the Holy Spirit."},
+  {r:"2 Peter 3:18",t:"But grow in the grace and knowledge of our Lord and Savior Jesus Christ."},
+  {r:"2 Peter 1:10",t:"Therefore, brothers, be all the more diligent to confirm your calling and election, for if you practice these qualities you will never fall."},
+  {r:"2 Peter 3:8",t:"With the Lord one day is as a thousand years, and a thousand years as one day."},
+  {r:"2 Peter 3:13",t:"But according to his promise we are waiting for new heavens and a new earth in which righteousness dwells."},
+  {r:"2 Peter 1:5",t:"Make every effort to supplement your faith with virtue, and virtue with knowledge."},
+  {r:"2 Peter 2:9",t:"The Lord knows how to rescue the godly from trials."},
+  {r:"2 Peter 1:19",t:"We have the prophetic word more fully confirmed, to which you will do well to pay attention as to a lamp shining in a dark place."}
+],
+"1 John":[
+  {r:"1 John 4:8",t:"Anyone who does not love does not know God, because God is love."},
+  {r:"1 John 1:9",t:"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness."},
+  {r:"1 John 4:19",t:"We love because he first loved us."},
+  {r:"1 John 3:16",t:"By this we know love, that he laid down his life for us."},
+  {r:"1 John 5:14",t:"If we ask anything according to his will he hears us."},
+  {r:"1 John 4:4",t:"He who is in you is greater than he who is in the world."},
+  {r:"1 John 2:17",t:"The world is passing away along with its desires, but whoever does the will of God abides forever."},
+  {r:"1 John 5:11",t:"God gave us eternal life, and this life is in his Son."},
+  {r:"1 John 3:1",t:"See what kind of love the Father has given to us, that we should be called children of God; and so we are."},
+  {r:"1 John 4:18",t:"There is no fear in love, but perfect love casts out fear."}
+],
+"2 John":[
+  {r:"2 John 1:6",t:"And this is love, that we walk according to his commandments."},
+  {r:"2 John 1:3",t:"Grace, mercy, and peace will be with us, from God the Father and from Jesus Christ the Father's Son, in truth and love."},
+  {r:"2 John 1:4",t:"I rejoiced greatly to find some of your children walking in the truth."},
+  {r:"2 John 1:5",t:"That we love one another — this is not a new commandment but the one we have had from the beginning."},
+  {r:"2 John 1:8",t:"Watch yourselves, so that you may not lose what we have worked for, but may win a full reward."},
+  {r:"2 John 1:9",t:"Everyone who abides in the teaching of Christ has both the Father and the Son."},
+  {r:"2 John 1:2",t:"Because of the truth that abides in us and will be with us forever."},
+  {r:"2 John 1:12",t:"I hope to come to you and talk face to face, so that our joy may be complete."},
+  {r:"2 John 1:10",t:"If anyone comes to you and does not bring this teaching, do not receive him into your house or give him any greeting."},
+  {r:"2 John 1:1",t:"The elder to the elect lady and her children, whom I love in truth."}
+],
+"3 John":[
+  {r:"3 John 1:4",t:"I have no greater joy than to hear that my children are walking in the truth."},
+  {r:"3 John 1:11",t:"Beloved, do not imitate evil but imitate good. Whoever does good is from God."},
+  {r:"3 John 1:2",t:"Beloved, I pray that all may go well with you and that you may be in good health, as it goes well with your soul."},
+  {r:"3 John 1:8",t:"Therefore we ought to support people like these, that we may be fellow workers for the truth."},
+  {r:"3 John 1:3",t:"I rejoiced greatly when the brothers came and testified to your truth, as indeed you are walking in the truth."},
+  {r:"3 John 1:5",t:"Beloved, it is a faithful thing you do in all your efforts for these brothers."},
+  {r:"3 John 1:6",t:"You will do well to send them on their journey in a manner worthy of God."},
+  {r:"3 John 1:12",t:"Demetrius has received a good testimony from everyone, and from the truth itself."},
+  {r:"3 John 1:14",t:"Peace be to you. The friends greet you."},
+  {r:"3 John 1:1",t:"The elder to the beloved Gaius, whom I love in truth."}
+],
+"Jude":[
+  {r:"Jude 1:3",t:"Contend for the faith that was once for all delivered to the saints."},
+  {r:"Jude 1:24",t:"Now to him who is able to keep you from stumbling and to present you blameless before the presence of his glory with great joy."},
+  {r:"Jude 1:25",t:"To the only God, our Savior, through Jesus Christ our Lord, be glory, majesty, dominion, and authority, before all time and now and forever. Amen."},
+  {r:"Jude 1:20",t:"But you, beloved, building yourselves up in your most holy faith and praying in the Holy Spirit."},
+  {r:"Jude 1:21",t:"Keep yourselves in the love of God, waiting for the mercy of our Lord Jesus Christ that leads to eternal life."},
+  {r:"Jude 1:22",t:"And have mercy on those who doubt."},
+  {r:"Jude 1:2",t:"May mercy, peace, and love be multiplied to you."},
+  {r:"Jude 1:17",t:"But you must remember, beloved, the predictions of the apostles of our Lord Jesus Christ."},
+  {r:"Jude 1:4",t:"Certain people have crept in unnoticed who pervert the grace of our God into sensuality."},
+  {r:"Jude 1:1",t:"To those who are called, beloved in God the Father and kept for Jesus Christ."}
+],
+"Revelation":[
+  {r:"Revelation 21:4",t:"He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore."},
+  {r:"Revelation 3:20",t:"Behold, I stand at the door and knock. If anyone hears my voice and opens the door, I will come in to him and eat with him, and he with me."},
+  {r:"Revelation 1:8",t:"I am the Alpha and the Omega, says the Lord God, who is and who was and who is to come, the Almighty."},
+  {r:"Revelation 21:5",t:"And he who was seated on the throne said, Behold, I am making all things new."},
+  {r:"Revelation 22:13",t:"I am the Alpha and the Omega, the first and the last, the beginning and the end."},
+  {r:"Revelation 7:17",t:"For the Lamb in the midst of the throne will be their shepherd, and he will guide them to springs of living water."},
+  {r:"Revelation 22:17",t:"The Spirit and the Bride say, Come. And let the one who is thirsty come."},
+  {r:"Revelation 19:6",t:"Hallelujah! For the Lord our God the Almighty reigns."},
+  {r:"Revelation 2:10",t:"Be faithful unto death, and I will give you the crown of life."},
+  {r:"Revelation 22:20",t:"Surely I am coming soon. Amen. Come, Lord Jesus!"}
+],
+"Tobit":[
+  {r:"Tobit 4:15",t:"Do to no one what you yourself dislike."},
+  {r:"Tobit 12:8",t:"Prayer with fasting is good. Almsgiving with righteousness is better than wealth with wickedness."},
+  {r:"Tobit 12:9",t:"For almsgiving delivers from death, and it will purge away every sin."},
+  {r:"Tobit 12:6",t:"Bless God and give thanks to him; exalt him and give thanks to him in the presence of all the living."},
+  {r:"Tobit 13:2",t:"For he afflicts, and he shows mercy; he leads down to Hades, and he brings up again."},
+  {r:"Tobit 4:19",t:"Seek advice from every wise person and do not despise any useful counsel."},
+  {r:"Tobit 13:6",t:"If you turn to him with all your heart and with all your soul, to do what is true before him, then he will turn to you."},
+  {r:"Tobit 6:17",t:"Do not be afraid, for she was set apart for you before the world was made."},
+  {r:"Tobit 4:9",t:"For you will be laying up a good treasure for yourself against the day of necessity."},
+  {r:"Tobit 4:12",t:"Beware of all immorality. First of all, take a wife from among the descendants of your ancestors."}
+],
+"Judith":[
+  {r:"Judith 9:11",t:"For your power depends not upon numbers, nor your might upon the powerful; but you are the God of the lowly, helper of the oppressed."},
+  {r:"Judith 13:14",t:"Our God is still with us, to show his power in Israel and his strength against our enemies."},
+  {r:"Judith 8:16",t:"Do not try to bind the purposes of the Lord our God; for God is not like a human being."},
+  {r:"Judith 16:2",t:"The Lord is a God who crushes wars; he set up his camp among his people and delivered me."},
+  {r:"Judith 16:13",t:"O Lord, you are great and glorious, wonderful in strength, invincible."},
+  {r:"Judith 9:14",t:"Let your whole nation and every tribe know and understand that you are God, the God of all power and might."},
+  {r:"Judith 8:26",t:"Remember what he did with Abraham, and how he tested Isaac."},
+  {r:"Judith 8:27",t:"For he has not tried us with fire as he did them, to search their hearts."},
+  {r:"Judith 16:15",t:"For the mountains shall be shaken to their foundations with the waters; before your glance the rocks shall melt like wax."},
+  {r:"Judith 4:13",t:"God heard their prayers and looked upon their affliction."}
+],
+"Wisdom":[
+  {r:"Wisdom 3:1",t:"But the souls of the righteous are in the hand of God, and no torment will ever touch them."},
+  {r:"Wisdom 1:1",t:"Love righteousness, you rulers of the earth, think of the Lord in goodness and seek him with sincerity of heart."},
+  {r:"Wisdom 3:9",t:"Those who trust in him will understand truth, and the faithful will abide with him in love."},
+  {r:"Wisdom 7:26",t:"For she is a reflection of eternal light, a spotless mirror of the working of God, and an image of his goodness."},
+  {r:"Wisdom 11:24",t:"For you love all things that exist, and detest none of the things that you have made."},
+  {r:"Wisdom 6:12",t:"Wisdom is radiant and unfading, and she is easily discerned by those who love her."},
+  {r:"Wisdom 3:7",t:"In the time of their visitation they will shine forth, and will run like sparks through the stubble."},
+  {r:"Wisdom 1:13",t:"For God did not make death, and he does not delight in the death of the living."},
+  {r:"Wisdom 5:15",t:"But the righteous live forever, and their reward is with the Lord."},
+  {r:"Wisdom 9:10",t:"Send wisdom forth from the holy heavens, that she may labor at my side."}
+],
+"Sirach":[
+  {r:"Sirach 1:1",t:"All wisdom is from the Lord, and with him it remains forever."},
+  {r:"Sirach 6:14",t:"Faithful friends are a sturdy shelter; whoever finds one has found a treasure."},
+  {r:"Sirach 3:17",t:"My child, perform your tasks with humility; then you will be loved by those whom God accepts."},
+  {r:"Sirach 2:1",t:"My child, when you come to serve the Lord, prepare yourself for testing."},
+  {r:"Sirach 3:30",t:"As water extinguishes a blazing fire, so almsgiving atones for sin."},
+  {r:"Sirach 2:6",t:"Trust in him, and he will help you; make your ways straight, and hope in him."},
+  {r:"Sirach 4:28",t:"To the death fight for truth, and the Lord God will battle for you."},
+  {r:"Sirach 50:22",t:"And now bless the God of all, who everywhere works great wonders."},
+  {r:"Sirach 24:19",t:"Come to me, you who desire me, and eat your fill of my fruits."},
+  {r:"Sirach 11:14",t:"Good things and bad, life and death, poverty and wealth, come from the Lord."}
+],
+"Baruch":[
+  {r:"Baruch 3:35",t:"This is our God; no other can be compared to him."},
+  {r:"Baruch 3:36",t:"He found the whole way to knowledge, and gave her to his servant Jacob and to Israel, whom he loved."},
+  {r:"Baruch 3:38",t:"Afterward she appeared on earth and lived with humankind."},
+  {r:"Baruch 4:22",t:"For I have put my hope in the Everlasting to save you, and joy has come to me from the Holy One."},
+  {r:"Baruch 4:27",t:"Take courage, my children, and cry to God, for you will be remembered by the one who brought this upon you."},
+  {r:"Baruch 4:4",t:"Happy are we, O Israel, for we know what is pleasing to God."},
+  {r:"Baruch 5:9",t:"For God will lead Israel with joy, in the light of his glory, with the mercy and righteousness that come from him."},
+  {r:"Baruch 4:29",t:"Return with tenfold zeal to seek him."},
+  {r:"Baruch 2:13",t:"For you, O Lord our God, have dealt with us in all your kindness and in all your great compassion."},
+  {r:"Baruch 1:15",t:"The Lord our God is in the right."}
+],
+"1 Maccabees":[
+  {r:"1 Maccabees 2:64",t:"My children, be courageous and grow strong in the law, for by it you will gain honor."},
+  {r:"1 Maccabees 3:19",t:"It is not on the size of the army that victory in battle depends, but strength comes from Heaven."},
+  {r:"1 Maccabees 2:50",t:"Now, my children, show zeal for the law, and give your lives for the covenant of our ancestors."},
+  {r:"1 Maccabees 4:24",t:"They blessed Heaven, saying, His mercy endures forever."},
+  {r:"1 Maccabees 2:61",t:"From generation to generation, none who put their trust in him will lack strength."},
+  {r:"1 Maccabees 3:60",t:"But as for us, we will fight for our lives and our laws."},
+  {r:"1 Maccabees 4:55",t:"Then all the people fell on their faces and worshiped and blessed Heaven."},
+  {r:"1 Maccabees 6:44",t:"He gave his life to save his people and to win for himself an everlasting name."},
+  {r:"1 Maccabees 13:41",t:"In the one hundred seventieth year the yoke of the Gentiles was removed from Israel."},
+  {r:"1 Maccabees 2:29",t:"At that time many who were seeking righteousness and justice went down to the wilderness."}
+],
+"2 Maccabees":[
+  {r:"2 Maccabees 7:9",t:"The King of the universe will raise us up to an everlasting renewal of life, because we have died for his laws."},
+  {r:"2 Maccabees 7:23",t:"The Creator of the world will in his mercy give life and breath back to you again."},
+  {r:"2 Maccabees 12:46",t:"Therefore he made atonement for the dead, so that they might be delivered from their sin."},
+  {r:"2 Maccabees 8:18",t:"We trust in the Almighty God, who is able with a single nod to strike down those who are coming against us."},
+  {r:"2 Maccabees 1:2",t:"May God do good to you, and may he remember his covenant with Abraham, Isaac, and Jacob."},
+  {r:"2 Maccabees 6:31",t:"He died, leaving his death as an example of nobility and a memorial of courage."},
+  {r:"2 Maccabees 14:35",t:"O Lord of all, though you have need of nothing, you were pleased that there should be a temple for your habitation among us."},
+  {r:"2 Maccabees 7:28",t:"God did not make them out of things that existed. Recognize that God created them out of nothing."},
+  {r:"2 Maccabees 15:16",t:"Judas, take this holy sword as a gift from God, with which you will strike down your adversaries."},
+  {r:"2 Maccabees 9:17",t:"He would proclaim the power of God to all people."}
+]
 };
 
-// ── DC TEXT ────────────────────────────────────────────────────────────
-const DC={
-  "Tobit":{1:[{v:1,t:"The book of the words of Tobit son of Tobiel son of Hananiel son of Aduel son of Gabael son of Raphael son of Raguel of the descendants of Asiel, of the tribe of Naphtali."},{v:2,t:"who in the days of King Shalmaneser of the Assyrians was taken into captivity from Thisbe, which is to the south of Kedesh Naphtali in upper Galilee, above Asher toward the west, and north of Phogor."},{v:3,t:"I, Tobit, walked in the ways of truth and righteousness all the days of my life. I performed many acts of charity for my kindred and my people who had gone with me in exile to Nineveh in the land of the Assyrians."},{v:4,t:"When I was in my own country, in the land of Israel, while I was still a young man, the whole tribe of my ancestor Naphtali deserted the house of David and Jerusalem."},{v:5,t:"This was the place that had been chosen from among all the tribes of Israel, where all the tribes would offer sacrifice and where the temple of the dwelling of the Most High was consecrated and established for all generations forever."}]},
-  "Judith":{1:[{v:1,t:"It was the twelfth year of the reign of Nebuchadnezzar, who ruled over the Assyrians in the great city of Nineveh. In those days Arphaxad ruled over the Medes in Ecbatana."},{v:2,t:"He built walls around Ecbatana with hewn stones three cubits thick and six cubits long; he made the walls seventy cubits high and fifty cubits wide."},{v:3,t:"At its gates he raised towers one hundred cubits high and sixty cubits wide at the foundations."},{v:4,t:"He made its gates seventy cubits high and forty cubits wide to allow his armies to march out in force and his infantry to form their ranks."},{v:5,t:"King Nebuchadnezzar made war against King Arphaxad in the great plain that is on the borders of Ragau."}]},
-  "Wisdom":{1:[{v:1,t:"Love righteousness, you rulers of the earth, think of the Lord in goodness and seek him with sincerity of heart."},{v:2,t:"Because he is found by those who do not put him to the test, and manifests himself to those who do not distrust him."},{v:3,t:"For perverse thoughts separate people from God, and when his power is tested, it exposes the foolish."},{v:4,t:"Because wisdom will not enter a deceitful soul, or dwell in a body enslaved to sin."},{v:5,t:"For a holy and disciplined spirit will flee from deceit, and will leave foolish thoughts behind, and will be ashamed at the approach of unrighteousness."}]},
-  "Sirach":{1:[{v:1,t:"All wisdom is from the Lord, and with him it remains forever."},{v:2,t:"The sand of the sea, the drops of rain, and the days of eternity — who can count them?"},{v:3,t:"The height of heaven, the breadth of the earth, the abyss, and wisdom — who can search them out?"},{v:4,t:"Wisdom was created before all other things, and prudent understanding from eternity."},{v:5,t:"The root of wisdom — to whom has it been revealed? Her subtleties — who knows them?"}]},
-  "Baruch":{1:[{v:1,t:"These are the words of the book that Baruch son of Neriah son of Mahseiah son of Zedekiah son of Hasadiah son of Hilkiah wrote in Babylon."},{v:2,t:"In the fifth year, on the seventh day of the month, at the time when the Chaldeans took Jerusalem and burned it with fire."},{v:3,t:"And Baruch read the words of this book to Jeconiah son of Jehoiakim, king of Judah, and to all the people who came to hear the book."},{v:4,t:"And to the nobles and the princes, and to the elders, and to all the people, small and great, all who lived in Babylon by the river Sud."},{v:5,t:"Then they wept, and fasted, and prayed before the Lord."}]},
-  "1 Maccabees":{1:[{v:1,t:"After Alexander son of Philip, the Macedonian, who came from the land of Kittim, had defeated King Darius of the Persians and the Medes, he succeeded him as king."},{v:2,t:"He fought many battles, conquered strongholds, and put to death the kings of the earth."},{v:3,t:"He advanced to the ends of the earth, and plundered many nations. When the earth became quiet before him, he was exalted, and his heart was lifted up."},{v:4,t:"He gathered a very strong army and ruled over countries, nations, and princes, and they became tributary to him."},{v:5,t:"After this he fell sick and perceived that he was dying."}]},
-  "2 Maccabees":{1:[{v:1,t:"The Jewish brothers in Jerusalem and those in the land of Judea, To their Jewish kindred in Egypt, Greetings and true peace."},{v:2,t:"May God do good to you, and may he remember his covenant with Abraham, Isaac, and Jacob, his faithful servants."},{v:3,t:"May he give you all a heart to worship him and to do his will with a strong heart and a willing spirit."},{v:4,t:"May he open your heart to his law and his commandments, and may he bring peace."},{v:5,t:"May he hear your prayers and be reconciled to you, and may he not forsake you in time of evil."}]}
-};
-
+// ── DAILY VERSES ───────────────────────────────────────────────────────
 const DAILY=[
-  {ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",book:"Jeremiah",chapter:29,verse:11},
-  {ref:"Philippians 4:13",text:"I can do all things through Christ who strengthens me.",book:"Philippians",chapter:4,verse:13},
-  {ref:"Psalm 23:1",text:"The Lord is my shepherd; I shall not want.",book:"Psalms",chapter:23,verse:1},
-  {ref:"Romans 8:28",text:"And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",book:"Romans",chapter:8,verse:28},
-  {ref:"Isaiah 40:31",text:"But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",book:"Isaiah",chapter:40,verse:31},
-  {ref:"Proverbs 3:5",text:"Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",book:"Proverbs",chapter:3,verse:5},
-  {ref:"Matthew 6:33",text:"But seek first his kingdom and his righteousness, and all these things will be given to you as well.",book:"Matthew",chapter:6,verse:33},
+  {r:"Jeremiah 29:11",t:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.",bk:"Jeremiah"},
+  {r:"Philippians 4:13",t:"I can do all things through him who strengthens me.",bk:"Philippians"},
+  {r:"Psalm 23:1",t:"The Lord is my shepherd; I shall not want.",bk:"Psalms"},
+  {r:"Romans 8:28",t:"And we know that for those who love God all things work together for good.",bk:"Romans"},
+  {r:"Isaiah 40:31",t:"But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles.",bk:"Isaiah"},
+  {r:"Proverbs 3:5",t:"Trust in the Lord with all your heart, and do not lean on your own understanding.",bk:"Proverbs"},
+  {r:"Matthew 6:33",t:"But seek first the kingdom of God and his righteousness, and all these things will be added to you.",bk:"Matthew"},
 ];
 const REFS=["God's plan for your life is filled with purpose and hope. Trust in His timing today.","With Christ's strength, no challenge is too great. Face today with courage and faith.","The Lord provides for all your needs. Rest in His faithful care and guidance.","God weaves all circumstances together for good. Keep faith even in difficult times.","When you feel weary, let God renew your strength. He lifts you up on eagles' wings.","Surrender your worries to God and trust His perfect wisdom to light your path.","Put God first in everything you do, and watch how He provides abundantly for you."];
+
+// ── DEFAULT COLLECTIONS ────────────────────────────────────────────────
 const DEFCOLLS=[
-  {id:"sad",name:"In Times of Sorrow",mood:"Sorrow",color:"#4A6FA5",verses:[{ref:"Psalm 34:18",text:"The Lord is close to the brokenhearted and saves those who are crushed in spirit.",book:"Psalms",chapter:34,verse:18},{ref:"Matthew 5:4",text:"Blessed are those who mourn, for they will be comforted.",book:"Matthew",chapter:5,verse:4}]},
-  {id:"angry",name:"When Anger Rises",mood:"Anger",color:"#8B3A3A",verses:[{ref:"Proverbs 15:1",text:"A gentle answer turns away wrath, but a harsh word stirs up anger.",book:"Proverbs",chapter:15,verse:1},{ref:"Ephesians 4:26",text:"In your anger do not sin: Do not let the sun go down while you are still angry.",book:"Ephesians",chapter:4,verse:26}]},
-  {id:"anxious",name:"Peace Over Anxiety",mood:"Anxiety",color:"#5B4A8B",verses:[{ref:"Philippians 4:6",text:"Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",book:"Philippians",chapter:4,verse:6},{ref:"1 Peter 5:7",text:"Cast all your anxiety on him because he cares for you.",book:"1 Peter",chapter:5,verse:7}]},
-  {id:"strength",name:"Strength & Courage",mood:"Courage",color:"#2E6B4F",verses:[{ref:"Joshua 1:9",text:"Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",book:"Joshua",chapter:1,verse:9},{ref:"Philippians 4:13",text:"I can do all this through him who gives me strength.",book:"Philippians",chapter:4,verse:13}]},
-  {id:"gratitude",name:"Gratitude & Praise",mood:"Gratitude",color:"#8B6914",verses:[{ref:"Psalm 118:24",text:"This is the day the Lord has made; we will rejoice and be glad in it.",book:"Psalms",chapter:118,verse:24},{ref:"1 Thessalonians 5:18",text:"Give thanks in all circumstances; for this is God's will for you in Christ Jesus.",book:"1 Thessalonians",chapter:5,verse:18}]},
-  {id:"hope",name:"Holding onto Hope",mood:"Hope",color:"#2E5C8B",verses:[{ref:"Romans 15:13",text:"May the God of hope fill you with all joy and peace as you trust in him.",book:"Romans",chapter:15,verse:13},{ref:"Jeremiah 29:11",text:"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",book:"Jeremiah",chapter:29,verse:11}]},
+  {id:"sad",name:"In Times of Sorrow",mood:"Sorrow",color:"#4A6FA5",verses:[{r:"Psalm 34:18",t:"The Lord is near to the brokenhearted and saves the crushed in spirit.",bk:"Psalms"},{r:"Matthew 5:4",t:"Blessed are those who mourn, for they will be comforted.",bk:"Matthew"}]},
+  {id:"angry",name:"When Anger Rises",mood:"Anger",color:"#8B3A3A",verses:[{r:"Proverbs 15:1",t:"A gentle answer turns away wrath, but a harsh word stirs up anger.",bk:"Proverbs"},{r:"Ephesians 4:26",t:"In your anger do not sin: Do not let the sun go down while you are still angry.",bk:"Ephesians"}]},
+  {id:"anxious",name:"Peace Over Anxiety",mood:"Anxiety",color:"#5B4A8B",verses:[{r:"Philippians 4:6",t:"Do not be anxious about anything, but in everything by prayer let your requests be made known to God.",bk:"Philippians"},{r:"1 Peter 5:7",t:"Casting all your anxieties on him, because he cares for you.",bk:"1 Peter"}]},
+  {id:"strength",name:"Strength & Courage",mood:"Courage",color:"#2E6B4F",verses:[{r:"Joshua 1:9",t:"Be strong and courageous. Do not be frightened, for the Lord your God is with you wherever you go.",bk:"Joshua"},{r:"Philippians 4:13",t:"I can do all things through him who strengthens me.",bk:"Philippians"}]},
+  {id:"gratitude",name:"Gratitude & Praise",mood:"Gratitude",color:"#8B6914",verses:[{r:"Psalm 118:24",t:"This is the day the Lord has made; we will rejoice and be glad in it.",bk:"Psalms"},{r:"1 Thessalonians 5:18",t:"Give thanks in all circumstances; for this is the will of God in Christ Jesus for you.",bk:"1 Thessalonians"}]},
+  {id:"hope",name:"Holding onto Hope",mood:"Hope",color:"#2E5C8B",verses:[{r:"Romans 15:13",t:"May the God of hope fill you with all joy and peace as you trust in him.",bk:"Romans"},{r:"Jeremiah 29:11",t:"For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.",bk:"Jeremiah"}]},
 ];
-const HLC=[{h:"#FDE68A",l:"Amber"},{h:"#BBF7D0",l:"Sage"},{h:"#BFDBFE",l:"Sky"},{h:"#FBCFE8",l:"Rose"},{h:"#DDD6FE",l:"Lavender"}];
+
+const MOODS=["Peaceful","Grateful","Joyful","Reflective","Sorrowful","Hopeful","Struggling","Thankful"];
 
 // ── STATE ──────────────────────────────────────────────────────────────
 let S={
   tab:"home",dark:true,
   favs:[],hls:{},colls:JSON.parse(JSON.stringify(DEFCOLLS)),
-  notes:{}, // key: "BookName ch:v" => {text, date}
-  journal:[], // [{id,title,text,date,mood}]
-  book:null,chapter:1,verses:[],loading:false,err:false,
-  bsearch:"",tfilt:"ALL",
-  activeColl:null,showNewColl:false,newCollName:"",
-  hlc:"#FDE68A",
-  addV:null,
-  noteV:null,
+  notes:{},journal:[],
+  book:null,bsearch:"",tfilt:"ALL",
+  addV:null,noteV:null,
   searchQ:"",searchRes:[],searching:false,
-  journalView:null,journalEdit:null,
-  journalTitle:"",journalText:"",journalMood:"",
+  activeColl:null,showNewColl:false,newCollName:"",
+  journalEdit:null,journalTitle:"",journalText:"",journalMood:"",
 };
 
-// ── PERSIST ─────────────────────────────────────────────────────────────
-function save(){try{localStorage.setItem("ss4",JSON.stringify({favs:S.favs,hls:S.hls,colls:S.colls,notes:S.notes,journal:S.journal,dark:S.dark}));}catch{}}
-function load(){try{const d=JSON.parse(localStorage.getItem("ss4")||"{}");if(d.favs)S.favs=d.favs;if(d.hls)S.hls=d.hls;if(d.colls)S.colls=d.colls;if(d.notes)S.notes=d.notes;if(d.journal)S.journal=d.journal;if(d.dark!==undefined)S.dark=d.dark;}catch{}}
+// ── STORAGE ────────────────────────────────────────────────────────────
+function save(){try{localStorage.setItem("ss5",JSON.stringify({favs:S.favs,hls:S.hls,colls:S.colls,notes:S.notes,journal:S.journal,dark:S.dark}));}catch{}}
+function load(){try{const d=JSON.parse(localStorage.getItem("ss5")||"{}");if(d.favs)S.favs=d.favs;if(d.hls)S.hls=d.hls;if(d.colls)S.colls=d.colls;if(d.notes)S.notes=d.notes;if(d.journal)S.journal=d.journal;if(d.dark!==undefined)S.dark=d.dark;}catch{}}
 
 // ── THEME ──────────────────────────────────────────────────────────────
 function applyTheme(){
   const d=S.dark;
-  const r=document.documentElement.style;
-  r.setProperty("--bg",d?"#0f0e0c":"#f7f4ef");
-  r.setProperty("--surf",d?"#1a1814":"#ffffff");
-  r.setProperty("--alt",d?"#211f1a":"#f2ede6");
-  r.setProperty("--bord",d?"#2e2b25":"#ddd6cc");
-  r.setProperty("--text",d?"#e8e2d8":"#1e1a14");
-  r.setProperty("--muted",d?"#8a8070":"#6b6055");
-  r.setProperty("--faint",d?"#4a4438":"#b0a898");
+  document.documentElement.style.setProperty("--surf",d?"#1a1814":"#ffffff");
+  document.documentElement.style.setProperty("--alt",d?"#211f1a":"#f2ede6");
+  document.documentElement.style.setProperty("--bord",d?"#2e2b25":"#ddd6cc");
+  document.documentElement.style.setProperty("--text",d?"#e8e2d8":"#1e1a14");
+  document.documentElement.style.setProperty("--muted",d?"#8a8070":"#6b6055");
+  document.documentElement.style.setProperty("--faint",d?"#4a4438":"#b0a898");
   document.body.style.background=d?"#0f0e0c":"#f7f4ef";
   document.body.style.color=d?"#e8e2d8":"#1e1a14";
   document.querySelector(".hdr").style.background=d?"#0a0905":"#2a1f0f";
-  document.querySelector(".navbar").style.background=d?"#0a0905":"#2a1f0f";
-  const hdrSub=document.querySelector(".hdr div div:last-child");
-  if(hdrSub)hdrSub.style.color=d?"#3a3020":"#7a6040";
+  document.querySelector(".nb-bar").style.background=d?"#0a0905":"#2a1f0f";
   document.getElementById("dkBtn").textContent=d?"LIGHT":"DARK";
 }
-function toggleDark(){S.dark=!S.dark;save();applyTheme();render();}
-window.toggleDark=toggleDark;
+window.toggleDark=function(){S.dark=!S.dark;save();applyTheme();render();};
 
 // ── NAV ────────────────────────────────────────────────────────────────
-function go(t){
-  S.tab=t;
-  document.querySelectorAll(".nb").forEach(b=>b.classList.remove("active"));
-  const nb=document.getElementById("n-"+t);if(nb)nb.classList.add("active");
-  render();
-}
+function go(t){S.tab=t;document.querySelectorAll(".nb").forEach(b=>b.classList.remove("active"));const nb=document.getElementById("n-"+t);if(nb)nb.classList.add("active");render();}
 window.go=go;
 
 // ── HELPERS ────────────────────────────────────────────────────────────
-const isFav=r=>S.favs.some(f=>f.ref===r);
-function togFav(v){S.favs=isFav(v.ref)?S.favs.filter(f=>f.ref!==v.ref):[...S.favs,v];save();render();}
+const isFav=r=>S.favs.some(f=>f.r===r||f.ref===r);
+
+function togFav(r,t,bk){
+  if(isFav(r)){S.favs=S.favs.filter(f=>f.r!==r&&f.ref!==r);}
+  else{S.favs.push({r,t,bk});}
+  save();render();
+}
 window.togFav=togFav;
 
-function togHL(key){S.hls[key]===S.hlc?delete S.hls[key]:(S.hls[key]=S.hlc);save();renderVs();}
-window.togHL=togHL;
-
-function openAdd(v){
-  S.addV=v;
-  document.getElementById("modRef").textContent=v.ref;
+function openAdd(r,t,bk){
+  S.addV={r,t,bk};
+  document.getElementById("modRef").textContent=r;
   const l=document.getElementById("modList");l.innerHTML="";
   S.colls.forEach(p=>{
-    const has=p.verses.some(vv=>vv.ref===v.ref);
+    const has=p.verses.some(v=>(v.r||v.ref)===r);
     const b=document.createElement("button");
-    b.className="bp b2";b.style.cssText="width:100%;text-align:left;display:flex;align-items:center;gap:10px;"+(has?"opacity:.5":"");
+    b.className="bp b2";b.style.cssText="width:100%;text-align:left;display:flex;align-items:center;gap:10px;margin-bottom:4px;"+(has?"opacity:.5":"");
     b.innerHTML=`<div style="width:8px;height:8px;border-radius:50%;background:${p.color};flex-shrink:0"></div><span style="flex:1">${p.name}</span><span style="color:var(--faint);font-size:11px">${has?"Added ✓":p.verses.length+"v"}</span>`;
-    if(!has)b.onclick=()=>{S.colls=S.colls.map(pl=>pl.id===p.id?{...pl,verses:[...pl.verses.filter(vv=>vv.ref!==v.ref),v]}:pl);save();closeMod();};
+    if(!has)b.onclick=()=>{p.verses.push({r,t,bk});save();closeMod();};
     l.appendChild(b);
   });
   document.getElementById("addMod").style.display="flex";
@@ -264,12 +1093,11 @@ function openAdd(v){
 function closeMod(){document.getElementById("addMod").style.display="none";}
 window.openAdd=openAdd;window.closeMod=closeMod;
 
-// ── STUDY NOTES ────────────────────────────────────────────────────────
-function openNote(v){
-  S.noteV=v;
-  const key=v.ref;const ex=S.notes[key]||{};
-  document.getElementById("noteRef").textContent=v.ref;
-  document.getElementById("noteVerseTxt").textContent="\u201C"+v.text+"\u201D";
+function openNote(r,t){
+  S.noteV={r,t};
+  const ex=S.notes[r]||{};
+  document.getElementById("noteRef").textContent=r;
+  document.getElementById("noteVerseTxt").textContent="\u201C"+t+"\u201D";
   document.getElementById("noteTxt").value=ex.text||"";
   document.getElementById("delNoteBtn").style.display=ex.text?"inline-flex":"none";
   document.getElementById("noteMod").style.display="flex";
@@ -277,150 +1105,43 @@ function openNote(v){
 }
 function saveNote(){
   const t=document.getElementById("noteTxt").value.trim();
-  if(t){S.notes[S.noteV.ref]={text:t,date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}),verse:S.noteV};}
-  else{delete S.notes[S.noteV.ref];}
+  if(t)S.notes[S.noteV.r]={text:t,date:new Date().toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})};
+  else delete S.notes[S.noteV.r];
   save();closeNoteMod();render();
 }
-function deleteNote(){delete S.notes[S.noteV.ref];save();closeNoteMod();render();}
+function deleteNote(){delete S.notes[S.noteV.r];save();closeNoteMod();render();}
 function closeNoteMod(){document.getElementById("noteMod").style.display="none";}
 window.openNote=openNote;window.saveNote=saveNote;window.deleteNote=deleteNote;window.closeNoteMod=closeNoteMod;
 
-// ── BIBLE API ──────────────────────────────────────────────────────────
-// jsDelivr CDN — static JSON files from GitHub, no CORS issues, globally cached
-// Translation: KJV (en-kjv). DC books use embedded inline text.
-// Book name map: lowercase, no spaces/punctuation as required by the API
-const BKMAP={
-  "Genesis":"genesis","Exodus":"exodus","Leviticus":"leviticus","Numbers":"numbers",
-  "Deuteronomy":"deuteronomy","Joshua":"joshua","Judges":"judges","Ruth":"ruth",
-  "1 Samuel":"1samuel","2 Samuel":"2samuel","1 Kings":"1kings","2 Kings":"2kings",
-  "1 Chronicles":"1chronicles","2 Chronicles":"2chronicles","Ezra":"ezra","Nehemiah":"nehemiah",
-  "Esther":"esther","Job":"job","Psalms":"psalms","Proverbs":"proverbs",
-  "Ecclesiastes":"ecclesiastes","Song of Songs":"songofsolomon","Isaiah":"isaiah",
-  "Jeremiah":"jeremiah","Lamentations":"lamentations","Ezekiel":"ezekiel","Daniel":"daniel",
-  "Hosea":"hosea","Joel":"joel","Amos":"amos","Obadiah":"obadiah","Jonah":"jonah",
-  "Micah":"micah","Nahum":"nahum","Habakkuk":"habakkuk","Zephaniah":"zephaniah",
-  "Haggai":"haggai","Zechariah":"zechariah","Malachi":"malachi","Matthew":"matthew",
-  "Mark":"mark","Luke":"luke","John":"john","Acts":"acts","Romans":"romans",
-  "1 Corinthians":"1corinthians","2 Corinthians":"2corinthians","Galatians":"galatians",
-  "Ephesians":"ephesians","Philippians":"philippians","Colossians":"colossians",
-  "1 Thessalonians":"1thessalonians","2 Thessalonians":"2thessalonians",
-  "1 Timothy":"1timothy","2 Timothy":"2timothy","Titus":"titus","Philemon":"philemon",
-  "Hebrews":"hebrews","James":"james","1 Peter":"1peter","2 Peter":"2peter",
-  "1 John":"1john","2 John":"2john","3 John":"3john","Jude":"jude","Revelation":"revelation"
-};
-
-async function loadCh(bk,ch){
-  S.verses=[];S.err=false;S.loading=true;renderVs();
-  // Deuterocanonical books — use embedded text
-  if(bk.dc){
-    const dc=DC[bk.n];
-    S.verses=dc?.[ch]||[{v:1,t:`${bk.n} ${ch} — Full Deuterocanonical text is embedded in the complete app build.`}];
-    S.loading=false;renderVs();return;
-  }
-  const slug=BKMAP[bk.n];
-  if(!slug){S.err=true;S.loading=false;renderVs();return;}
-  const url=`https://cdn.jsdelivr.net/gh/wldeh/bible-api/bibles/en-kjv/books/${slug}/chapters/${ch}.json`;
-  try{
-    const r=await fetch(url);
-    if(!r.ok)throw new Error("HTTP "+r.status);
-    const d=await r.json();
-    // Response is an array of verse objects: [{verse:1, text:"..."}, ...]
-    if(Array.isArray(d)&&d.length){
-      S.verses=d.map(v=>({
-        v:parseInt(v.verse||v.verseId||v.id||1),
-        t:(v.text||v.verse_text||"").replace(/\d+\.\d+\s.*/g,"").replace(/\n/g," ").trim()
-      }));
-    } else if(d.verses&&d.verses.length){
-      S.verses=d.verses.map(v=>({v:parseInt(v.verse),t:(v.text||"").replace(/\n/g," ").trim()}));
-    } else {S.err=true;}
-  }catch{S.err=true;}
-  S.loading=false;renderVs();
-}
-window.loadCh=loadCh;
-
 // ── SEARCH ─────────────────────────────────────────────────────────────
-async function doSearch(){
-  const q=(document.getElementById("sqinp")||{value:""}).value.trim();
+function doSearch(){
+  const q=(document.getElementById("sqinp")||{value:""}).value.trim().toLowerCase();
   if(!q||q.length<2)return;
-  S.searchQ=q;S.searchRes=[];S.searching=true;renderSearch();
-  try{
-    const r=await fetch(`https://labs.bible.org/api/?type=json&passage=${encodeURIComponent(q)}`);
-    const d=await r.json();
-    if(Array.isArray(d)&&d.length){
-      S.searchRes=d.slice(0,40).map(v=>({ref:`${v.bookname} ${v.chapter}:${v.verse}`,text:v.text.replace(/<[^>]*>/g,"").trim(),book:v.bookname,chapter:parseInt(v.chapter),verse:parseInt(v.verse)}));
-    } else S.searchRes=[];
-  }catch{S.searchRes=[];}
-  S.searching=false;renderSearch();
+  S.searchQ=q;S.searchRes=[];
+  // Search across all highlight verses
+  Object.entries(H).forEach(([book,verses])=>{
+    verses.forEach(v=>{
+      if(v.t.toLowerCase().includes(q)||v.r.toLowerCase().includes(q)){
+        S.searchRes.push({r:v.r,t:v.t,bk:book});
+      }
+    });
+  });
+  render();
 }
 window.doSearch=doSearch;
 
-function hlText(t,q){
-  if(!q)return t;
-  const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")})`, "gi");
-  return t.replace(re,'<mark class="search-hl">$1</mark>');
-}
-
 // ── JOURNAL ────────────────────────────────────────────────────────────
-const MOODS=["Peaceful","Grateful","Joyful","Reflective","Sorrowful","Hopeful","Struggling","Thankful"];
 function saveJournal(){
   const title=(document.getElementById("jtitle")||{value:""}).value.trim();
   const text=(document.getElementById("jtext")||{value:""}).value.trim();
-  const mood=S.journalMood;
   if(!text)return;
-  if(S.journalEdit){
-    S.journal=S.journal.map(j=>j.id===S.journalEdit?{...j,title,text,mood}:j);
-  } else {
-    S.journal.unshift({id:Date.now().toString(),title:title||"Reflection",text,mood,date:new Date().toLocaleDateString("en-US",{weekday:"short",month:"long",day:"numeric",year:"numeric"})});
-  }
+  if(S.journalEdit){S.journal=S.journal.map(j=>j.id===S.journalEdit?{...j,title,text,mood:S.journalMood}:j);}
+  else{S.journal.unshift({id:Date.now().toString(),title:title||"Reflection",text,mood:S.journalMood,date:new Date().toLocaleDateString("en-US",{weekday:"short",month:"long",day:"numeric",year:"numeric"})});}
   S.journalEdit=null;S.journalTitle="";S.journalText="";S.journalMood="";
   save();render();
 }
 function delJournal(id){S.journal=S.journal.filter(j=>j.id!==id);save();render();}
 window.saveJournal=saveJournal;window.delJournal=delJournal;
-
-// ── RENDER VERSES ──────────────────────────────────────────────────────
-function renderVs(){
-  const box=document.getElementById("vbox");if(!box)return;
-  if(S.loading){box.innerHTML=`<div style="padding:40px;text-align:center"><div class="spinner"></div><div style="margin-top:12px;font-size:12px;letter-spacing:1px;color:var(--faint)">Loading…</div></div>`;return;}
-  if(S.err){box.innerHTML=`<div class="card" style="background:var(--surf);text-align:center;padding:28px"><div style="color:var(--muted);margin-bottom:12px">Could not load this chapter. Check your internet connection.</div><button class="bp b1" onclick="loadCh(S.book,S.chapter)">Retry</button></div>`;return;}
-  const bkName=S.book?.n||"";
-  box.innerHTML=S.verses.map(({v,t})=>{
-    const key=`${bkName}-${S.chapter}-${v}`;
-    const hl=S.hls[key]||"";
-    const ref=`${bkName} ${S.chapter}:${v}`;
-    const vj=JSON.stringify({ref,text:t,book:bkName,chapter:S.chapter,verse:v}).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
-    const favd=isFav(ref);const hasNote=!!S.notes[ref];
-    return `<div class="vrow" style="${hl?`background:${hl};border-left-color:#00000033`:""}" onclick="togHL('${key}')">
-      <div style="display:flex;align-items:flex-start;gap:8px">
-        <span style="color:#d4aa55;font-weight:700;font-size:11px;min-width:20px;padding-top:3px">${v}</span>
-        <span style="font-size:15px;line-height:1.8;flex:1">${t}</span>
-        <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;margin-top:2px">
-          <button onclick="event.stopPropagation();togFav({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:${favd?"#b8963e":"var(--faint)"}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="${favd?"#b8963e":"none"}" stroke="${favd?"#b8963e":"currentColor"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-          </button>
-          <button onclick="event.stopPropagation();openNote({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:${hasNote?"#b8963e":"var(--faint)"}">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-          </button>
-          <button onclick="event.stopPropagation();openAdd({ref:'${ref}',text:\`${t.replace(/`/g,"'")}\`,book:'${bkName}',chapter:${S.chapter},verse:${v}})" style="background:none;border:none;padding:3px;color:var(--faint)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16m8-8H4"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>`;
-  }).join("");
-}
-
-// ── RENDER SEARCH ──────────────────────────────────────────────────────
-function renderSearch(){
-  const box=document.getElementById("sbox");if(!box)return;
-  if(S.searching){box.innerHTML=`<div style="text-align:center;padding:30px"><div class="spinner"></div><div style="margin-top:10px;color:var(--faint);font-size:12px;letter-spacing:1px">Searching…</div></div>`;return;}
-  if(!S.searchRes.length&&S.searchQ){box.innerHTML=`<div style="text-align:center;padding:30px;color:var(--muted)">No results found for &ldquo;${S.searchQ}&rdquo;</div>`;return;}
-  box.innerHTML=S.searchRes.map(v=>`
-    <div class="card" style="background:var(--surf);cursor:pointer" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">
-      <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:6px">${v.ref}</div>
-      <p style="font-size:14px;line-height:1.7;margin:0">${hlText(v.text,S.searchQ)}</p>
-    </div>`).join("");
-}
 
 // ── MAIN RENDER ────────────────────────────────────────────────────────
 function render(){
@@ -428,165 +1149,155 @@ function render(){
   const di=new Date().getDate()%DAILY.length;
   const dv=DAILY[di];
 
-  // HOME
+  // ── HOME ──
   if(S.tab==="home"){
+    const favd=isFav(dv.r);
     c.innerHTML=`
     <div style="text-align:center;padding-top:8px;margin-bottom:18px">
       <span class="sl" style="text-align:center;display:block">${new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric",year:"numeric"})}</span>
-      <div style="color:#b8963e;font-size:15px;letter-spacing:4px;margin-top:2px">· · ✦ · ·</div>
+      <div style="color:#b8963e;font-size:15px;letter-spacing:4px;margin-top:4px">· · ✦ · ·</div>
     </div>
-    <div class="card" style="background:var(--surf);text-align:center;position:relative;overflow:hidden">
+    <div style="background:var(--surf);border-radius:12px;padding:20px;margin-bottom:16px;border:1px solid var(--bord);text-align:center;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,#b8963e,transparent)"></div>
       <div style="color:var(--faint);font-size:10px;letter-spacing:3px;margin-bottom:12px">VERSE OF THE DAY</div>
-      <p style="font-size:16px;line-height:1.9;font-style:italic;margin:0 auto 12px">&ldquo;${dv.text}&rdquo;</p>
-      <div style="color:#d4aa55;font-weight:600;font-size:13px;letter-spacing:.5px;margin-bottom:12px">— ${dv.ref}</div>
+      <p style="font-size:16px;line-height:1.9;font-style:italic;margin:0 auto 12px">&ldquo;${dv.t}&rdquo;</p>
+      <div style="color:#d4aa55;font-weight:600;font-size:13px;margin-bottom:12px">— ${dv.r}</div>
       <div style="height:1px;background:var(--bord);margin-bottom:12px"></div>
       <p style="font-size:13px;color:var(--muted);line-height:1.8;font-style:italic;margin-bottom:16px">${REFS[di]}</p>
       <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-        <button class="bp ${isFav(dv.ref)?"b1":"b2"}" onclick='togFav(${JSON.stringify(dv)})'>${isFav(dv.ref)?"Saved ✓":"Save Verse"}</button>
-        <button class="bp b2" onclick="S.book=BOOKS.find(b=>b.n==='${dv.book}');S.chapter=${dv.chapter};go('read');loadCh(S.book,S.chapter)">Read Chapter</button>
+        <button class="bp ${favd?"b1":"b2"}" onclick="togFav('${dv.r}','${dv.t.replace(/'/g,"\\'")}','${dv.bk}')">${favd?"Saved ✓":"Save Verse"}</button>
+        <button class="bp b2" onclick="openAdd('${dv.r}','${dv.t.replace(/'/g,"\\'")}','${dv.bk}')">+ Collection</button>
       </div>
     </div>
     <span class="sl">Quick Access</span>
-    <div class="grid2" style="margin-bottom:18px">
-      ${[
-        {l:"Read the Bible",s:"73 books · WEB translation",t:"read",ic:"M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"},
-        {l:"Search Scripture",s:"Find any word or phrase",t:"search",ic:"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"},
-        {l:"Prayer Journal",s:`${S.journal.length} entries`,t:"journal",ic:"M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"},
-        {l:"Collections",s:`${S.colls.length} collections`,t:"colls",ic:"M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"},
-      ].map(item=>`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px">
+      ${[{l:"Read the Bible",s:"73 books · 10 key verses each",t:"read",ic:"M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"},
+      {l:"Search Scripture",s:"Find any verse",t:"search",ic:"M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"},
+      {l:"Prayer Journal",s:S.journal.length+" entries",t:"journal",ic:"M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"},
+      {l:"Collections",s:S.colls.length+" collections",t:"colls",ic:"M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"}].map(item=>`
         <button onclick="go('${item.t}')" style="background:var(--surf);border-radius:10px;border:1px solid var(--bord);padding:14px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:10px">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8b6e25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${item.ic}"/></svg>
           <div><div style="font-size:13px;font-weight:600;color:var(--text)">${item.l}</div><div style="font-size:11px;color:var(--muted);margin-top:2px">${item.s}</div></div>
         </button>`).join("")}
     </div>
-    <span class="sl">Study Notes</span>
-    <div style="padding-bottom:20px">
-      ${Object.keys(S.notes).length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:20px;color:var(--muted);font-size:13px">No study notes yet. Tap the pencil icon while reading any verse.</div>`:
-      Object.entries(S.notes).slice(0,3).map(([ref,n])=>`
-        <div class="card" style="background:var(--surf)">
-          <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:6px">${ref}</div>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 8px">${n.text.slice(0,120)}${n.text.length>120?"…":""}</p>
-          <div style="font-size:11px;color:var(--faint)">${n.date}</div>
-        </div>`).join("")}
+    <span class="sl">Collections</span>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:20px">
+      ${S.colls.map(p=>`<button onclick="S.activeColl=S.colls.find(c=>c.id==='${p.id}');go('colls')" style="flex:0 0 auto;background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:12px 14px;cursor:pointer;min-width:110px;text-align:left"><div style="width:6px;height:6px;border-radius:50%;background:${p.color};margin-bottom:8px"></div><div style="font-size:12px;font-weight:600;color:var(--text);line-height:1.4">${p.name}</div><div style="font-size:11px;color:var(--muted);margin-top:4px">${p.verses.length} verses</div></button>`).join("")}
     </div>`;
     return;
   }
 
-  // READ
+  // ── READ ──
   if(S.tab==="read"){
     if(!S.book){
-      const filt=BOOKS.filter(b=>{
-        const ms=b.n.toLowerCase().includes((S.bsearch||"").toLowerCase());
-        const mf=S.tfilt==="ALL"||S.tfilt===b.t||(S.tfilt==="DC"&&b.dc);
-        return ms&&mf;
-      });
+      const filt=BOOKS.filter(b=>b.n.toLowerCase().includes((S.bsearch||"").toLowerCase())&&(S.tfilt==="ALL"||S.tfilt===b.t||(S.tfilt==="DC"&&b.dc)));
       const ot=filt.filter(b=>b.t==="OT"),nt=filt.filter(b=>b.t==="NT");
+      const bBtn=b=>`<button onclick="S.book='${b.n}';render();" style="background:var(--surf);border:1px solid var(--bord);border-radius:8px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;width:100%"><div><div style="font-size:13px;font-weight:500;color:var(--text)">${b.n}</div>${b.dc?`<div class="tag-dc">Deuterocanonical</div>`:""}</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>`;
       c.innerHTML=`
+        <div style="margin-bottom:14px"><div style="font-weight:600;font-size:18px">Read the Bible</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Top 10 key verses from each of the 73 books</div></div>
         <input class="inp" style="margin-bottom:10px" placeholder="Search books…" value="${S.bsearch||""}" oninput="S.bsearch=this.value;render()"/>
-        <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
-          ${[["ALL","All 73"],["OT","Old Test."],["NT","New Test."],["DC","Deuterocanon."]].map(([v,l])=>`<button class="bp ${S.tfilt===v?"b1":"b2"}" style="font-size:11px;padding:5px 10px" onclick="S.tfilt='${v}';render()">${l}</button>`).join("")}
-        </div>
-        ${ot.length?`<span class="sl">Old Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;margin-bottom:16px">
-          ${ot.map(b=>`<button onclick="S.book=${JSON.stringify(b).replace(/"/g,"'")};S.chapter=1;render();loadCh(S.book,1)" style="background:var(--surf);border:1px solid var(--bord);border-radius:8px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center">
-            <div><div style="font-size:13px;font-weight:500;color:var(--text)">${b.n}</div>${b.dc?`<div class="tag-dc">Deuterocanonical</div>`:""}</div>
-            <div style="color:var(--faint);font-size:11px">${b.ch}ch</div>
-          </button>`).join("")}</div>`:""}
-        ${nt.length?`<span class="sl">New Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;padding-bottom:20px">
-          ${nt.map(b=>`<button onclick="S.book=${JSON.stringify(b).replace(/"/g,"'")};S.chapter=1;render();loadCh(S.book,1)" style="background:var(--surf);border:1px solid var(--bord);border-radius:8px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center">
-            <div style="font-size:13px;font-weight:500;color:var(--text)">${b.n}</div>
-            <div style="color:var(--faint);font-size:11px">${b.ch}ch</div>
-          </button>`).join("")}</div>`:""}`;
-    } else {
-      const bk=S.book;
-      const intro=INTROS[bk.n];
-      c.innerHTML=`
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-          <button class="bp b2" onclick="S.book=null;S.verses=[];render()">← Books</button>
-          <div style="flex:1"><div style="font-weight:600;font-size:16px">${bk.n}</div><div style="color:var(--muted);font-size:12px">Chapter ${S.chapter} of ${bk.ch}</div></div>
-        </div>
-        ${intro?`<div style="background:var(--alt);border:1px solid var(--bord);border-left:3px solid #b8963e;border-radius:8px;padding:12px;margin-bottom:12px;font-size:13px;color:var(--muted);line-height:1.7">${intro}</div>`:""}
-      <div style="background:var(--alt);border:1px solid var(--bord);border-radius:6px;padding:6px 10px;margin-bottom:10px;font-size:10px;color:var(--faint);letter-spacing:.5px">Translation: King James Version (KJV) — Public domain · Deuterocanonical books included</div>
-        <div style="display:flex;gap:3px;flex-wrap:wrap;margin-bottom:12px;max-height:108px;overflow-y:auto">
-          ${Array.from({length:bk.ch},(_,i)=>i+1).map(ch=>`<button class="chbtn ${ch===S.chapter?"on":""}" onclick="S.chapter=${ch};loadCh(S.book,${ch})">${ch}</button>`).join("")}
-        </div>
-        <div style="display:flex;align-items:center;gap:7px;margin-bottom:12px;padding:8px 12px;background:var(--alt);border-radius:8px;border:1px solid var(--bord)">
-          <span style="font-size:10px;color:var(--muted);letter-spacing:1px">HIGHLIGHT</span>
-          ${HLC.map(hc=>`<button onclick="S.hlc='${hc.h}'" class="hldot" style="background:${hc.h};border-color:${S.hlc===hc.h?"var(--text)":"transparent"}" title="${hc.l}"></button>`).join("")}
-          <span style="font-size:11px;color:var(--faint);margin-left:auto">Tap verse</span>
-        </div>
-        <div style="color:#b8963e;font-size:11px;font-weight:600;letter-spacing:1.5px;margin-bottom:12px">${bk.n.toUpperCase()} · CHAPTER ${S.chapter}</div>
-        <div id="vbox"></div>
-        <div style="display:flex;justify-content:space-between;margin-top:14px;padding-bottom:16px">
-          <button class="bp b2" onclick="if(S.chapter>1){S.chapter--;loadCh(S.book,S.chapter);render();}" ${S.chapter===1?"disabled style='opacity:.4'":""}>← Previous</button>
-          <button class="bp b2" onclick="if(S.chapter<S.book.ch){S.chapter++;loadCh(S.book,S.chapter);render();}" ${S.chapter===bk.ch?"disabled style='opacity:.4'":""}>Next →</button>
-        </div>`;
-      renderVs();
+        <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">${[["ALL","All 73"],["OT","Old Test."],["NT","New Test."],["DC","Deuterocanon."]].map(([v,l])=>`<button class="bp ${S.tfilt===v?"b1":"b2"}" style="font-size:11px;padding:5px 10px" onclick="S.tfilt='${v}';render()">${l}</button>`).join("")}</div>
+        ${ot.length?`<span class="sl">Old Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;margin-bottom:16px">${ot.map(bBtn).join("")}</div>`:""}
+        ${nt.length?`<span class="sl">New Testament</span><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:6px;padding-bottom:20px">${nt.map(bBtn).join("")}</div>`:""}`;
+      return;
     }
+
+    // ── BOOK DETAIL: just show the 10 verses, nothing else ──
+    const bookName=S.book;
+    const verses=H[bookName]||[];
+    let html=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+      <button class="bp b2" onclick="S.book=null;render()">← Books</button>
+      <div style="font-weight:600;font-size:18px">${bookName}</div>
+    </div>`;
+    if(verses.length===0){
+      html+=`<div style="text-align:center;padding:40px;color:var(--muted)">No verses available for this book.</div>`;
+    } else {
+      verses.forEach(v=>{
+        const ref=v.r;
+        const text=v.t;
+        const esc=s=>s.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+        const favd=isFav(ref);
+        const hasNote=!!S.notes[ref];
+        html+=`<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:16px;margin-bottom:12px">
+          <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:8px">${ref}</div>
+          <p style="font-size:15px;line-height:1.8;font-style:italic;margin:0 0 14px">&ldquo;${text}&rdquo;</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="bp ${favd?"b1":"b2"}" style="font-size:12px" onclick="togFav('${esc(ref)}','${esc(text)}','${esc(bookName)}')">${favd?"Saved ✓":"Save Verse"}</button>
+            <button class="bp b2" style="font-size:12px" onclick="openAdd('${esc(ref)}','${esc(text)}','${esc(bookName)}')">+ Collection</button>
+            <button class="bp b2" style="font-size:12px;${hasNote?"color:#b8963e":""}" onclick="openNote('${esc(ref)}','${esc(text)}')">${hasNote?"View Note":"Add Note"}</button>
+          </div>
+        </div>`;
+      });
+    }
+    html+=`<div style="padding-bottom:24px"></div>`;
+    c.innerHTML=html;
     return;
   }
 
-  // SEARCH
+  // ── SEARCH ──
   if(S.tab==="search"){
     c.innerHTML=`
-      <div style="margin-bottom:14px"><div style="font-weight:600;font-size:18px">Search Scripture</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Search across all 66 canonical books</div></div>
+      <div style="margin-bottom:14px"><div style="font-weight:600;font-size:18px">Search Scripture</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Search across all 73 books</div></div>
       <div style="display:flex;gap:8px;margin-bottom:16px">
         <input id="sqinp" class="inp" style="flex:1" placeholder="Search a word or phrase…" value="${S.searchQ}" onkeydown="if(event.key==='Enter')doSearch()"/>
         <button class="bp b1" onclick="doSearch()">Search</button>
       </div>
-      ${S.searchRes.length?`<div style="color:var(--faint);font-size:11px;margin-bottom:10px;letter-spacing:1px">${S.searchRes.length} RESULTS FOR &ldquo;${S.searchQ}&rdquo;</div>`:""}
-      <div id="sbox" style="padding-bottom:20px">${!S.searchQ?`<div style="text-align:center;padding:40px 20px;color:var(--muted)"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--faint);margin-bottom:12px"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg><br/>Enter a word or phrase to search Scripture</div>`:""}
-      </div>`;
-    if(S.searchQ)renderSearch();
+      ${S.searchRes.length?`<div style="color:var(--faint);font-size:11px;margin-bottom:10px;letter-spacing:1px">${S.searchRes.length} RESULTS</div>`:""}
+      ${S.searchQ&&!S.searchRes.length?`<div style="text-align:center;padding:30px;color:var(--muted)">No results found for &ldquo;${S.searchQ}&rdquo;</div>`:""}
+      ${!S.searchQ?`<div style="text-align:center;padding:40px;color:var(--muted)">Enter a word or phrase to search all 73 books</div>`:""}
+      ${S.searchRes.map(v=>{
+        const esc=s=>s.replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+        const favd=isFav(v.r);
+        return `<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px">
+          <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:6px">${v.r}</div>
+          <p style="font-size:14px;line-height:1.7;margin:0 0 10px;font-style:italic">&ldquo;${v.t}&rdquo;</p>
+          <div style="display:flex;gap:6px">
+            <button class="bp ${favd?"b1":"b2"}" style="font-size:12px" onclick="togFav('${esc(v.r)}','${esc(v.t)}','${esc(v.bk)}')">${favd?"Saved ✓":"Save"}</button>
+            <button class="bp b2" style="font-size:12px" onclick="openAdd('${esc(v.r)}','${esc(v.t)}','${esc(v.bk)}')">+ Collection</button>
+          </div>
+        </div>`;
+      }).join("")}
+      <div style="padding-bottom:20px"></div>`;
     return;
   }
 
-  // SAVED
+  // ── SAVED ──
   if(S.tab==="saved"){
     const noteCount=Object.keys(S.notes).length;
     c.innerHTML=`
-      <div style="margin-bottom:16px"><div style="font-weight:600;font-size:18px">Saved Verses</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.favs.length} saved · ${noteCount} study notes</div></div>
-      ${S.favs.length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:40px 20px">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>
-        <div style="color:var(--muted);margin-top:12px;line-height:1.6">No verses saved yet.<br/>Tap the bookmark icon while reading.</div></div>`:
-      S.favs.map(v=>{const hasN=!!S.notes[v.ref];return`
-        <div class="card" style="background:var(--surf)">
-          <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:7px">${v.ref}${hasN?` <span style="color:#b8963e;font-size:10px;vertical-align:middle">· Note</span>`:""}</div>
-          <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${v.text}&rdquo;</p>
+      <div style="margin-bottom:16px"><div style="font-weight:600;font-size:18px">Saved Verses</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.favs.length} saved · ${noteCount} notes</div></div>
+      ${S.favs.length===0?`<div style="background:var(--surf);border-radius:10px;padding:40px;margin-bottom:10px;border:1px solid var(--bord);text-align:center"><div style="color:var(--muted);line-height:1.6">No verses saved yet.<br/>Save verses while reading to see them here.</div></div>`:""}
+      ${S.favs.map(v=>{
+        const ref=v.r||v.ref;const text=v.t||v.text;const bk=v.bk||v.book||"";
+        const esc=s=>String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+        const hasN=!!S.notes[ref];
+        return `<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px">
+          <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:7px">${ref}${hasN?" · <span style='color:#b8963e;font-size:10px'>Note</span>":""}</div>
+          <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${text}&rdquo;</p>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <button class="bp b2" style="font-size:12px" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">Read Chapter</button>
-            <button class="bp b2" style="font-size:12px" onclick='openNote(${JSON.stringify(v)})'>${hasN?"View Note":"Add Note"}</button>
-            <button class="bp b2" style="font-size:12px" onclick='openAdd(${JSON.stringify(v)})'>Add to Collection</button>
-            <button class="bp b3" style="font-size:12px" onclick='togFav(${JSON.stringify(v)})'>Remove</button>
+            <button class="bp b2" style="font-size:12px" onclick="openAdd('${esc(ref)}','${esc(text)}','${esc(bk)}')">+ Collection</button>
+            <button class="bp b2" style="font-size:12px;${hasN?"color:#b8963e":""}" onclick="openNote('${esc(ref)}','${esc(text)}')">${hasN?"View Note":"Add Note"}</button>
+            <button class="bp b3" style="font-size:12px" onclick="togFav('${esc(ref)}','${esc(text)}','${esc(bk)}')">Remove</button>
           </div>
-        </div>`}).join("")}
-      ${noteCount>0?`<span class="sl" style="margin-top:8px">Study Notes</span>
-        ${Object.entries(S.notes).map(([ref,n])=>`
-          <div class="card" style="background:var(--surf)">
-            <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:5px">${ref}</div>
-            <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 6px">${n.text}</p>
-            <div style="font-size:11px;color:var(--faint)">${n.date}</div>
-          </div>`).join("")}`:""}`;
+        </div>`;
+      }).join("")}
+      ${noteCount>0?`<span class="sl" style="margin-top:8px">Study Notes</span>${Object.entries(S.notes).map(([ref,n])=>`<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px"><div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:5px">${ref}</div><p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 6px">${n.text}</p><div style="font-size:11px;color:var(--faint)">${n.date}</div></div>`).join("")}`:""}
+      <div style="padding-bottom:20px"></div>`;
     return;
   }
 
-  // JOURNAL
+  // ── JOURNAL ──
   if(S.tab==="journal"){
-    const editing=S.journalEdit!==null;
+    const editing=!!S.journalEdit;
     c.innerHTML=`
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-        <div><div style="font-weight:600;font-size:18px">Prayer Journal</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.journal.length} ${S.journal.length===1?"entry":"entries"}</div></div>
-        ${!editing?`<button class="bp b1" onclick="S.journalEdit=null;S.journalTitle='';S.journalText='';S.journalMood='';render()">New Entry</button>`:""}
+        <div><div style="font-weight:600;font-size:18px">Prayer Journal</div><div style="color:var(--muted);font-size:13px;margin-top:2px">${S.journal.length} entries</div></div>
       </div>
-      ${editing||S.journalEdit===null&&S.journal.length===0&&!S.journal.length?"":" "}
       <div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:16px;margin-bottom:16px">
         <div style="font-size:12px;color:var(--faint);margin-bottom:10px">${editing?"Edit entry":"New entry"} · ${new Date().toLocaleDateString("en-US",{weekday:"long",month:"long",day:"numeric"})}</div>
         <input id="jtitle" class="inp" style="margin-bottom:10px" placeholder="Title (optional)…" value="${S.journalTitle||""}"/>
-        <div style="margin-bottom:10px">
-          <div style="font-size:11px;color:var(--faint);letter-spacing:1px;margin-bottom:6px">HOW ARE YOU FEELING?</div>
-          <div style="display:flex;gap:6px;flex-wrap:wrap">
-            ${MOODS.map(m=>`<button class="chip" style="${S.journalMood===m?"background:#5a3e28;color:#f5ede0;border-color:#5a3e28":""}" onclick="S.journalMood='${m}';document.querySelectorAll('.chip').forEach(c=>c.style.background='');this.style.background='#5a3e28';this.style.color='#f5ede0'">${m}</button>`).join("")}
-          </div>
+        <div style="margin-bottom:10px"><div style="font-size:10px;color:var(--faint);letter-spacing:1px;margin-bottom:6px">HOW ARE YOU FEELING?</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">${MOODS.map(m=>`<button class="chip" style="${S.journalMood===m?"background:#5a3e28;color:#f5ede0;border-color:#5a3e28":""}" onclick="S.journalMood='${m}';document.querySelectorAll('.chip').forEach(c=>{c.style.background='';c.style.color='';c.style.borderColor='';});this.style.background='#5a3e28';this.style.color='#f5ede0';this.style.borderColor='#5a3e28'">${m}</button>`).join("")}</div>
         </div>
         <textarea id="jtext" style="width:100%;min-height:110px;padding:10px 12px;border-radius:7px;border:1px solid var(--bord);background:var(--alt);color:var(--text);font-size:14px;line-height:1.7;margin-bottom:10px" placeholder="Write your prayer, reflection, or meditation…">${S.journalText||""}</textarea>
         <div style="display:flex;gap:8px">
@@ -594,63 +1305,57 @@ function render(){
           ${editing?`<button class="bp b3" onclick="delJournal('${S.journalEdit}')">Delete</button>`:""}
         </div>
       </div>
-      ${S.journal.length===0?`<div style="text-align:center;padding:20px;color:var(--muted);font-size:13px">Your journal entries will appear here.</div>`:""}
-      ${S.journal.map(j=>`
-        <div class="card" style="background:var(--surf)">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px">
-            <div>
-              <div style="font-weight:600;font-size:15px;color:var(--text)">${j.title||"Reflection"}</div>
-              <div style="font-size:11px;color:var(--faint);margin-top:2px">${j.date}${j.mood?` · ${j.mood}`:""}</div>
-            </div>
-            <button class="bp b2" style="font-size:11px;flex-shrink:0;padding:5px 10px" onclick="S.journalEdit='${j.id}';S.journalTitle='${j.title||""}';S.journalText=\`${j.text.replace(/`/g,"'")}\`;S.journalMood='${j.mood||""}';render()">Edit</button>
-          </div>
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">${j.text.slice(0,200)}${j.text.length>200?"…":""}</p>
-        </div>`).join("")}`;
+      ${S.journal.map(j=>`<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px">
+          <div><div style="font-weight:600;font-size:15px;color:var(--text)">${j.title||"Reflection"}</div><div style="font-size:11px;color:var(--faint);margin-top:2px">${j.date}${j.mood?" · "+j.mood:""}</div></div>
+          <button class="bp b2" style="font-size:11px;flex-shrink:0;padding:5px 10px" onclick="S.journalEdit='${j.id}';S.journalTitle=\`${j.title||""}\`;S.journalText=\`${j.text.replace(/`/g,"'")}\`;S.journalMood='${j.mood||""}';render()">Edit</button>
+        </div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.7;margin:0">${j.text.slice(0,200)}${j.text.length>200?"…":""}</p>
+      </div>`).join("")}
+      <div style="padding-bottom:20px"></div>`;
     return;
   }
 
-  // COLLECTIONS
+  // ── COLLECTIONS ──
   if(S.tab==="colls"){
     if(!S.activeColl){
       c.innerHTML=`
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-          <div><div style="font-weight:600;font-size:18px">Collections</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Curated verse collections by mood & theme</div></div>
+          <div><div style="font-weight:600;font-size:18px">Collections</div><div style="color:var(--muted);font-size:13px;margin-top:2px">Verse collections by mood & theme</div></div>
           <button class="bp b1" onclick="S.showNewColl=true;render()">New</button>
         </div>
-        ${S.showNewColl?`<div class="card" style="background:var(--surf);margin-bottom:12px">
+        ${S.showNewColl?`<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:12px">
           <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Collection name</div>
-          <input id="ncInput" class="inp" style="margin-bottom:10px" placeholder="e.g. Morning Prayer, Before Mass…"/>
+          <input id="ncInput" class="inp" style="margin-bottom:10px" placeholder="e.g. Morning Prayer…"/>
           <div style="display:flex;gap:8px">
             <button class="bp b1" onclick="const v=document.getElementById('ncInput').value.trim();if(v){S.colls.push({id:Date.now().toString(),name:v,mood:'',color:'#5a3e28',verses:[]});save();}S.showNewColl=false;render()">Create</button>
             <button class="bp b2" onclick="S.showNewColl=false;render()">Cancel</button>
           </div></div>`:""}
-        ${S.colls.map(p=>`
-          <button onclick="S.activeColl=S.colls.find(c=>c.id==='${p.id}');render()" style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:15px;margin-bottom:10px;width:100%;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer">
-            <div style="width:3px;height:44px;border-radius:2px;background:${p.color};flex-shrink:0"></div>
-            <div style="flex:1"><div style="font-weight:500;font-size:15px;color:var(--text)">${p.name}</div>${p.mood?`<div style="font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.5px">${p.mood.toUpperCase()}</div>`:""}</div>
-            <div style="color:var(--muted);font-size:12px;margin-right:4px">${p.verses.length}v</div>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-          </button>`).join("")}`;
+        ${S.colls.map(p=>`<button onclick="S.activeColl=S.colls.find(c=>c.id==='${p.id}');render()" style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px;width:100%;text-align:left;display:flex;align-items:center;gap:14px;cursor:pointer">
+          <div style="width:3px;height:44px;border-radius:2px;background:${p.color};flex-shrink:0"></div>
+          <div style="flex:1"><div style="font-weight:500;font-size:15px;color:var(--text)">${p.name}</div>${p.mood?`<div style="font-size:11px;color:var(--muted);margin-top:2px">${p.mood.toUpperCase()}</div>`:""}</div>
+          <div style="color:var(--muted);font-size:12px;margin-right:4px">${p.verses.length}v</div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>`).join("")}
+        <div style="padding-bottom:20px"></div>`;
     } else {
       const ac=S.activeColl;
       c.innerHTML=`
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
           <button class="bp b2" onclick="S.activeColl=null;render()">← Collections</button>
-          <div style="flex:1">
-            <div style="display:flex;align-items:center;gap:8px"><div style="width:3px;height:18px;border-radius:2px;background:${ac.color}"></div><div style="font-weight:600;font-size:16px">${ac.name}</div></div>
-            <div style="color:var(--muted);font-size:12px;margin-top:2px">${ac.verses.length} verses</div>
-          </div>
+          <div style="flex:1"><div style="display:flex;align-items:center;gap:8px"><div style="width:3px;height:18px;border-radius:2px;background:${ac.color}"></div><div style="font-weight:600;font-size:16px">${ac.name}</div></div><div style="color:var(--muted);font-size:12px;margin-top:2px">${ac.verses.length} verses</div></div>
         </div>
-        ${ac.verses.length===0?`<div class="card" style="background:var(--surf);text-align:center;padding:32px 20px;color:var(--muted)">No verses yet. Save verses while reading and add them to this collection.</div>`:
-        ac.verses.map(v=>`
-          <div class="card" style="background:var(--surf)">
-            <div style="color:#d4aa55;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:7px">${v.ref}</div>
-            <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${v.text}&rdquo;</p>
-            <div style="display:flex;gap:6px">
-              <button class="bp b2" style="font-size:12px" onclick="S.book=BOOKS.find(b=>b.n==='${v.book}');S.chapter=${v.chapter};go('read');loadCh(S.book,${v.chapter})">Read Chapter</button>
-              <button class="bp b3" style="font-size:12px" onclick="S.colls=S.colls.map(p=>p.id==='${ac.id}'?{...p,verses:p.verses.filter(vv=>vv.ref!=='${v.ref}')}:p);S.activeColl=S.colls.find(p=>p.id==='${ac.id}');save();render()">Remove</button>
-            </div>
-          </div>`).join("")}`;
+        ${ac.verses.length===0?`<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:30px;text-align:center;color:var(--muted)">No verses yet. Save verses while reading and add them here.</div>`:""}
+        ${ac.verses.map(v=>{
+          const ref=v.r||v.ref;const text=v.t||v.text;
+          const esc=s=>String(s).replace(/\\/g,"\\\\").replace(/'/g,"\\'");
+          return `<div style="background:var(--surf);border:1px solid var(--bord);border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="color:#d4aa55;font-size:12px;font-weight:600;margin-bottom:7px">${ref}</div>
+            <p style="font-size:14px;line-height:1.8;font-style:italic;margin:0 0 12px">&ldquo;${text}&rdquo;</p>
+            <button class="bp b3" style="font-size:12px" onclick="S.colls=S.colls.map(p=>{if(p.id==='${ac.id}'){p.verses=p.verses.filter(vv=>(vv.r||vv.ref)!=='${esc(ref)}')}return p});S.activeColl=S.colls.find(p=>p.id==='${ac.id}');save();render()">Remove</button>
+          </div>`;
+        }).join("")}
+        <div style="padding-bottom:20px"></div>`;
     }
     return;
   }
@@ -660,20 +1365,21 @@ function render(){
 window.addEventListener("load",()=>{
   load();
   // PWA manifest
-  const mf={name:"Sacra Scriptura",short_name:"Bible",start_url:"./",display:"standalone",background_color:"#0f0e0c",theme_color:"#2a1f0f",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232a1f0f'/><text x='96' y='138' font-size='110' text-anchor='middle' fill='%23b8963e'>✝</text></svg>",sizes:"192x192",type:"image/svg+xml"},{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%232a1f0f'/><text x='256' y='370' font-size='300' text-anchor='middle' fill='%23b8963e'>✝</text></svg>",sizes:"512x512",type:"image/svg+xml"}]};
+  const mf={name:"Sacra Scriptura",short_name:"Bible",start_url:"./",display:"standalone",background_color:"#0f0e0c",theme_color:"#2a1f0f",icons:[{src:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%232a1f0f'/><text x='96' y='138' font-size='110' text-anchor='middle' fill='%23b8963e'>✝</text></svg>",sizes:"192x192",type:"image/svg+xml"}]};
   const bl=new Blob([JSON.stringify(mf)],{type:"application/json"});
   const lk=document.createElement("link");lk.rel="manifest";lk.href=URL.createObjectURL(bl);document.head.appendChild(lk);
-  // Service worker
   if("serviceWorker" in navigator){
-    const sw=`const C="ss-v1";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.add("/"))));self.addEventListener("fetch",e=>{if(e.request.url.includes("labs.bible.org"))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).catch(()=>caches.match("/"))));});`;
+    const sw=`const C="ss-v2";self.addEventListener("install",e=>e.waitUntil(caches.open(C).then(c=>c.add("/"))));self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));});`;
     navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:"application/javascript"}))).catch(()=>{});
   }
   setTimeout(()=>{
     const sp=document.getElementById("splash");sp.style.opacity="0";
     setTimeout(()=>sp.style.display="none",600);
     applyTheme();render();
-  },1000);
+  },800);
 });
+
+window.S=S;window.BOOKS=BOOKS;window.H=H;
 </script>
 </body>
 </html>
